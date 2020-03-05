@@ -1,0 +1,107 @@
+site_url: https://www.data-show.com
+
+backend:
+  name: git-gateway
+  branch: master
+  commit_messages:
+    create: "Create {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+    uploadMedia: "[skip ci] Upload “{{path}}”"
+    deleteMedia: "[skip ci] Delete “{{path}}”"
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: "authors"
+    label: "Author"
+    folder: "src/pages/author"
+    create: true
+    slug: "{{github}}"
+    fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "author",
+        }
+      - { label: "Name", name: "name", widget: "string", required: true }
+      - { label: "Image", name: "image", widget: image, required: true }
+      - { label: "Description", name: "description", widget: "markdown", required: true }
+      - { label: "Github Username", name: "github", widget: "string", required: true }
+      - { label: "Twitter Username", name: "twitter", widget: "string", required: false }
+      - { label: "Linkedin", name: "linkedin", widget: "string", required: false }
+      - { label: "Website", name: "website", widget: "string", required: false }
+
+  - name: "dataviz"
+    label: "Data Visualization"
+    folder: "src/pages/dataviz"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "dataviz-post",
+        }
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Publish Date", name: "date", widget: "datetime", required: true }
+      - { label: "Description", name: "description", widget: "markdown", required: true }
+      - { label: "Media", name: "media", widget: image, required: true }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+
+  - name: "categories"
+    label: "Category"
+    folder: "src/pages/category"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "category",
+        }
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Description", name: "description", widget: "markdown", required: true }
+
+  - name: "posts"
+    label: "Blog Post"
+    folder: "src/pages/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "blog-post",
+        }
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Publish Date", name: "date", widget: "datetime", required: true }
+      - { label: "Author", name: "author", widget: "relation", collection: "authors", searchFields: ["name", "github"], valueField: "name", displayFields: ["name", "github"], required: true }
+      - { label: "Description", name: "description", widget: "text", required: true }
+      - { label: "Language", name: "language", widget: "list", options: ["en", "fr"], default: ["en"], required: true }
+      - { label: "Featured Image", name: "featuredimage", widget: image, required: true }
+      - { label: "Featured Post", name: "featuredpost", widget: "boolean", required: false }
+      - { label: "Body", name: "body", widget: "markdown", required: true }
+      - { label: "Category", name: "category", widget: "relation", collection: "categories", searchFields: ["title"], valueField: "title", displayFields: ["title"], required: true }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "src/pages/about/index.md"
+        label: "About"
+        name: "about"
+        fields:
+          - {
+              label: "Template Key",
+              name: "templateKey",
+              widget: "hidden",
+              default: "about-page",
+            }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
