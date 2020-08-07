@@ -4,4 +4,7 @@ name: Emmanuel Gautier
 image: /img/manuv2.png
 description: Full Stack Developer
 github: emmanuelgautier
+twitter: gautier_manu
+linkedin: https://www.linkedin.com/in/emmanuelgautier1/
+website: https://www.emmanuelgautier.fr/
 ---
