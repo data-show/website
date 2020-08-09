@@ -31,12 +31,7 @@ const TemplateWrapper = ({ children }) => {
           crossorigin="anonymous"
         />
 
-        {/* {% if FEED_ALL_ATOM %}
-    <link href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" /> {% endif %} {% if FEED_ALL_RSS %}
-    <link href="{{ FEED_DOMAIN }}/{% if FEED_ALL_RSS_URL %}{{ FEED_ALL_RSS_URL }}{% else %}{{ FEED_ALL_RSS }}{% endif %}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" /> {% endif %} {% block extra_head %}{% endblock extra_head %} {% if FAVICON %}
-    {% endif %}
-
-        {% if GOOGLE_ANALYTICS %} {% include "partial/ga.html" %} {% endif %} */}
+        <link rel="alternate" type="application/rss+xml" href={`${withPrefix('/')}rss.xml`} />
 
         <link
           rel="apple-touch-icon"

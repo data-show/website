@@ -84,6 +84,70 @@ module.exports = {
         purgeOnly: ['/all.scss'],
       },
     },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map(edge => {
+                return Object.assign(
+                  {},
+                  edge.node.frontmatter,
+                  {
+                    description: edge.node.frontmatter.description,
+                    date: edge.node.frontmatter.date,
+                    url:
+                      site.siteMetadata.siteUrl +
+                      edge.node.fields.slug,
+                    guid:
+                      site.siteMetadata.siteUrl +
+                      edge.node.fields.slug,
+                    custom_elements: [
+                      { 'content:encoded': edge.node.html },
+                    ],
+                  },
+                )
+              })
+            },
+            query: `
+              {
+                allMarkdownRemark(
+                  sort: { order: DESC, fields: [frontmatter___date] }
+                  filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+                ) {
+                  edges {
+                    node {
+                      html
+                      fields { slug }
+                      frontmatter {
+                        title
+                        description
+                        date
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: '/rss.xml',
+            title: 'Data Show RSS Feed',
+          },
+        ],
+      },
+    },
     'gatsby-plugin-sitemap',
     {
       resolve: `gatsby-plugin-google-analytics`,
