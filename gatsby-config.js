@@ -5,14 +5,25 @@ const netlifyCmsPaths = {
   },
 }
 
+const title = 'Data Show'
+const logo = '/static/img/logo.png'
+const color = '#433e85'
+
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://www.data-show.com/',
-    logo: '/static/img/logo.png',
-    title: 'Data Show',
+    logo,
+    title,
     description:
       'Data Show makes data visualization notebooks with open data about economics and health topics.',
-    color: '#2ab07f',
+    color,
+    social: {
+      twitter: 'DataShow_',
+      instagram: 'datashow_',
+      youtube: 'UC1siUJqeSI3Zoyj02tw1jgA',
+      github: 'data-show',
+      linkedin: 'data-show-blog'
+    }
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -156,6 +167,18 @@ module.exports = {
         head: false,
         anonymize: true,
         respectDNT: true
+      },
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: title,
+        short_name: title,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: color,
+        display: `minimal-ui`,
+        icon: 'src/img/logo.png',
       },
     },
     'gatsby-plugin-netlify',

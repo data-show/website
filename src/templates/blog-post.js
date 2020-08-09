@@ -10,7 +10,6 @@ import Content, { HTMLContent } from '../components/Content'
 export const BlogPostTemplate = ({
   content,
   contentComponent,
-  description,
   tags,
   title,
   helmet,
@@ -45,7 +44,6 @@ export const BlogPostTemplate = ({
 BlogPostTemplate.propTypes = {
   content: PropTypes.node.isRequired,
   contentComponent: PropTypes.func,
-  description: PropTypes.string,
   title: PropTypes.string,
   helmet: PropTypes.object,
 }
@@ -58,7 +56,6 @@ const BlogPost = ({ data }) => {
       <BlogPostTemplate
         content={post.html}
         contentComponent={HTMLContent}
-        description={post.frontmatter.description}
         helmet={
           <Helmet titleTemplate="%s">
             <title>{`${post.frontmatter.title}`}</title>
@@ -66,6 +63,44 @@ const BlogPost = ({ data }) => {
               name="description"
               content={`${post.frontmatter.description}`}
             />
+
+            <meta property="og:title" content={post.frontmatter.title} />
+            <meta property="og:description" content={post.frontmatter.description} />
+            <meta property="og:url" content={post.fields.slug} />
+            <meta property="og:type" content="article" />
+            <meta property="article:published_time" content={post.frontmatter.date} />
+            <meta property="article:modified_time" content={post.frontmatter.date} />
+            <meta property="article:author" content="/" />
+            <meta property="article:section" content={post.frontmatter.category} />
+            {post.frontmatter.tags.map(tag => (
+              <meta property="article:tag" content={tag} />
+            ))}
+            <meta property="og:image" content={post.frontmatter.featuredimage.childImageSharp.fluid.src} />
+
+            <meta name="twitter:title" content={post.frontmatter.title} />
+            <meta name="twitter:description" content={post.frontmatter.description} />
+            <meta name="twitter:image" content={post.frontmatter.featuredimage.childImageSharp.fluid.src} />
+
+            <script type="application/ld+json">
+              {`
+                {
+                  "@context": "http://schema.org",
+                  "@type": "BlogPosting",
+                  "name": "${post.frontmatter.title}",
+                  "headline": "${post.frontmatter.title}",
+                  "datePublished": "${post.frontmatter.date}",
+                  "dateModified": "${post.frontmatter.date}",
+                  "author": {
+                    "@type": "Person",
+                    "name": "${post.frontmatter.author}",
+                    "url": "/"
+                  },
+                  "image": "${post.frontmatter.featuredimage.childImageSharp.fluid.src}",
+                  "url": "${post.fields.slug}",
+                  "description": "${post.frontmatter.description}"
+                }
+              `}
+            </script>
           </Helmet>
         }
         tags={post.frontmatter.tags}
@@ -85,11 +120,14 @@ export default BlogPost
 
 export const pageQuery = graphql`
   query BlogPostByID($id: String!) {
-    markdownRemark(id: { eq: $id }) {
+    markdownRemark(id: {eq: $id }) {
       id
       html
+      fields {
+        slug
+      }
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
+        date
         language
         featuredimage {
           childImageSharp {
@@ -98,6 +136,7 @@ export const pageQuery = graphql`
             }
           }
         }
+        author
         category
         title
         description

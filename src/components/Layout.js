@@ -10,7 +10,7 @@ import useSiteMetadata from '../queries/site-metadata'
 import './all.scss'
 
 const TemplateWrapper = ({ children }) => {
-  const { siteUrl, title, description, color } = useSiteMetadata()
+  const { siteUrl, title, description, color, logo, social: { twitter } } = useSiteMetadata()
 
   return (
     <>
@@ -69,24 +69,32 @@ const TemplateWrapper = ({ children }) => {
 
         <meta property="og:site_name" content={title} />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="{{ SITENAME }}" />
+        <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:locale" content="en_US" />
-        <meta property="og:url" content={siteUrl} />
-        <meta property="og:image" content="{{ SITELOGO }}" />
+        <meta property="og:url" content={`${withPrefix('/')}${siteUrl}`} />
+        <meta property="og:image" content={logo.childImageSharp.fluid.src} />
 
-        {/* <script type="application/ld+json">
+        <meta name="twitter:card" content="summary" />
+        {twitter && (
+          <meta name="twitter:site" content={twitter} />
+        )}
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={logo.childImageSharp.fluid.src} />
+
+        <script type="application/ld+json">
           {`
             {
               "@context": "http://schema.org",
               "@type": "Blog",
-              "name": "{title}",
-              "url": "{{ SITEURL }}",
-              "image": "{{ SITELOGO }}",
-              "description": {description}
+              "name": "${title}",
+              "url": "${siteUrl}",
+              "image": "${logo.childImageSharp.fluid.src}",
+              "description": "${description}"
             }
           `}
-        </script> */}
+        </script>
       </Helmet>
 
       <body className="layout" style={{ padding: '2em 0' }}>

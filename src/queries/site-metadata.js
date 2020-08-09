@@ -17,6 +17,13 @@ const useSiteMetadata = () => {
             title
             description
             color
+            social {
+              twitter
+              instagram
+              youtube
+              github
+              linkedin
+            }
           }
         }
       }

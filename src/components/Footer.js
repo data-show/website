@@ -9,7 +9,11 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
+import useSiteMetadata from '../queries/site-metadata'
+
 const Footer = () => {
+  const { social: { twitter, instagram, youtube, github, linkedin } } = useSiteMetadata()
+
   return (
     <footer>
       <div className="pure-menu pure-menu-horizontal pure-menu-scrollable main-menu content">
@@ -22,60 +26,70 @@ const Footer = () => {
         </ul>
 
         <ul className="pure-menu-list float-right">
-          <li className="pure-menu-item">
-            <OutboundLink
-              className="pure-menu-link"
-              href="https://twitter.com/DataShow_"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FontAwesomeIcon icon={faTwitter} />
-            </OutboundLink>
-          </li>
+          {twitter && (
+            <li className="pure-menu-item">
+              <OutboundLink
+                className="pure-menu-link"
+                href={`https://twitter.com/${twitter}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FontAwesomeIcon icon={faTwitter} />
+              </OutboundLink>
+            </li>
+          )}
 
-          <li className="pure-menu-item">
-            <OutboundLink
-              className="pure-menu-link"
-              href="https://www.instagram.com/datashow_"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FontAwesomeIcon icon={faInstagram} />
-            </OutboundLink>
-          </li>
+          {instagram && (
+            <li className="pure-menu-item">
+              <OutboundLink
+                className="pure-menu-link"
+                href={`https://www.instagram.com/${instagram}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FontAwesomeIcon icon={faInstagram} />
+              </OutboundLink>
+            </li>
+          )}
 
-          <li className="pure-menu-item">
-            <OutboundLink
-              className="pure-menu-link"
-              href="https://www.youtube.com/channel/UC1siUJqeSI3Zoyj02tw1jgA"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FontAwesomeIcon icon={faYoutube} />
-            </OutboundLink>
-          </li>
+          {youtube && (
+            <li className="pure-menu-item">
+              <OutboundLink
+                className="pure-menu-link"
+                href={`https://www.youtube.com/channel/${youtube}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FontAwesomeIcon icon={faYoutube} />
+              </OutboundLink>
+            </li>
+          )}
 
-          <li className="pure-menu-item">
-            <OutboundLink
-              className="pure-menu-link"
-              href="https://github.com/data-show"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FontAwesomeIcon icon={faGithub} />
-            </OutboundLink>
-          </li>
+          {github && (
+            <li className="pure-menu-item">
+              <OutboundLink
+                className="pure-menu-link"
+                href={`https://github.com/${github}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FontAwesomeIcon icon={faGithub} />
+              </OutboundLink>
+            </li>
+          )}
 
-          <li className="pure-menu-item">
-            <OutboundLink
-              className="pure-menu-link"
-              href="https://www.linkedin.com/company/data-show-blog"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FontAwesomeIcon icon={faLinkedin} />
-            </OutboundLink>
-          </li>
+          {linkedin && (
+            <li className="pure-menu-item">
+              <OutboundLink
+                className="pure-menu-link"
+                href={`https://www.linkedin.com/company/${linkedin}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FontAwesomeIcon icon={faLinkedin} />
+              </OutboundLink>
+            </li>
+          )}
         </ul>
       </div>
     </footer>
