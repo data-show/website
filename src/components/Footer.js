@@ -7,6 +7,7 @@ import {
   faGithub,
   faLinkedin,
 } from '@fortawesome/free-brands-svg-icons'
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 const Footer = () => {
   return (
@@ -22,58 +23,58 @@ const Footer = () => {
 
         <ul className="pure-menu-list float-right">
           <li className="pure-menu-item">
-            <a
+            <OutboundLink
               className="pure-menu-link"
               href="https://twitter.com/DataShow_"
               target="_blank"
               rel="noreferrer"
             >
               <FontAwesomeIcon icon={faTwitter} />
-            </a>
+            </OutboundLink>
           </li>
 
           <li className="pure-menu-item">
-            <a
+            <OutboundLink
               className="pure-menu-link"
               href="https://www.instagram.com/datashow_"
               target="_blank"
               rel="noreferrer"
             >
               <FontAwesomeIcon icon={faInstagram} />
-            </a>
+            </OutboundLink>
           </li>
 
           <li className="pure-menu-item">
-            <a
+            <OutboundLink
               className="pure-menu-link"
               href="https://www.youtube.com/channel/UC1siUJqeSI3Zoyj02tw1jgA"
               target="_blank"
               rel="noreferrer"
             >
               <FontAwesomeIcon icon={faYoutube} />
-            </a>
+            </OutboundLink>
           </li>
 
           <li className="pure-menu-item">
-            <a
+            <OutboundLink
               className="pure-menu-link"
               href="https://github.com/data-show"
               target="_blank"
               rel="noreferrer"
             >
               <FontAwesomeIcon icon={faGithub} />
-            </a>
+            </OutboundLink>
           </li>
 
           <li className="pure-menu-item">
-            <a
+            <OutboundLink
               className="pure-menu-link"
               href="https://www.linkedin.com/company/data-show-blog"
               target="_blank"
               rel="noreferrer"
             >
               <FontAwesomeIcon icon={faLinkedin} />
-            </a>
+            </OutboundLink>
           </li>
         </ul>
       </div>
