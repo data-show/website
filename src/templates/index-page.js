@@ -12,29 +12,36 @@ const IndexPage = ({
     markdownRemark: { title, description },
   },
 }) => (
-  <Layout>
-    <Helmet titleTemplate="%s">
-      <title>{`${title}`}</title>
-      <meta name="description" content={`${description}`} />
-    </Helmet>
-    {allMarkdownRemark.edges.map(
-      ({
-        node: {
-          fields: { slug },
-          frontmatter: { title, description, image },
-        },
-      }) => (
-        <BlogPostCard
-          key={slug}
-          slug={slug}
-          title={title}
-          description={description}
-          image={image}
-        />
-      )
-    )}
-  </Layout>
-)
+    <Layout>
+      <Helmet titleTemplate="%s">
+        <title>{title}</title>
+        <meta name="description" content={description} />
+      </Helmet>
+
+      <section className="content">
+        <div className="pure-g">
+          {allMarkdownRemark.edges.map(
+            ({
+              node: {
+                fields: { slug },
+                frontmatter: { title, description, featuredimage },
+              },
+            }) => (
+                <div className="pure-u-1-1">
+                  <BlogPostCard
+                    key={slug}
+                    slug={slug}
+                    title={title}
+                    description={description}
+                    image={featuredimage}
+                  />
+                </div>
+              )
+          )}
+        </div>
+      </section>
+    </Layout>
+  )
 
 IndexPage.propTypes = {
   data: PropTypes.shape({
@@ -74,7 +81,13 @@ export const pageQuery = graphql`
           frontmatter {
             title
             description
-            featuredimage
+            featuredimage {
+              childImageSharp {
+                fluid(maxWidth: 450) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
           }
           fields {
             slug

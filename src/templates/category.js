@@ -48,41 +48,47 @@ const Category = ({
     allMarkdownRemark: { edges: postEdges },
   },
 }) => (
-  <Layout>
-    <CategoryTemplate
-      content={category.html}
-      contentComponent={HTMLContent}
-      description={category.frontmatter.description}
-      helmet={
-        <Helmet titleTemplate="%s">
-          <title>{`${category.frontmatter.title}`}</title>
-          <meta
-            name="description"
-            content={`${category.frontmatter.description}`}
-          />
-        </Helmet>
-      }
-      title={category.frontmatter.title}
-    />
+    <Layout>
+      <CategoryTemplate
+        content={category.html}
+        contentComponent={HTMLContent}
+        description={category.frontmatter.description}
+        helmet={
+          <Helmet titleTemplate="%s">
+            <title>{`${category.frontmatter.title}`}</title>
+            <meta
+              name="description"
+              content={`${category.frontmatter.description}`}
+            />
+          </Helmet>
+        }
+        title={category.frontmatter.title}
+      />
 
-    {postEdges.map(
-      ({
-        node: {
-          fields: { slug },
-          frontmatter: { title, description, image },
-        },
-      }) => (
-        <BlogPostCard
-          key={slug}
-          slug={slug}
-          title={title}
-          description={description}
-          image={image}
-        />
-      )
-    )}
-  </Layout>
-)
+      <section className="content">
+        <div className="pure-g">
+          {postEdges.map(
+            ({
+              node: {
+                fields: { slug },
+                frontmatter: { title, description, featuredimage },
+              },
+            }) => (
+                <div className="pure-u-1-1">
+                  <BlogPostCard
+                    key={slug}
+                    slug={slug}
+                    title={title}
+                    description={description}
+                    image={featuredimage}
+                  />
+                </div>
+              )
+          )}
+        </div>
+      </section>
+    </Layout>
+  )
 
 Category.propTypes = {
   data: PropTypes.shape({
@@ -118,7 +124,13 @@ export const pageQuery = graphql`
           frontmatter {
             title
             description
-            featuredimage
+            featuredimage {
+              childImageSharp {
+                fluid(maxWidth: 450) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
           }
           fields {
             slug

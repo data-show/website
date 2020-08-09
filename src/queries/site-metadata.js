@@ -7,7 +7,7 @@ const useSiteMetadata = () => {
         logo: file(relativePath: { eq: "logo.png" }) {
           childImageSharp {
             fluid(maxWidth: 75, maxHeight: 75) {
-              ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluid_withWebp_noBase64
             }
           }
         }

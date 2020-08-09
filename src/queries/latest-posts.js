@@ -17,7 +17,13 @@ const useLatestPosts = () => {
               frontmatter {
                 title
                 description
-                featuredimage
+                featuredimage {
+                  childImageSharp {
+                    fluid(maxWidth: 450) {
+                      ...GatsbyImageSharpFluid_withWebp
+                    }
+                  }
+                }
               }
               fields {
                 slug

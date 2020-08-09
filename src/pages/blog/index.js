@@ -10,12 +10,12 @@ const BlogIndexPage = () => {
 
   return (
     <Layout>
-      {posts.map(({ slug, title, description, image }) => (
+      {posts.map(({ slug, title, description, featuredimage }) => (
         <BlogPostCard
           slug={slug}
           title={title}
           description={description}
-          image={image}
+          image={featuredimage}
         />
       ))}
     </Layout>
