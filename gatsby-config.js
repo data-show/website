@@ -1,3 +1,10 @@
+const netlifyCmsPaths = {
+  resolve: 'gatsby-plugin-netlify-cms-paths',
+  options: {
+    cmsConfig: '/static/admin/config.yml',
+  },
+}
+
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://www.data-show.com/',
@@ -31,12 +38,14 @@ module.exports = {
         name: 'images',
       },
     },
+    netlifyCmsPaths,
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
+          netlifyCmsPaths,
           {
             resolve: 'gatsby-remark-relative-images',
             options: {
@@ -58,6 +67,7 @@ module.exports = {
               destinationDir: 'static',
             },
           },
+          'gatsby-remark-smartypants'
         ],
       },
     },
