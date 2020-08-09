@@ -34,6 +34,23 @@ collections:
       - { label: "Linkedin", name: "linkedin", widget: "string", required: false }
       - { label: "Website", name: "website", widget: "string", required: false }
 
+  - name: "sources"
+    label: "Source"
+    folder: "src/pages/source"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "source",
+        }
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Image", name: "image", widget: image, required: false }
+      - { label: "Description", name: "description", widget: "markdown", required: true }
+      - { label: "Website", name: "website", widget: "string", required: true }
+
   - name: "dataviz"
     label: "Data Visualization"
     folder: "src/pages/dataviz"
@@ -89,6 +106,16 @@ collections:
       - { label: "Body", name: "body", widget: "markdown", required: true }
       - { label: "Category", name: "category", widget: "relation", collection: "categories", searchFields: ["title"], valueField: "title", displayFields: ["title"], required: true }
       - { label: "Tags", name: "tags", widget: "list", required: false }
+      - {
+          label: "Sources",
+          name: "sources",
+          widget: "list",
+          default: [],
+          fields: [
+            { label: 'Link', name: 'link', widget: 'string', required: true },
+            { label: "Source", name: "source", widget: "relation", collection: "sources", searchFields: ["title"], valueField: "title", displayFields: ["title"], required: false }
+          ]
+        }
 
   - name: "pages"
     label: "Pages"
