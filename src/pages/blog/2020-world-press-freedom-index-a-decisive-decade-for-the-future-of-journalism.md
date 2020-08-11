@@ -18,6 +18,7 @@ tags:
   - Press Freedom
 sources:
   - link: https://rsf.org/en/ranking
+    source: Reporters Without Borders
 ---
 The World Press Freedom Index is composed of a number of indicators, which are :
 
