@@ -1,4 +1,5 @@
 import { graphql, Link } from 'gatsby'
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 import { kebabCase } from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -12,6 +13,7 @@ export const BlogPostTemplate = ({
   contentComponent,
   tags,
   title,
+  sources,
   helmet,
 }) => {
   const PostContent = contentComponent || Content
@@ -24,6 +26,18 @@ export const BlogPostTemplate = ({
       </header>
       <div className="content">
         <PostContent content={content} />
+        <div style={{ marginTop: `4rem` }}>
+          <h4>Sources</h4>
+          {sources && sources.length ? (
+            <div className="pure-g">
+              {sources.map(source => (
+                <div className="pure-u-1-1">
+                  <OutboundLink href={source.link} target="_blank" rel="noreferrer">{source.source}</OutboundLink>
+                </div>
+              ))}
+            </div>
+          ) : null}
+        </div>
         {tags && tags.length ? (
           <div style={{ marginTop: `4rem` }}>
             <h4>Tags</h4>
@@ -44,12 +58,16 @@ export const BlogPostTemplate = ({
 BlogPostTemplate.propTypes = {
   content: PropTypes.node.isRequired,
   contentComponent: PropTypes.func,
+  tags: PropTypes.array,
   title: PropTypes.string,
+  sources: PropTypes.array,
   helmet: PropTypes.object,
 }
 
 const BlogPost = ({ data }) => {
   const { markdownRemark: post } = data
+
+  console.log(post)
 
   return (
     <Layout>
@@ -105,6 +123,7 @@ const BlogPost = ({ data }) => {
         }
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
+        sources={post.frontmatter.sources}
       />
     </Layout>
   )
@@ -141,6 +160,10 @@ export const pageQuery = graphql`
         title
         description
         tags
+        sources {
+          link
+          source
+        }
       }
     }
   }
