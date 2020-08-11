@@ -97,7 +97,7 @@ const TemplateWrapper = ({ children }) => {
         </script>
       </Helmet>
 
-      <body className="layout" style={{ padding: '2em 0' }}>
+      <body className="layout">
         <main className="main">
           <Navbar />
           {children}

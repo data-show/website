@@ -6,28 +6,24 @@ import Img from 'gatsby-image'
 const BlogPostCard = ({ title, description, image, slug }) => (
   <Link to={slug}>
     <div className="pure-g">
-      <div className="pure-u-2-3">
-        <div className="pure-g">
-          <div className="pure-u-1-1">
-            <h2>{title}</h2>
-          </div>
-          <div className="pure-u-1-1">
-            <p>{description.substr(0, description.lastIndexOf(' ', 255)) + '...'}</p>
-          </div>
-        </div>
-      </div>
-      <div className="pure-u-1-3">
-        {image && (
+      {image && (
+        <div className="pure-u-1-1">
           <Img
             fluid={image.childImageSharp.fluid}
             alt={title}
             title={title}
             className="pure-img"
           />
-        )}
+        </div>
+      )}
+      <div className="pure-u-1-1">
+        <h2>{title}</h2>
+      </div>
+      <div className="pure-u-1-1">
+        <p>{description.substr(0, description.lastIndexOf(' ', 255)) + '...'}</p>
       </div>
     </div>
-  </Link>
+  </Link >
 )
 
 BlogPostCard.propTypes = {

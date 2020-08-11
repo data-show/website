@@ -16,7 +16,7 @@ const Footer = () => {
 
   return (
     <footer>
-      <div className="pure-menu pure-menu-horizontal pure-menu-scrollable main-menu content">
+      <div className="pure-menu pure-menu-horizontal pure-menu-scrollable content">
         <ul className="pure-menu-list">
           <li className="pure-menu-item">
             <a href="/admin" className="pure-menu-link">

@@ -24,7 +24,7 @@ export const BlogPostTemplate = ({
       <header className="header">
         <h1>{title}</h1>
       </header>
-      <div className="content">
+      <div className="content post-content">
         <PostContent content={content} />
         <div style={{ marginTop: `4rem` }}>
           <h4>Sources</h4>

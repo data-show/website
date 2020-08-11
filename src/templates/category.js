@@ -74,7 +74,7 @@ const Category = ({
                 frontmatter: { title, description, featuredimage },
               },
             }) => (
-                <div className="pure-u-1-1">
+                <div className="pure-u-1-3">
                   <BlogPostCard
                     key={slug}
                     slug={slug}
