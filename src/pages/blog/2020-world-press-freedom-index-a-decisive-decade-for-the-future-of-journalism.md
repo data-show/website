@@ -60,3 +60,18 @@ The World Press Freedom Index is composed of a number of indicators, which are :
 ![World Press Freedom Index - Asia Map](/img/world-press-freedom-index-asia.png "World Press Freedom Index - Asia")
 
 The Asia zone brings together the largest prisons in the world for journalists and bloggers, such as China or Vietnam, with countries among the most dangerous for the profession, such as Afghanistan, Pakistan, the Philippines and Bangladesh. The Asia-Pacific region also holds the record for the greatest number of "predators of press freedom", at the head of the worst dictatorships, and in particular North Korea and Laos, true black holes of information.
+
+
+
+## Conclusion
+
+This 2020 World Press Freedom Index states that the coming decade is going to be decisive for press freedom due to five converging factors which can be :
+
+
+* a democratic crisis due to polarization and repression
+* a geopolitical crisis driven by the aggressiveness of authoritarian regimes
+* an economic crisis impoverishing quality journalism
+* a trust crisis due to suspicion and even hatred of the media
+* a technological crisis due to a lack of democratic guarantees
+
+To these five types of crisis is now added a health crisis. Indeed, the coronavirus epidemic has allowed us to witness a real regression of press freedom in the world, between censorship and repression of the media, disinformation but also a total and unlimited control of certain States on the media. What will the press of tomorrow look like? The future of journalism is playing out today.
