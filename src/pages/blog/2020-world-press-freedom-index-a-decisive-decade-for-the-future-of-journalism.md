@@ -21,7 +21,7 @@ sources:
 ---
 ## About the index score
 
-The Press Freedom Index is an annual ranking of 180 countries compiled and published by Reporters Without Borders on the basis of countries' press freedom results according to the organization's own assessment. It intends to reflect the degree of freedom that journalists, news organisations, and netizens have in each country, and the efforts made by authorities to respect this freedom.
+The Press Freedom Index is a ranking of 180 countries published yearly by Reporters Without Borders on the basis of countries' press freedom results according to the organization's own assessment. This ranking attempts to reflect the degree of freedom that journalists, media, and netizens have in each country, and the efforts made by the authorities to respect this freedom.
 
 The World Press Freedom Index is composed of a number of indicators, which are :
 
@@ -32,6 +32,14 @@ The World Press Freedom Index is composed of a number of indicators, which are :
 * **Transparency :** Measures the transparency of the institutions and procedures that affect the production of news and information.
 * **Infrastructure :** Measures the quality of the infrastructure that supports the production of news and information.
 * **Abuses :** A seventh indicator based on data gathered about abuses and acts of violence against journalists and media during the period evaluated is also factored into the calculation.
+
+The final score is defined on a scale from 0 to 100. The higher the score of a country, the more worrying the situation for that country. The press freedom map presents a visual summary of the performance of 180 countries in the World Ranking. 
+
+
+
+![World Press Freedom Index - Global Map](/img/world-press-freedom-index.png "World Press Freedom Index - Global Map")
+
+
 
 ## The Index region by region
 
@@ -44,29 +52,30 @@ The World Press Freedom Index is composed of a number of indicators, which are :
 
   ![World Press Freedom Index - North America Map](/img/world-press-freedom-index-north-america.png "World Press Freedom Index - North America")
 
-  Across North America, despite a slight improvement, worrying trends persist. Journalists and the media continue to face verbal and physical threats, denied access to information, as laws and lawsuits restricting their rights multiply. At the dawn of this new decade, the United States urgently needs to regain its credentials in terms of press freedom within and beyond its borders in order to re-position itself as a leading democracy.
+  Across North America, despite a slight improvement, worrying trends persist. Journalists and the media continue to face verbal and physical threats, denied access to information, as laws and lawsuits restricting their rights multiply. In the United States, press freedom continues to suffer under Donald Trump's presidency. Indeed, hostility towards journalists and the media grew and intensified, and the most virulent attacks turned out to be those carried out by the president himself. At the dawn of this new decade, the United States urgently needs to regain its credentials in terms of press freedom within and beyond its borders in order to re-position itself as a leading democracy.
 * ### South America
 
   ![World Press Freedom Index - South America Map](/img/world-press-freedom-index-south-america.png "World Press Freedom Index - South America")
 
-  In South America, the decade begins with a general deterioration in the situation of press freedom. The context in which journalists in Latin America operate is increasingly complex and hostile. In addition to the increased pressure, violence and intimidation suffered by many journalists covering sensitive issues, extensive discrediting campaigns have been launched against the profession in most countries in the region.
+  In South America, the decade begins with a general deterioration in the situation of press freedom. The context in which journalists in Latin America operate is increasingly complex and hostile. In addition to the increased pressure, violence and intimidation suffered by many journalists covering sensitive issues, extensive discrediting campaigns have been launched against the profession in most countries in the region. Brazil, Colombia, Honduras, and Mexico remain among the world’s most dangerous places for journalists, who sometimes pay with their lives to investigate corruption or drug traffickers.
+
+
 * ### Africa
 
   ![World Press Freedom Index - Africa Map](/img/world-press-freedom-index-africa.png "World Press Freedom Index - Africa")
 
-  Africa is seeing significant setbacks, due in part to an upsurge in long-term arbitrary detentions and online attacks. The situation of those who try to produce information is difficult, even critical.
+  Africa is recording significant setbacks, due in particular to an increase in long-term arbitrary detentions, but also to attacks, particularly online, and new repressive laws which, in the name of the fight against disinformation or cybercrime, can be used to unreasonably restrict freedom of information. The situation of those who try to produce information is difficult, even critical. The economic weakness of the media also exposes them to political or economic influences detrimental to their independence.
+
+
 * ### Asia
 
 ![World Press Freedom Index - Asia Map](/img/world-press-freedom-index-asia.png "World Press Freedom Index - Asia")
 
 The Asia zone brings together the largest prisons in the world for journalists and bloggers, such as China or Vietnam, with countries among the most dangerous for the profession, such as Afghanistan, Pakistan, the Philippines and Bangladesh. The Asia-Pacific region also holds the record for the greatest number of "predators of press freedom", at the head of the worst dictatorships, and in particular North Korea and Laos, true black holes of information.
 
-
-
 ## Conclusion
 
 This 2020 World Press Freedom Index states that the coming decade is going to be decisive for press freedom due to five converging factors which can be :
-
 
 * a democratic crisis due to polarization and repression
 * a geopolitical crisis driven by the aggressiveness of authoritarian regimes
