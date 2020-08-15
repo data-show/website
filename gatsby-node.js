@@ -6,9 +6,39 @@ const { fmImagesToRelative } = require('gatsby-remark-relative-images')
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
+  const createTemplatePages = edges => {
+    edges.forEach(edge => {
+      const context = {
+        id: edge.node.id,
+        title: edge.node.frontmatter.title
+      }
+
+      if (edge.node.frontmatter.category) {
+        context.category = edge.node.frontmatter.category
+      }
+
+      if (edge.node.frontmatter.author) {
+        context.author = edge.node.frontmatter.author
+      }
+
+      if (edge.node.frontmatter.sources && edge.node.frontmatter.sources.length > 0) {
+        context.sources = edge.node.frontmatter.sources.map(({ source }) => source)
+      }
+
+      createPage({
+        path: edge.node.fields.slug,
+        tags: edge.node.frontmatter.tags,
+        component: path.resolve(
+          `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
+        ),
+        context,
+      })
+    })
+  }
+
   return graphql(`
     {
-      allMarkdownRemark(limit: 1000) {
+      posts: allMarkdownRemark(limit: 1000, filter: { frontmatter: { templateKey: { eq: "blog-post" } } }) {
         edges {
           node {
             id
@@ -18,38 +48,85 @@ exports.createPages = ({ actions, graphql }) => {
             frontmatter {
               title
               tags
+              author
+              category
+              sources {
+                source
+              }
+              templateKey
+            }
+          }
+        }
+      }
+      categories: allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "category" } } }) {
+        edges {
+          node {
+            id
+            fields {
+              slug
+            }
+            frontmatter {
+              title
+              templateKey
+            }
+          }
+        }
+      }
+      authors: allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "author" } } }) {
+        edges {
+          node {
+            id
+            fields {
+              slug
+            }
+            frontmatter {
+              name
+              templateKey
+            }
+          }
+        }
+      }
+      sources: allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "source" } } }) {
+        edges {
+          node {
+            id
+            fields {
+              slug
+            }
+            frontmatter {
+              name
+              templateKey
+            }
+          }
+        }
+      }
+      others: allMarkdownRemark(filter: { frontmatter: { templateKey: { nin: ["blog-post", "category", "author", "source"] } } }) {
+        edges {
+          node {
+            id
+            fields {
+              slug
+            }
+            frontmatter {
+              name
               templateKey
             }
           }
         }
       }
     }
+
   `).then(result => {
     if (result.errors) {
       result.errors.forEach(e => console.error(e.toString()))
       return Promise.reject(result.errors)
     }
 
-    const posts = result.data.allMarkdownRemark.edges
-    posts.forEach(edge => {
-      const id = edge.node.id
-      const title = edge.node.frontmatter.title
-      createPage({
-        path: edge.node.fields.slug,
-        tags: edge.node.frontmatter.tags,
-        component: path.resolve(
-          `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
-        ),
-        // additional data can be passed via context
-        context: {
-          id,
-          title,
-        },
-      })
-    })
+    const postsEdges = result.data.posts.edges
+    createTemplatePages(postsEdges)
 
     let tags = []
-    posts.forEach(edge => {
+    postsEdges.forEach(edge => {
       if (_.get(edge, `node.frontmatter.tags`)) {
         tags = tags.concat(edge.node.frontmatter.tags)
       }
@@ -66,6 +143,18 @@ exports.createPages = ({ actions, graphql }) => {
         },
       })
     })
+
+    const categoriesEdges = result.data.categories.edges
+    createTemplatePages(categoriesEdges)
+
+    const authorsEdges = result.data.authors.edges
+    createTemplatePages(authorsEdges)
+
+    const sourcesEdges = result.data.sources.edges
+    createTemplatePages(sourcesEdges)
+
+    const othersEdges = result.data.others.edges
+    createTemplatePages(othersEdges)
   })
 }
 

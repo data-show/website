@@ -7,6 +7,7 @@ import {
   faGithub,
   faLinkedin,
 } from '@fortawesome/free-brands-svg-icons'
+import { Link } from 'gatsby'
 import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 import useSiteMetadata from '../queries/site-metadata'
@@ -22,6 +23,9 @@ const Footer = () => {
             <a href="/admin" className="pure-menu-link">
               Contribute
             </a>
+          </li>
+          <li className="pure-menu-item">
+            <Link to={`/authors`} className="pure-menu-link">Authors</Link>
           </li>
         </ul>
 

@@ -5,7 +5,7 @@ const useCategories = () => {
     allMarkdownRemark: { nodes },
   } = useStaticQuery(
     graphql`
-      query SITE_CATEGORIES_QUERY {
+      query SiteCategoriesQuery {
         allMarkdownRemark(
           filter: { frontmatter: { templateKey: { eq: "category" } } }
         ) {

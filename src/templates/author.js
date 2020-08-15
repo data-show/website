@@ -1,31 +1,65 @@
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 import PropTypes from 'prop-types'
 import React from 'react'
 import Helmet from 'react-helmet'
 
 import Layout from '../components/Layout'
-import Content, { HTMLContent } from '../components/Content'
 
 export const AuthorTemplate = ({
-  content,
-  contentComponent,
   description,
   name,
+  image,
+  github,
+  linkedin,
+  website,
   helmet,
 }) => {
-  const PostContent = contentComponent || Content
-
   return (
     <section className="section">
       {helmet || ''}
-      <div className="container content">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
-              {name}
-            </h1>
+      <div className="content">
+        <div className="pure-g">
+          <div className="pure-u-1-1">
+            <Img
+              fluid={image.childImageSharp.fluid}
+              alt={name}
+              className="pure-img"
+            />
+          </div>
+          <div className="pure-u-1-1">
+            <h1>{name}</h1>
+          </div>
+          <div className="pure-u-1-1">
             <p>{description}</p>
-            <PostContent content={content} />
+          </div>
+          <div className="pure-u-1-1">
+            <div className="pure-menu pure-menu-horizontal pure-menu-scrollable content">
+              <ul className="pure-menu-list">
+                {website && (
+                  <li className="pure-menu-item">
+                    <OutboundLink className="pure-menu-link" href={website} target="_blank" rel="noreferrer">{website}</OutboundLink>
+                  </li>
+                )}
+                {github && (
+                  <li className="pure-menu-item">
+                    <OutboundLink className="pure-menu-link" href={`https://github.com/${github}`} target="_blank" rel="noreferrer">
+                      <FontAwesomeIcon icon={faGithub} />
+                    </OutboundLink>
+                  </li>
+                )}
+                {linkedin && (
+                  <li className="pure-menu-item">
+                    <OutboundLink className="pure-menu-link" href={linkedin} target="_blank" rel="noreferrer">
+                      <FontAwesomeIcon icon={faLinkedin} />
+                    </OutboundLink>
+                  </li>
+                )}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -34,32 +68,36 @@ export const AuthorTemplate = ({
 }
 
 AuthorTemplate.propTypes = {
-  content: PropTypes.node.isRequired,
-  contentComponent: PropTypes.func,
   description: PropTypes.string,
   name: PropTypes.string,
+  image: PropTypes.shape,
+  github: PropTypes.string,
+  linkedin: PropTypes.string,
+  website: PropTypes.string,
   helmet: PropTypes.object,
 }
 
 const Author = ({ data }) => {
-  const { markdownRemark: post } = data
+  const { markdownRemark: author } = data
 
   return (
     <Layout>
       <AuthorTemplate
-        content={post.html}
-        contentComponent={HTMLContent}
-        description={post.frontmatter.description}
+        description={author.frontmatter.description}
         helmet={
           <Helmet titleTemplate="%s | Author">
-            <title>{`${post.frontmatter.name}`}</title>
+            <title>{`${author.frontmatter.name}`}</title>
             <meta
               name="description"
-              content={`${post.frontmatter.description}`}
+              content={`${author.frontmatter.description}`}
             />
           </Helmet>
         }
-        title={post.frontmatter.name}
+        name={author.frontmatter.name}
+        image={author.frontmatter.image}
+        github={author.frontmatter.github}
+        linkedin={author.frontmatter.linkedin}
+        website={author.frontmatter.website}
       />
     </Layout>
   )
@@ -81,7 +119,16 @@ export const pageQuery = graphql`
       frontmatter {
         name
         description
+        image {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
         github
+        linkedin
+        website
       }
     }
   }

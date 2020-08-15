@@ -3,7 +3,7 @@ templateKey: blog-post
 title: "2020 World Press Freedom Index : A decisive decade for the future of
   journalism"
 date: 2020-08-11T22:15:59.195Z
-author: Morgane Bougouin
+author: mbougouin
 description: According to RSF’s measures, world press freedom improved very
   slightly in 2019. However, the flagrant attacks on the media and open
   hostility towards journalists in many democracies result in more and more

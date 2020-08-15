@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 const useSiteMetadata = () => {
   const { logo, site } = useStaticQuery(
     graphql`
-      query SITE_METADATA_QUERY {
+      query MetadataQuery {
         logo: file(relativePath: { eq: "logo.png" }) {
           childImageSharp {
             fluid(maxWidth: 50, maxHeight: 50) {

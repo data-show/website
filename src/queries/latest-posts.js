@@ -5,7 +5,7 @@ const useLatestPosts = () => {
     allMarkdownRemark: { edges },
   } = useStaticQuery(
     graphql`
-      query SITE_LATEST_POSTS_QUERY {
+      query LatestPostsQuery {
         allMarkdownRemark(
           sort: { fields: [frontmatter___date], order: DESC }
           skip: 0

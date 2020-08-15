@@ -1,5 +1,7 @@
+import { format } from 'date-fns'
 import { graphql, Link } from 'gatsby'
 import { OutboundLink } from 'gatsby-plugin-google-analytics'
+import Img from 'gatsby-image'
 import { kebabCase } from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -13,6 +15,8 @@ export const BlogPostTemplate = ({
   contentComponent,
   tags,
   title,
+  publishedDate,
+  author,
   sources,
   helmet,
 }) => {
@@ -21,8 +25,30 @@ export const BlogPostTemplate = ({
   return (
     <article className="section">
       {helmet || ''}
-      <header className="header">
+      <header className="content header">
         <h1>{title}</h1>
+
+        <div className="pure-g">
+          <div className="pure-u-1-2">
+            <div className="pure-g">
+              <div className="pure-u-1-5">
+                <Img
+                  fluid={author.frontmatter.image.childImageSharp.fluid}
+                  alt={author.frontmatter.name}
+                  className="pure-img"
+                />
+              </div>
+              <div className="pure-u-4-5">
+                <div className="pure-u-1-1">
+                  <Link to={author.fields.slug}>{author.frontmatter.name}</Link>
+                </div>
+                <div className="pure-u-1-1">
+                  {format(new Date(publishedDate), 'PP')}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </header>
       <div className="content post-content">
         <PostContent content={content} />
@@ -58,14 +84,14 @@ BlogPostTemplate.propTypes = {
   contentComponent: PropTypes.func,
   tags: PropTypes.array,
   title: PropTypes.string,
+  publishedDate: PropTypes.string,
+  author: PropTypes.shape,
   sources: PropTypes.array,
   helmet: PropTypes.object,
 }
 
 const BlogPost = ({ data }) => {
-  const { markdownRemark: post } = data
-
-  console.log(post)
+  const { post, category, author } = data
 
   return (
     <Layout>
@@ -86,8 +112,8 @@ const BlogPost = ({ data }) => {
             <meta property="og:type" content="article" />
             <meta property="article:published_time" content={post.frontmatter.date} />
             <meta property="article:modified_time" content={post.frontmatter.date} />
-            <meta property="article:author" content="/" />
-            <meta property="article:section" content={post.frontmatter.category} />
+            <meta property="article:author" content={author.fields.slug} />
+            <meta property="article:section" content={category.frontmatter.title} />
             {post.frontmatter.tags.map(tag => (
               <meta property="article:tag" content={tag} />
             ))}
@@ -108,8 +134,8 @@ const BlogPost = ({ data }) => {
                   "dateModified": "${post.frontmatter.date}",
                   "author": {
                     "@type": "Person",
-                    "name": "${post.frontmatter.author}",
-                    "url": "/"
+                    "name": "${author.frontmatter.name}",
+                    "url": "${author.fields.slug}"
                   },
                   "image": "${post.frontmatter.featuredimage.childImageSharp.fluid.src}",
                   "url": "${post.fields.slug}",
@@ -121,6 +147,8 @@ const BlogPost = ({ data }) => {
         }
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
+        publishedDate={post.frontmatter.date}
+        author={author}
         sources={post.frontmatter.sources}
       />
     </Layout>
@@ -136,8 +164,8 @@ BlogPost.propTypes = {
 export default BlogPost
 
 export const pageQuery = graphql`
-  query BlogPostByID($id: String!) {
-    markdownRemark(id: {eq: $id }) {
+  query BlogPostByID($id: String!, $category: String!, $author: String!) {
+    post: markdownRemark(id: { eq: $id }) {
       id
       html
       fields {
@@ -148,19 +176,58 @@ export const pageQuery = graphql`
         language
         featuredimage {
           childImageSharp {
-            fluid(maxWidth: 450) {
+            fluid {
               ...GatsbyImageSharpFluid_withWebp
             }
           }
         }
-        author
-        category
         title
         description
         tags
         sources {
           link
           source
+        }
+      }
+    }
+    category: markdownRemark(frontmatter: { title: { eq: $category } }) {
+      id
+      fields {
+        slug
+      }
+      frontmatter {
+        title
+      }
+    }
+    author: markdownRemark(frontmatter: { github: { eq: $author } }) {
+      id
+      fields {
+        slug
+      }
+      frontmatter {
+        name
+        image {
+          childImageSharp {
+            fluid(maxWidth: 100) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
+    }
+    sources: markdownRemark(frontmatter: { github: { eq: $author } }) {
+      id
+      fields {
+        slug
+      }
+      frontmatter {
+        name
+        image {
+          childImageSharp {
+            fluid(maxHeight: 100) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
         }
       }
     }

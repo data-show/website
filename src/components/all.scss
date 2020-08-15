@@ -73,18 +73,15 @@ footer {
 
 .header {
   max-width: 768px;
-  margin: 0 auto;
-  padding: 1em 3em;
-  text-align: center;
-  border-bottom: 1px solid #eee;
-  background: #fff;
+  padding: 0 3em 2em 1em;
   letter-spacing: 0.05em;
+  margin-bottom: 1.5em;
 }
 
 .header h1 {
-  font-size: 200%;
+  font-size: 175%;
   font-weight: 100;
-  margin: 0;
+  margin-bottom: .5em;
 }
 
 .post-content h2 {
@@ -106,8 +103,8 @@ footer {
 .content {
   margin-left: auto;
   margin-right: auto;
-  padding-left: 5em;
-  padding-right: 5em;
+  padding-left: 3em;
+  padding-right: 3em;
   max-width: 1440px;
 }
 
@@ -122,8 +119,8 @@ footer {
   }
 
   .content {
-    padding-left: 12em;
-    padding-right: 12em;
+    padding-left: 17em;
+    padding-right: 17em;
   }
   .header h1 {
     font-size: 250%;
