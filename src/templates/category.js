@@ -4,7 +4,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 
 import Content, { HTMLContent } from '../components/Content'
-import BlogPostCard from '../components/BlogPostCard'
+import BlogPostCard from '../components/BlogPostCard/BlogPostCard'
 import Layout from '../components/Layout'
 
 export const CategoryTemplate = ({

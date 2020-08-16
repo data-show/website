@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <nav className="pure-menu pure-menu-horizontal pure-menu-scrollable main-menu content">
-      <Link to="/" className="pure-menu-heading pure-menu-link">
+      <Link to={`/`} className="pure-menu-heading pure-menu-link">
         <Img
           fluid={logo.childImageSharp.fluid}
           alt={title}

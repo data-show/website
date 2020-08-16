@@ -1,0 +1,13 @@
+.container {
+  padding: 1em;
+}
+
+.title {
+  font-size: 1.2em;
+  margin: .3em 0;
+}
+
+.description {
+  font-size: 1.1em;
+  color: rgba(0, 0, 0, .6);
+}

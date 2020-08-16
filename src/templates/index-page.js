@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 
-import BlogPostCard from '../components/BlogPostCard'
+import BlogPostCard from '../components/BlogPostCard/BlogPostCard'
 import Layout from '../components/Layout'
 
 const IndexPage = ({
@@ -19,6 +19,8 @@ const IndexPage = ({
       </Helmet>
 
       <section className="content">
+        <h2>Latest</h2>
+
         <div className="pure-g">
           {allMarkdownRemark.edges.map(
             ({
@@ -27,7 +29,7 @@ const IndexPage = ({
                 frontmatter: { title, description, featuredimage },
               },
             }) => (
-                <div className="pure-u-1-1">
+                <div className="pure-u-1-3">
                   <BlogPostCard
                     key={slug}
                     slug={slug}

@@ -25,7 +25,7 @@ const Footer = () => {
             </a>
           </li>
           <li className="pure-menu-item">
-            <Link to={`/authors`} className="pure-menu-link">Authors</Link>
+            <Link to={`/author`} className="pure-menu-link">Authors</Link>
           </li>
         </ul>
 
