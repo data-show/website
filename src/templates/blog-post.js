@@ -1,14 +1,15 @@
 import { format } from 'date-fns'
 import { graphql, Link } from 'gatsby'
-import { OutboundLink } from 'gatsby-plugin-google-analytics'
 import Img from 'gatsby-image'
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
+import { GatsbySeo, ArticleJsonLd } from 'gatsby-plugin-next-seo'
 import { kebabCase } from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
-import Helmet from 'react-helmet'
 
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
+import useSiteMetadata from '../queries/site-metadata'
 
 export const BlogPostTemplate = ({
   content,
@@ -17,14 +18,12 @@ export const BlogPostTemplate = ({
   title,
   publishedDate,
   author,
-  sources,
-  helmet,
+  sources
 }) => {
   const PostContent = contentComponent || Content
 
   return (
     <article className="section">
-      {helmet || ''}
       <header className="content header">
         <h1>{title}</h1>
 
@@ -85,66 +84,57 @@ BlogPostTemplate.propTypes = {
   tags: PropTypes.array,
   title: PropTypes.string,
   publishedDate: PropTypes.string,
-  author: PropTypes.shape,
+  author: PropTypes.object,
   sources: PropTypes.array,
-  helmet: PropTypes.object,
 }
 
 const BlogPost = ({ data }) => {
   const { post, category, author } = data
+  const { logo, siteUrl } = useSiteMetadata()
 
   return (
     <Layout>
+      <GatsbySeo
+        title={post.frontmatter.title}
+        description={post.frontmatter.description}
+        canonical={`${siteUrl}${post.fields.slug}`}
+        openGraph={{
+          title: post.frontmatter.title,
+          description: post.frontmatter.description,
+          url: `${siteUrl}${post.fields.slug}`,
+          type: 'article',
+          article: {
+            publishedTime: post.frontmatter.date,
+            modifiedTime: post.frontmatter.date,
+            section: category.frontmatter.title,
+            authors: [
+              `${siteUrl}${author.frontmatter.slug}`
+            ],
+            tags: post.frontmatter.tags,
+          },
+          images: [
+            post.frontmatter.featuredimage.childImageSharp.fluid.src
+          ],
+        }}
+      />
+      <ArticleJsonLd
+        url={`${siteUrl}${post.fields.slug}`}
+        headline={post.frontmatter.title}
+        images={[
+          post.frontmatter.featuredimage.childImageSharp.fluid.src
+        ]}
+        datePublished={post.frontmatter.date}
+        dateModified={post.frontmatter.date}
+        authorName={author.frontmatter.name}
+        publisherLogo={logo.childImageSharp.fluid.src}
+        description={post.frontmatter.description}
+        overrides={{
+          '@type': 'BlogPosting',
+        }}
+      />
       <BlogPostTemplate
         content={post.html}
         contentComponent={HTMLContent}
-        helmet={
-          <Helmet titleTemplate="%s">
-            <title>{`${post.frontmatter.title}`}</title>
-            <meta
-              name="description"
-              content={`${post.frontmatter.description}`}
-            />
-
-            <meta property="og:title" content={post.frontmatter.title} />
-            <meta property="og:description" content={post.frontmatter.description} />
-            <meta property="og:url" content={post.fields.slug} />
-            <meta property="og:type" content="article" />
-            <meta property="article:published_time" content={post.frontmatter.date} />
-            <meta property="article:modified_time" content={post.frontmatter.date} />
-            <meta property="article:author" content={author.fields.slug} />
-            <meta property="article:section" content={category.frontmatter.title} />
-            {post.frontmatter.tags.map(tag => (
-              <meta property="article:tag" content={tag} />
-            ))}
-            <meta property="og:image" content={post.frontmatter.featuredimage.childImageSharp.fluid.src} />
-
-            <meta name="twitter:title" content={post.frontmatter.title} />
-            <meta name="twitter:description" content={post.frontmatter.description} />
-            <meta name="twitter:image" content={post.frontmatter.featuredimage.childImageSharp.fluid.src} />
-
-            <script type="application/ld+json">
-              {`
-                {
-                  "@context": "http://schema.org",
-                  "@type": "BlogPosting",
-                  "name": "${post.frontmatter.title}",
-                  "headline": "${post.frontmatter.title}",
-                  "datePublished": "${post.frontmatter.date}",
-                  "dateModified": "${post.frontmatter.date}",
-                  "author": {
-                    "@type": "Person",
-                    "name": "${author.frontmatter.name}",
-                    "url": "${author.fields.slug}"
-                  },
-                  "image": "${post.frontmatter.featuredimage.childImageSharp.fluid.src}",
-                  "url": "${post.fields.slug}",
-                  "description": "${post.frontmatter.description}"
-                }
-              `}
-            </script>
-          </Helmet>
-        }
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
         publishedDate={post.frontmatter.date}

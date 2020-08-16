@@ -10,19 +10,15 @@ import useSiteMetadata from '../queries/site-metadata'
 import './all.scss'
 
 const TemplateWrapper = ({ children }) => {
-  const { siteUrl, title, description, color, logo, social: { twitter } } = useSiteMetadata()
+  const { color } = useSiteMetadata()
 
   return (
     <>
       <Helmet>
-        <html lang="en" />
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="HandheldFriendly" content="True" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        <title>{title}</title>
-        <meta name="description" content={description} />
 
         <link
           rel="stylesheet"
@@ -66,35 +62,6 @@ const TemplateWrapper = ({ children }) => {
           content="black-translucent"
         />
         <meta name="msapplication-TileColor" content={color} />
-
-        <meta property="og:site_name" content={title} />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:url" content={`${withPrefix('/')}${siteUrl}`} />
-        <meta property="og:image" content={logo.childImageSharp.fluid.src} />
-
-        <meta name="twitter:card" content="summary" />
-        {twitter && (
-          <meta name="twitter:site" content={twitter} />
-        )}
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={logo.childImageSharp.fluid.src} />
-
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "http://schema.org",
-              "@type": "Blog",
-              "name": "${title}",
-              "url": "${siteUrl}",
-              "image": "${logo.childImageSharp.fluid.src}",
-              "description": "${description}"
-            }
-          `}
-        </script>
       </Helmet>
 
       <body className="layout">

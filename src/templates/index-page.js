@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import Helmet from 'react-helmet'
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
 import BlogPostCard from '../components/BlogPostCard/BlogPostCard'
 import Layout from '../components/Layout'
@@ -13,10 +13,10 @@ const IndexPage = ({
   },
 }) => (
     <Layout>
-      <Helmet titleTemplate="%s">
-        <title>{title}</title>
-        <meta name="description" content={description} />
-      </Helmet>
+      <GatsbySeo
+        title={title}
+        description={description}
+      />
 
       <section className="content">
         <h2>Latest</h2>
@@ -29,9 +29,8 @@ const IndexPage = ({
                 frontmatter: { title, description, featuredimage },
               },
             }) => (
-                <div className="pure-u-1-3">
+                <div className="pure-u-1-3" key={slug}>
                   <BlogPostCard
-                    key={slug}
                     slug={slug}
                     title={title}
                     description={description}

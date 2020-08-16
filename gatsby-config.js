@@ -5,25 +5,27 @@ const netlifyCmsPaths = {
   },
 }
 
+const siteUrl = 'https://www.data-show.com/'
 const title = 'Data Show'
+const description = 'Data Show makes data visualization notebooks with open data about economics and health topics.'
 const logo = '/static/img/logo.png'
 const color = '#433e85'
+const social = {
+  twitter: 'DataShow_',
+  instagram: 'datashow_',
+  youtube: 'UC1siUJqeSI3Zoyj02tw1jgA',
+  github: 'data-show',
+  linkedin: 'data-show-blog'
+}
 
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://www.data-show.com/',
+    siteUrl,
     logo,
     title,
-    description:
-      'Data Show makes data visualization notebooks with open data about economics and health topics.',
+    description,
     color,
-    social: {
-      twitter: 'DataShow_',
-      instagram: 'datashow_',
-      youtube: 'UC1siUJqeSI3Zoyj02tw1jgA',
-      github: 'data-show',
-      linkedin: 'data-show-blog'
-    }
+    social
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -93,6 +95,27 @@ module.exports = {
       options: {
         develop: true,
         purgeOnly: ['/all.scss'],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-next-seo',
+      options: {
+        title,
+        language: 'en',
+        description,
+        canonical: siteUrl,
+        openGraph: {
+          type: 'website',
+          locale: 'en_US',
+          url: siteUrl,
+          description,
+          title,
+          site_name: title,
+        },
+        twitter: {
+          site: social.twitter,
+          cardType: 'summary_large_image',
+        },
       },
     },
     {

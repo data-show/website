@@ -3,11 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { OutboundLink } from 'gatsby-plugin-google-analytics'
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import PropTypes from 'prop-types'
 import React from 'react'
 import Helmet from 'react-helmet'
 
 import Layout from '../components/Layout'
+import useSiteMetadata from '../queries/site-metadata'
 
 export const AuthorTemplate = ({
   description,
@@ -15,12 +17,10 @@ export const AuthorTemplate = ({
   image,
   github,
   linkedin,
-  website,
-  helmet,
+  website
 }) => {
   return (
     <section className="section">
-      {helmet || ''}
       <div className="content">
         <div className="pure-g">
           <div className="pure-u-1-1">
@@ -73,15 +73,33 @@ AuthorTemplate.propTypes = {
   image: PropTypes.shape,
   github: PropTypes.string,
   linkedin: PropTypes.string,
-  website: PropTypes.string,
-  helmet: PropTypes.object,
+  website: PropTypes.string
 }
 
 const Author = ({ data }) => {
   const { markdownRemark: author } = data
+  const { siteUrl } = useSiteMetadata()
 
   return (
     <Layout>
+      <GatsbySeo
+        title={author.frontmatter.name}
+        description={author.frontmatter.description}
+        canonical={`${siteUrl}${author.fields.slug}`}
+        openGraph={{
+          title: author.frontmatter.name,
+          description: author.frontmatter.description,
+          url: `${siteUrl}${author.fields.slug}`,
+          type: 'profile',
+          profile: {
+            username: author.frontmatter.github
+          },
+          images: [
+            author.frontmatter.image.childImageSharp.fluid.src
+          ],
+        }}
+      />
+
       <AuthorTemplate
         description={author.frontmatter.description}
         helmet={
@@ -116,6 +134,9 @@ export const pageQuery = graphql`
     markdownRemark(id: { eq: $id }) {
       id
       html
+      fields {
+        slug
+      }
       frontmatter {
         name
         description
