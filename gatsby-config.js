@@ -204,6 +204,7 @@ module.exports = {
         icon: 'src/img/logo.png',
       },
     },
+    'gatsby-plugin-offline',
     'gatsby-plugin-netlify',
     {
       resolve: 'gatsby-plugin-netlify-cache',
