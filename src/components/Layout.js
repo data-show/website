@@ -46,7 +46,7 @@ const TemplateWrapper = ({ children }) => {
           href={`${withPrefix('/')}img/safari-pinned-tab.svg`}
           color="#ff4400"
         />
-        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="manifest" href="/manifest.webmanifest" />
 
         <meta name="theme-color" content={color} />
         <meta name="msapplication-navbutton-color" content={color} />
