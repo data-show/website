@@ -7,6 +7,7 @@ import Navbar from '../components/Navbar'
 
 import useSiteMetadata from '../queries/site-metadata'
 
+import 'purecss/build/pure.css'
 import './all.scss'
 
 const TemplateWrapper = ({ children }) => {
@@ -19,13 +20,6 @@ const TemplateWrapper = ({ children }) => {
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="HandheldFriendly" content="True" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
-          integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ"
-          crossorigin="anonymous"
-        />
 
         <link rel="alternate" type="application/rss+xml" href={`${withPrefix('/')}rss.xml`} />
 

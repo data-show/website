@@ -102,8 +102,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-purgecss',
       options: {
-        develop: true,
-        purgeOnly: ['/all.scss'],
+        develop: true
       },
     },
     {
