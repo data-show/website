@@ -46,7 +46,7 @@ If we look more closely at the countries of origin of these lawful migrants, Mex
 
 \| | Country | Green Card recipients | Region Name | Percentage | 
 
-\| ---------- | ------------------------ | --------------- | ------------ | 
+\| - | ---------- | ------------------------ | --------------- | ------------ | 
 | 1 | Mexico | 161,858 | North America | 14.79 % | 
 | 2 | Cuba | 76,486 | North America | 6.99 % | 
 | 3 | China, People's Republic | 65,214 | Asia | 5.96 % | 
