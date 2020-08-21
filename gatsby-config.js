@@ -67,6 +67,7 @@ module.exports = {
       options: {
         plugins: [
           netlifyCmsPaths,
+          'gatsby-remark-grid-tables',
           {
             resolve: 'gatsby-remark-relative-images',
             options: {
