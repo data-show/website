@@ -17,13 +17,14 @@ export const CategoryTemplate = ({
   const PostContent = contentComponent || Content
 
   return (
-    <section className="section">
+    <section>
       {helmet || ''}
-      <div className="content">
-        <h1>{title}</h1>
-        <p>{description}</p>
-        <PostContent content={content} />
+      <div className="space-y-4 text-left py-2 mb-6 lg:mb-8">
+        <h1 className="text-3xl leading-9 text-gray-800 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 mb-2">{title}</h1>
+        <p className="text-lg text-gray-600 tracking-tight sm:text-lg md:text-xl md:leading-8 mb-4">{description}</p>
       </div>
+
+      <PostContent content={content} />
     </section>
   )
 }
@@ -43,24 +44,28 @@ const Category = ({
   },
 }) => (
     <Layout>
-      <CategoryTemplate
-        content={category.html}
-        contentComponent={HTMLContent}
-        description={category.frontmatter.description}
-        helmet={
-          <Helmet titleTemplate="%s">
-            <title>{`${category.frontmatter.title}`}</title>
-            <meta
-              name="description"
-              content={`${category.frontmatter.description}`}
-            />
-          </Helmet>
-        }
-        title={category.frontmatter.title}
-      />
+      <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0">
+        <CategoryTemplate
+          content={category.html}
+          contentComponent={HTMLContent}
+          description={category.frontmatter.description}
+          helmet={
+            <Helmet titleTemplate="%s">
+              <title>{`${category.frontmatter.title}`}</title>
+              <meta
+                name="description"
+                content={`${category.frontmatter.description}`}
+              />
+            </Helmet>
+          }
+          title={category.frontmatter.title}
+        />
 
-      <section className="content">
-        <div className="pure-g">
+        <h2 className="text-lg text-gray-900 mb-2">Latest</h2>
+
+        <hr className="my-4" />
+
+        <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {postEdges.map(
             ({
               node: {
@@ -68,15 +73,14 @@ const Category = ({
                 frontmatter: { title, description, featuredimage },
               },
             }) => (
-                <div className="pure-u-1-3">
-                  <BlogPostCard
-                    key={slug}
-                    slug={slug}
-                    title={title}
-                    description={description}
-                    image={featuredimage}
-                  />
-                </div>
+                <BlogPostCard
+                  className="mx-4"
+                  key={slug}
+                  slug={slug}
+                  title={title}
+                  description={description}
+                  image={featuredimage}
+                />
               )
           )}
         </div>

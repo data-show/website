@@ -33,11 +33,11 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         google: {
-          families: ['Open Sans']
+          families: ['Roboto']
         }
       }
     },
-    'gatsby-plugin-sass',
+    'gatsby-plugin-postcss',
     {
       resolve: 'gatsby-source-filesystem',
       options: {

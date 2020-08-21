@@ -4,25 +4,24 @@ import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 
 const AuthorCard = ({ name, description, image, slug }) => (
-  <Link to={slug}>
-    <div className="pure-g">
-      {image && (
-        <div className="pure-u-1-1">
-          <Img
-            fluid={image.childImageSharp.fluid}
-            alt={name}
-            className="pure-img"
-          />
-        </div>
-      )}
-      <div className="pure-u-1-1">
-        <h2>{name}</h2>
+  <div className="max-w-sm rounded overflow-hidden">
+    {image && (
+      <Link to={slug}>
+        <Img
+          fluid={image.childImageSharp.fluid}
+          alt={name}
+          title={name}
+          className="w-full"
+        />
+      </Link>
+    )}
+    <Link to={slug}>
+      <div className="py-2">
+        <h3 className="font-bold text-xl mb-2">{name}</h3>
+        <p className="text-gray-700 text-lg">{description}</p>
       </div>
-      <div className="pure-u-1-1">
-        <p>{description.substr(0, description.lastIndexOf(' ', 255)) + '...'}</p>
-      </div>
-    </div>
-  </Link >
+    </Link>
+  </div>
 )
 
 AuthorCard.propTypes = {

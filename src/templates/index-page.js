@@ -18,10 +18,12 @@ const IndexPage = ({
         description={description}
       />
 
-      <section className="content">
-        <h2>Latest</h2>
+      <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0">
+        <h2 className="text-lg text-gray-900 mb-2">Latest</h2>
 
-        <div className="pure-g">
+        <hr className="my-4" />
+
+        <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {allMarkdownRemark.edges.map(
             ({
               node: {
@@ -29,14 +31,14 @@ const IndexPage = ({
                 frontmatter: { title, description, featuredimage },
               },
             }) => (
-                <div className="pure-u-1-3" key={slug}>
-                  <BlogPostCard
-                    slug={slug}
-                    title={title}
-                    description={description}
-                    image={featuredimage}
-                  />
-                </div>
+                <BlogPostCard
+                  className="mx-4"
+                  key={slug}
+                  slug={slug}
+                  title={title}
+                  description={description}
+                  image={featuredimage}
+                />
               )
           )}
         </div>

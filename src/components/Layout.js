@@ -7,8 +7,7 @@ import Navbar from '../components/Navbar'
 
 import useSiteMetadata from '../queries/site-metadata'
 
-import 'purecss/build/pure.css'
-import './all.scss'
+import './all.css'
 
 const TemplateWrapper = ({ children }) => {
   const { color } = useSiteMetadata()
@@ -58,11 +57,15 @@ const TemplateWrapper = ({ children }) => {
         <meta name="msapplication-TileColor" content={color} />
       </Helmet>
 
-      <body className="layout">
-        <main className="main">
-          <Navbar />
+      <body>
+        <main className="antialiased">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
+            <Navbar />
+          </div>
           {children}
-          <Footer />
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
+            <Footer />
+          </div>
         </main>
       </body>
     </>

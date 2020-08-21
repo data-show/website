@@ -16,85 +16,72 @@ const Footer = () => {
   const { social: { twitter, instagram, youtube, github, linkedin } } = useSiteMetadata()
 
   return (
-    <footer>
-      <div className="pure-menu pure-menu-horizontal pure-menu-scrollable content">
-        <ul className="pure-menu-list">
-          <li className="pure-menu-item">
-            <a href="/admin" className="pure-menu-link">
-              Contribute
+    <footer className="my-4">
+      <div className="w-full block flex-grow flex lg:items-center lg:w-auto">
+        <div className="text-sm flex-grow text-gray-600">
+          <a href="/admin" className="block mt-4 inline-block mt-0 hover:text-gray-700 mr-4">
+            Contribute
             </a>
-          </li>
-          <li className="pure-menu-item">
-            <Link to={`/author`} className="pure-menu-link">Authors</Link>
-          </li>
-        </ul>
 
-        <ul className="pure-menu-list float-right">
+          <Link to={`/author`} className="block mt-4 inline-block mt-0 hover:text-gray-700 mr-4">Authors</Link>
+        </div>
+
+        <div className="flex justify-start items-center text-lg text-gray-500">
           {twitter && (
-            <li className="pure-menu-item">
-              <OutboundLink
-                className="pure-menu-link"
-                href={`https://twitter.com/${twitter}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FontAwesomeIcon icon={faTwitter} />
-              </OutboundLink>
-            </li>
+            <OutboundLink
+              className="block flex items-center hover:text-gray-700 mr-5"
+              href={`https://twitter.com/${twitter}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FontAwesomeIcon icon={faTwitter} />
+            </OutboundLink>
           )}
 
           {instagram && (
-            <li className="pure-menu-item">
-              <OutboundLink
-                className="pure-menu-link"
-                href={`https://www.instagram.com/${instagram}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FontAwesomeIcon icon={faInstagram} />
-              </OutboundLink>
-            </li>
+            <OutboundLink
+              className="block flex items-center hover:text-gray-700 mr-5"
+              href={`https://www.instagram.com/${instagram}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FontAwesomeIcon icon={faInstagram} />
+            </OutboundLink>
           )}
 
           {youtube && (
-            <li className="pure-menu-item">
-              <OutboundLink
-                className="pure-menu-link"
-                href={`https://www.youtube.com/channel/${youtube}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FontAwesomeIcon icon={faYoutube} />
-              </OutboundLink>
-            </li>
+            <OutboundLink
+              className="block flex items-center hover:text-gray-700 mr-5"
+              href={`https://www.youtube.com/channel/${youtube}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FontAwesomeIcon icon={faYoutube} />
+            </OutboundLink>
           )}
 
           {github && (
-            <li className="pure-menu-item">
-              <OutboundLink
-                className="pure-menu-link"
-                href={`https://github.com/${github}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FontAwesomeIcon icon={faGithub} />
-              </OutboundLink>
-            </li>
+            <OutboundLink
+              className="block flex items-center hover:text-gray-700 mr-5"
+              href={`https://github.com/${github}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FontAwesomeIcon icon={faGithub} />
+            </OutboundLink>
           )}
 
           {linkedin && (
-            <li className="pure-menu-item">
-              <OutboundLink
-                className="pure-menu-link"
-                href={`https://www.linkedin.com/company/${linkedin}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FontAwesomeIcon icon={faLinkedin} />
-              </OutboundLink>
-            </li>
+            <OutboundLink
+              className="block flex items-center hover:text-gray-700 mr-5"
+              href={`https://www.linkedin.com/company/${linkedin}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FontAwesomeIcon icon={faLinkedin} />
+            </OutboundLink>
           )}
-        </ul>
+        </div>
       </div>
     </footer>
   )
