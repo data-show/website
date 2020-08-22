@@ -7,7 +7,8 @@ const netlifyCmsPaths = {
 
 const siteUrl = 'https://www.data-show.com/'
 const title = 'Data Show'
-const description = 'Data Show makes data visualization notebooks with open data about economics and health topics.'
+const description =
+  'Data Show makes data visualization notebooks with open data about economics and health topics.'
 const logo = '/static/img/logo.png'
 const color = '#433e85'
 const social = {
@@ -15,7 +16,7 @@ const social = {
   instagram: 'datashow_',
   youtube: 'UC1siUJqeSI3Zoyj02tw1jgA',
   github: 'data-show',
-  linkedin: 'data-show-blog'
+  linkedin: 'data-show-blog',
 }
 const trackingId = 'UA-162035849-1'
 
@@ -26,7 +27,7 @@ module.exports = {
     title,
     description,
     color,
-    social
+    social,
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -34,9 +35,9 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         google: {
-          families: ['Roboto']
-        }
-      }
+          families: ['Roboto'],
+        },
+      },
     },
     'gatsby-plugin-postcss',
     {
@@ -90,7 +91,7 @@ module.exports = {
               destinationDir: 'static',
             },
           },
-          'gatsby-remark-smartypants'
+          'gatsby-remark-smartypants',
         ],
       },
     },
@@ -104,7 +105,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-purgecss',
       options: {
-        develop: true
+        develop: true,
       },
     },
     {
@@ -134,8 +135,8 @@ module.exports = {
         files: ['**/blog/**/*.html'],
         dist: 'public/amp',
         gaConfigPath: 'gaconfig.json',
-        optimize: true
-      }
+        optimize: true,
+      },
     },
     {
       resolve: `gatsby-plugin-feed`,
@@ -156,23 +157,13 @@ module.exports = {
           {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
               return allMarkdownRemark.edges.map(edge => {
-                return Object.assign(
-                  {},
-                  edge.node.frontmatter,
-                  {
-                    description: edge.node.frontmatter.description,
-                    date: edge.node.frontmatter.date,
-                    url:
-                      site.siteMetadata.siteUrl +
-                      edge.node.fields.slug,
-                    guid:
-                      site.siteMetadata.siteUrl +
-                      edge.node.fields.slug,
-                    custom_elements: [
-                      { 'content:encoded': edge.node.html },
-                    ],
-                  },
-                )
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.frontmatter.description,
+                  date: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  custom_elements: [{ 'content:encoded': edge.node.html }],
+                })
               })
             },
             query: `
@@ -208,7 +199,7 @@ module.exports = {
         trackingId,
         head: false,
         anonymize: true,
-        respectDNT: true
+        respectDNT: true,
       },
     },
     {

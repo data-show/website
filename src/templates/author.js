@@ -16,7 +16,7 @@ export const AuthorTemplate = ({
   image,
   github,
   linkedin,
-  website
+  website,
 }) => {
   return (
     <section>
@@ -27,21 +27,42 @@ export const AuthorTemplate = ({
           className="w-full"
         />
 
-        <h1 className="text-3xl leading-9 text-gray-800 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 mb-2">{name}</h1>
-        <p className="text-lg text-gray-600 tracking-tight sm:text-lg md:text-xl md:leading-8 mb-4">{description}</p>
+        <h1 className="text-3xl leading-9 text-gray-800 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 mb-2">
+          {name}
+        </h1>
+        <p className="text-lg text-gray-600 tracking-tight sm:text-lg md:text-xl md:leading-8 mb-4">
+          {description}
+        </p>
       </div>
 
       <div className="flex justify-start items-center text-lg text-gray-500">
         {website && (
-          <OutboundLink className="block flex items-center hover:text-gray-700 mr-5" href={website} target="_blank" rel="noreferrer">{website}</OutboundLink>
+          <OutboundLink
+            className="block flex items-center hover:text-gray-700 mr-5"
+            href={website}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {website}
+          </OutboundLink>
         )}
         {github && (
-          <OutboundLink className="block flex items-center hover:text-gray-700 mr-5" href={`https://github.com/${github}`} target="_blank" rel="noreferrer">
+          <OutboundLink
+            className="block flex items-center hover:text-gray-700 mr-5"
+            href={`https://github.com/${github}`}
+            target="_blank"
+            rel="noreferrer"
+          >
             <FontAwesomeIcon icon={faGithub} />
           </OutboundLink>
         )}
         {linkedin && (
-          <OutboundLink className="block flex items-center hover:text-gray-700 mr-5" href={linkedin} target="_blank" rel="noreferrer">
+          <OutboundLink
+            className="block flex items-center hover:text-gray-700 mr-5"
+            href={linkedin}
+            target="_blank"
+            rel="noreferrer"
+          >
             <FontAwesomeIcon icon={faLinkedin} />
           </OutboundLink>
         )}
@@ -56,7 +77,7 @@ AuthorTemplate.propTypes = {
   image: PropTypes.shape,
   github: PropTypes.string,
   linkedin: PropTypes.string,
-  website: PropTypes.string
+  website: PropTypes.string,
 }
 
 const Author = ({ data }) => {
@@ -75,11 +96,9 @@ const Author = ({ data }) => {
           url: `${siteUrl}${author.fields.slug}`,
           type: 'profile',
           profile: {
-            username: author.frontmatter.github
+            username: author.frontmatter.github,
           },
-          images: [
-            author.frontmatter.image.childImageSharp.fluid.src
-          ],
+          images: [author.frontmatter.image.childImageSharp.fluid.src],
         }}
       />
 

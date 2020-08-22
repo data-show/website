@@ -13,17 +13,27 @@ import { OutboundLink } from 'gatsby-plugin-google-analytics'
 import useSiteMetadata from '../queries/site-metadata'
 
 const Footer = () => {
-  const { social: { twitter, instagram, youtube, github, linkedin } } = useSiteMetadata()
+  const {
+    social: { twitter, instagram, youtube, github, linkedin },
+  } = useSiteMetadata()
 
   return (
     <footer className="my-4">
       <div className="w-full block flex-grow flex lg:items-center lg:w-auto">
         <div className="text-sm flex-grow text-gray-600">
-          <a href="/admin" className="block mt-4 inline-block mt-0 hover:text-gray-700 mr-4">
+          <a
+            href="/admin"
+            className="block mt-4 inline-block mt-0 hover:text-gray-700 mr-4"
+          >
             Contribute
-            </a>
+          </a>
 
-          <Link to={`/author`} className="block mt-4 inline-block mt-0 hover:text-gray-700 mr-4">Authors</Link>
+          <Link
+            to={`/author`}
+            className="block mt-4 inline-block mt-0 hover:text-gray-700 mr-4"
+          >
+            Authors
+          </Link>
         </div>
 
         <div className="flex justify-start items-center text-lg text-gray-500">

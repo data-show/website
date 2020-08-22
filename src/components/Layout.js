@@ -20,7 +20,11 @@ const TemplateWrapper = ({ children }) => {
         <meta name="HandheldFriendly" content="True" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link rel="alternate" type="application/rss+xml" href={`${withPrefix('/')}rss.xml`} />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          href={`${withPrefix('/')}rss.xml`}
+        />
 
         <link
           rel="apple-touch-icon"

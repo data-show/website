@@ -10,7 +10,7 @@ exports.createPages = ({ actions, graphql }) => {
     edges.forEach(edge => {
       const context = {
         id: edge.node.id,
-        title: edge.node.frontmatter.title
+        title: edge.node.frontmatter.title,
       }
 
       if (edge.node.frontmatter.category) {
@@ -21,8 +21,13 @@ exports.createPages = ({ actions, graphql }) => {
         context.author = edge.node.frontmatter.author
       }
 
-      if (edge.node.frontmatter.sources && edge.node.frontmatter.sources.length > 0) {
-        context.sources = edge.node.frontmatter.sources.map(({ source }) => source)
+      if (
+        edge.node.frontmatter.sources &&
+        edge.node.frontmatter.sources.length > 0
+      ) {
+        context.sources = edge.node.frontmatter.sources.map(
+          ({ source }) => source
+        )
       }
 
       createPage({
@@ -38,7 +43,10 @@ exports.createPages = ({ actions, graphql }) => {
 
   return graphql(`
     {
-      posts: allMarkdownRemark(limit: 1000, filter: { frontmatter: { templateKey: { eq: "blog-post" } } }) {
+      posts: allMarkdownRemark(
+        limit: 1000
+        filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+      ) {
         edges {
           node {
             id
@@ -58,7 +66,9 @@ exports.createPages = ({ actions, graphql }) => {
           }
         }
       }
-      categories: allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "category" } } }) {
+      categories: allMarkdownRemark(
+        filter: { frontmatter: { templateKey: { eq: "category" } } }
+      ) {
         edges {
           node {
             id
@@ -72,7 +82,9 @@ exports.createPages = ({ actions, graphql }) => {
           }
         }
       }
-      authors: allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "author" } } }) {
+      authors: allMarkdownRemark(
+        filter: { frontmatter: { templateKey: { eq: "author" } } }
+      ) {
         edges {
           node {
             id
@@ -86,7 +98,9 @@ exports.createPages = ({ actions, graphql }) => {
           }
         }
       }
-      sources: allMarkdownRemark(filter: { frontmatter: { templateKey: { eq: "source" } } }) {
+      sources: allMarkdownRemark(
+        filter: { frontmatter: { templateKey: { eq: "source" } } }
+      ) {
         edges {
           node {
             id
@@ -100,7 +114,13 @@ exports.createPages = ({ actions, graphql }) => {
           }
         }
       }
-      others: allMarkdownRemark(filter: { frontmatter: { templateKey: { nin: ["blog-post", "category", "author", "source"] } } }) {
+      others: allMarkdownRemark(
+        filter: {
+          frontmatter: {
+            templateKey: { nin: ["blog-post", "category", "author", "source"] }
+          }
+        }
+      ) {
         edges {
           node {
             id
@@ -115,7 +135,6 @@ exports.createPages = ({ actions, graphql }) => {
         }
       }
     }
-
   `).then(result => {
     if (result.errors) {
       result.errors.forEach(e => console.error(e.toString()))

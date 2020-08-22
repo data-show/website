@@ -34,7 +34,7 @@ const useAuthors = () => {
     slug: fields.slug,
     name: frontmatter.name,
     description: frontmatter.description,
-    image: frontmatter.image
+    image: frontmatter.image,
   }))
 }
 

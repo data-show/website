@@ -4,7 +4,6 @@ import React from 'react'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 
-
 import useSiteMetadata from '../queries/site-metadata'
 import useCategories from '../queries/categories'
 
@@ -27,14 +26,22 @@ export default function Navbar() {
       <div className="w-full block flex-grow flex items-center w-auto">
         <div className="flex-grow">
           {categories.map(({ title, slug }) => (
-            <Link key={slug} to={slug} className="block mt-4 inline-block leading-none mt-0 hover:text-gray-700 mr-4">
+            <Link
+              key={slug}
+              to={slug}
+              className="block mt-4 inline-block leading-none mt-0 hover:text-gray-700 mr-4"
+            >
               {title}
             </Link>
           ))}
         </div>
         <div>
-          <a href="/rss.xml"
-            className="inline-block text-sm px-4 py-2 leading-none border rounded hover:border-transparent hover:text-gray-700 mt-4 mt-0" type="application/rss+xml" rel="alternate">
+          <a
+            href="/rss.xml"
+            className="inline-block text-sm px-4 py-2 leading-none border rounded hover:border-transparent hover:text-gray-700 mt-4 mt-0"
+            type="application/rss+xml"
+            rel="alternate"
+          >
             <FontAwesomeIcon icon={faRss} />
           </a>
         </div>
