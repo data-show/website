@@ -6,6 +6,7 @@ import { GatsbySeo, ArticleJsonLd } from 'gatsby-plugin-next-seo'
 import { kebabCase } from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
+import Helmet from 'react-helmet'
 
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
@@ -113,6 +114,9 @@ const BlogPost = ({ data }) => {
           ],
         }}
       />
+      <Helmet>
+        <link rel='amphtml' href={`${siteUrl}/amp${post.fields.slug}`} />
+      </Helmet>
       <ArticleJsonLd
         url={`${siteUrl}${post.fields.slug}`}
         headline={post.frontmatter.title}

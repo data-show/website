@@ -17,6 +17,7 @@ const social = {
   github: 'data-show',
   linkedin: 'data-show-blog'
 }
+const trackingId = 'UA-162035849-1'
 
 module.exports = {
   siteMetadata: {
@@ -128,6 +129,15 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-html2amp',
+      options: {
+        files: ['**/blog/**/*.html'],
+        dist: 'public/amp',
+        gaConfigPath: 'gaconfig.json',
+        optimize: true
+      }
+    },
+    {
       resolve: `gatsby-plugin-feed`,
       options: {
         query: `
@@ -167,16 +177,16 @@ module.exports = {
             },
             query: `
               {
-                allMarkdownRemark(
-                  sort: { order: DESC, fields: [frontmatter___date] }
-                  filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+                      allMarkdownRemark(
+                        sort: {order: DESC, fields: [frontmatter___date] }
+                  filter: {frontmatter: {templateKey: {eq: "blog-post" } } }
                 ) {
-                  edges {
-                    node {
+                      edges {
+                      node {
                       html
-                      fields { slug }
+                      fields {slug}
                       frontmatter {
-                        title
+                      title
                         description
                         date
                       }
@@ -195,7 +205,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: 'UA-162035849-1',
+        trackingId,
         head: false,
         anonymize: true,
         respectDNT: true

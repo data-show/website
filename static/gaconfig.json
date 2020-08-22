@@ -1,0 +1,10 @@
+{
+    "vars": {
+        "gtag_id": "<GA_MEASUREMENT_ID>",
+        "config": {
+            "<GA_MEASUREMENT_ID>": {
+                "groups": "default"
+            }
+        }
+    }
+}
