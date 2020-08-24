@@ -58,40 +58,40 @@ If we look more closely at the countries of origin of these lawful migrants, Mex
 
 ### North America
 
-The leading region of birth of new Green Card recipients (38.3%) in 2018 was North America, including the Caribbean and Central America. In 2018, 14.8% of all persons granted Legal Permanent Resident were born in Mexico, which has been the leading source of new LPRs each year since 1978. In this ranking, Cuba follows Mexico with 7% of new LPRs in 2018.
-
 ![Persons Obtaining Lawful Permanent Resident Status by Country of Birth in North America in 2018 - Map](/img/lawful-permanent-resident-north-america.png "Persons Obtaining Lawful Permanent Resident Status by Country of Birth in North America in 2018 - Map")
+
+The leading region of birth of new Green Card recipients (38.3%) in 2018 was North America, including the Caribbean and Central America. In 2018, 14.8% of all persons granted Legal Permanent Resident were born in Mexico, which has been the leading source of new LPRs each year since 1978. In this ranking, Cuba follows Mexico with 7% of new LPRs in 2018.
 
 ![Persons Obtaining Lawful Permanent Resident Status by Country of Birth in North America in 2018 - Graph](/img/lawful-permanent-resident-north-america-bar.png "Persons Obtaining Lawful Permanent Resident Status by Country of Birth in North America in 2018 - Graph")
 
 ### Asia
 
-Asia was the second region of birth of new LPRs in 2018 with 36.2% of green card beneficiaries. The 3rd and 4th in the ranking of countries of birth of new LPRs in 2018 were China (5.9%) and India (5.5%).
-
 ![Persons Obtaining Lawful Permanent Resident Status by Country of Birth in Asia in 2018 - Map](/img/lawful-permanent-resident-asia.png "Persons Obtaining Lawful Permanent Resident Status by Country of Birth in Asia in 2018 - Map")
+
+Asia was the second region of birth of new LPRs in 2018 with 36.2% of green card beneficiaries. The 3rd and 4th in the ranking of countries of birth of new LPRs in 2018 were China (5.9%) and India (5.5%).
 
 ![Persons Obtaining Lawful Permanent Resident Status by Country of Birth in Asia in 2018 - Graph](/img/lawful-permanent-resident-asia-bar.png "Persons Obtaining Lawful Permanent Resident Status by Country of Birth in Asia in 2018 - Graph")
 
 ### Africa
 
-Africa represented 10.6% of Green Card recipients in 2018. Nigeria, ranked 19th, was the first African country in the ranking with 1.3% of new LPRs 19th, and Ethiopia, ranked 22nd  was granted 1.1% of the Green Cards.
-
 ![Persons Obtaining Lawful Permanent Resident Status by Country of Birth in Africa in 2018 - Map](/img/lawful-permanent-resident-africa.png "Persons Obtaining Lawful Permanent Resident Status by Country of Birth in Africa in 2018 - Map")
+
+Africa represented 10.6% of Green Card recipients in 2018. Nigeria, ranked 19th, was the first African country in the ranking with 1.3% of new LPRs 19th, and Ethiopia, ranked 22nd  was granted 1.1% of the Green Cards.
 
 ![Persons Obtaining Lawful Permanent Resident Status by Country of Birth in Africa in 2018 - Graph](/img/lawful-permanent-resident-africa-bar.png "Persons Obtaining Lawful Permanent Resident Status by Country of Birth in Africa in 2018 - Graph")
 
 ### Europe
 
-In 2018, Europe accounted for 7.2% of Green Card recipients. Ukraine, first European country in the ranking, came 24th with 1.1% of Green Card recipients, and the United Kingdom, ranked 29th represented 0.9% of new LPRs.
-
 ![Persons Obtaining Lawful Permanent Resident Status by Country of Birth in Europe in 2018 - Map](/img/lawful-permanent-resident-europe.png "Persons Obtaining Lawful Permanent Resident Status by Country of Birth in Europe in 2018 - Map")
+
+In 2018, Europe accounted for 7.2% of Green Card recipients. Ukraine, first European country in the ranking, came 24th with 1.1% of Green Card recipients, and the United Kingdom, ranked 29th represented 0.9% of new LPRs.
 
 ![Persons Obtaining Lawful Permanent Resident Status by Country of Birth in Europe in 2018 - Graph](/img/lawful-permanent-resident-europe-bar.png "Persons Obtaining Lawful Permanent Resident Status by Country of Birth in Europe in 2018 - Graph")
 
 ### South America
 
-South Amercia represented 7.2% of Green Card recipients in 2018. Colombia, ranked 12th, was the first South Amercian country in the ranking with 1.6% of new LPRs 19th, and Brazil, ranked 16th  was granted 1.6% of the Green Cards.
-
 ![Persons Obtaining Lawful Permanent Resident Status by Country of Birth in South America in 2018 - Map](/img/lawful-permanent-resident-south-america.png "Persons Obtaining Lawful Permanent Resident Status by Country of Birth in South America in 2018 - Map")
+
+South Amercia represented 7.2% of Green Card recipients in 2018. Colombia, ranked 12th, was the first South Amercian country in the ranking with 1.6% of new LPRs 19th, and Brazil, ranked 16th  was granted 1.6% of the Green Cards.
 
 ![Persons Obtaining Lawful Permanent Resident Status by Country of Birth in South America in 2018 - Graph](/img/lawful-permanent-resident-south-america-bar.png "Persons Obtaining Lawful Permanent Resident Status by Country of Birth in South America in 2018 - Graph")
