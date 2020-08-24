@@ -132,7 +132,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-html2amp',
       options: {
-        files: ['**/blog/**/*.html'],
+        files: ['/blog/**/*.html'],
         dist: 'public/amp',
         gaConfigPath: 'gaconfig.json',
         optimize: true,
@@ -168,8 +168,8 @@ module.exports = {
             },
             query: `
               {
-                      allMarkdownRemark(
-                        sort: {order: DESC, fields: [frontmatter___date] }
+                allMarkdownRemark(
+                  sort: {order: DESC, fields: [frontmatter___date] }
                   filter: {frontmatter: {templateKey: {eq: "blog-post" } } }
                 ) {
                       edges {
