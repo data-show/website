@@ -2,10 +2,10 @@
 templateKey: source
 title: U.S. Department of Homeland Security
 image: /img/1200px-seal_of_the_united_states_department_of_homeland_security.svg.png
-description: "The Department of Homeland Security has a vital mission: to secure
-  the nation from the many threats we face. This requires the dedication of more
-  than 240,000 employees in jobs that range from aviation and border security to
-  emergency response, from cybersecurity analyst to chemical facility inspector.
-  Our duties are wide-ranging, and our goal is clear - keeping America safe."
+description: The United States Department of Homeland Security (DHS) is the U.S.
+  federal executive department responsible for public security. Its stated goal
+  is to prepare for, prevent, and respond to domestic emergencies, particularly
+  terrorism, border security, immigration and customs, cyber security, and
+  disaster prevention and management.
 website: https://www.dhs.gov
 ---
