@@ -80,9 +80,10 @@ module.exports = {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 890,
-              linkImagesToOriginal: false,
-              withWebp: true,
-              srcSetBreakpoints: [200, 340, 520, 890],
+              linkImagesToOriginal: true,
+              showCaptions: true,
+              disableBgImage: true,
+              withWebp: true
             },
           },
           {
@@ -106,6 +107,7 @@ module.exports = {
       resolve: 'gatsby-plugin-purgecss',
       options: {
         develop: true,
+        tailwind: true
       },
     },
     {
