@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby'
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import PropTypes from 'prop-types'
 import React from 'react'
-import Helmet from 'react-helmet'
 
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
@@ -10,14 +10,12 @@ export const SourceTemplate = ({
   content,
   contentComponent,
   description,
-  name,
-  helmet,
+  name
 }) => {
   const sourceContent = contentComponent || Content
 
   return (
     <section className="section">
-      {helmet || ''}
       <div className="container content">
         <div className="columns">
           <div className="column is-10 is-offset-1">
@@ -37,37 +35,32 @@ SourceTemplate.propTypes = {
   content: PropTypes.node.isRequired,
   contentComponent: PropTypes.func,
   description: PropTypes.string,
-  name: PropTypes.string,
-  helmet: PropTypes.object,
+  name: PropTypes.string
 }
 
-const Source = ({ data }) => {
-  const { markdownRemark: source } = data
-
-  return (
+const Source = ({ data: {
+  markdownRemark: source,
+  site: { siteMetadata: { siteUrl } }
+} }) => (
     <Layout>
+      <GatsbySeo
+        title={source.frontmatter.name}
+        description={source.frontmatter.description}
+        canonical={`${siteUrl}${source.fields.slug}`}
+      />
       <SourceTemplate
         content={source.html}
         contentComponent={HTMLContent}
         description={source.frontmatter.description}
-        helmet={
-          <Helmet titleTemplate="%s | Source">
-            <title>{`${source.frontmatter.name}`}</title>
-            <meta
-              name="description"
-              content={`${source.frontmatter.description}`}
-            />
-          </Helmet>
-        }
         title={source.frontmatter.name}
       />
     </Layout>
   )
-}
 
 Source.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.object,
+    site: PropTypes.object
   }),
 }
 
@@ -78,9 +71,17 @@ export const pageQuery = graphql`
     markdownRemark(id: { eq: $id }) {
       id
       html
+      fields {
+        slug
+      }
       frontmatter {
         name
         description
+      }
+    }
+    site {
+      siteMetadata {
+        siteUrl
       }
     }
   }

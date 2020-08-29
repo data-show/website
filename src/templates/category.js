@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby'
-import PropTypes from 'prop-types'
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import React from 'react'
-import Helmet from 'react-helmet'
+import PropTypes from 'prop-types'
 
 import Content, { HTMLContent } from '../components/Content'
 import BlogPostCard from '../components/BlogPostCard/BlogPostCard'
@@ -12,13 +12,11 @@ export const CategoryTemplate = ({
   contentComponent,
   description,
   title,
-  helmet,
 }) => {
   const PostContent = contentComponent || Content
 
   return (
     <section>
-      {helmet || ''}
       <div className="space-y-4 text-left py-2 mb-6 lg:mb-8">
         <h1 className="text-3xl leading-9 text-gray-800 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 mb-2">
           {title}
@@ -37,64 +35,63 @@ CategoryTemplate.propTypes = {
   content: PropTypes.node.isRequired,
   contentComponent: PropTypes.func,
   description: PropTypes.string,
-  title: PropTypes.string,
-  helmet: PropTypes.object,
+  title: PropTypes.string
 }
 
 const Category = ({
   data: {
     markdownRemark: category,
     allMarkdownRemark: { edges: postEdges },
+    site: { siteMetadata: { siteUrl } }
   },
 }) => (
-  <Layout>
-    <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0">
-      <CategoryTemplate
-        content={category.html}
-        contentComponent={HTMLContent}
-        description={category.frontmatter.description}
-        helmet={
-          <Helmet titleTemplate="%s">
-            <title>{`${category.frontmatter.title}`}</title>
-            <meta
-              name="description"
-              content={`${category.frontmatter.description}`}
-            />
-          </Helmet>
-        }
+    <Layout>
+      <GatsbySeo
         title={category.frontmatter.title}
+        description={category.frontmatter.description}
+        canonical={`${siteUrl}${category.fields.slug}`}
       />
 
-      <h2 className="text-lg text-gray-900 mb-2">Latest</h2>
+      <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0">
+        <CategoryTemplate
+          content={category.html}
+          contentComponent={HTMLContent}
+          description={category.frontmatter.description}
+          title={category.frontmatter.title}
+        />
 
-      <hr className="my-4" />
+        <h2 className="text-lg text-gray-900 mb-2">Latest</h2>
 
-      <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {postEdges.map(
-          ({
-            node: {
-              fields: { slug },
-              frontmatter: { title, description, featuredimage },
-            },
-          }) => (
-            <BlogPostCard
-              className="mx-4"
-              key={slug}
-              slug={slug}
-              title={title}
-              description={description}
-              image={featuredimage}
-            />
-          )
-        )}
-      </div>
-    </section>
-  </Layout>
-)
+        <hr className="my-4" />
+
+        <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {postEdges.map(
+            ({
+              node: {
+                fields: { slug },
+                frontmatter: { title, description, featuredimage },
+              },
+            }) => (
+                <BlogPostCard
+                  className="mx-4"
+                  key={slug}
+                  slug={slug}
+                  title={title}
+                  description={description}
+                  image={featuredimage}
+                />
+              )
+          )}
+        </div>
+      </section>
+    </Layout>
+  )
 
 Category.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.object,
+    allMarkdownRemark: PropTypes.object,
+    site: PropTypes.object
   }),
 }
 
@@ -105,6 +102,9 @@ export const pageQuery = graphql`
     markdownRemark(id: { eq: $id }) {
       id
       html
+      fields {
+        slug
+      }
       frontmatter {
         title
         description
@@ -138,6 +138,11 @@ export const pageQuery = graphql`
             slug
           }
         }
+      }
+    }
+    site {
+      siteMetadata {
+        siteUrl
       }
     }
   }
