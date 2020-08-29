@@ -12,7 +12,8 @@ language:
 featuredimage: /img/lawful-permanent-resident-world.png
 category: Politics
 tags:
-  - Amercican Lawful Permanent Residents
+  - American Lawful Permanent Residents
+  - Maps
 sources:
   - link: https://www.dhs.gov/immigration-statistics
     source: U.S. Department of Homeland Security
