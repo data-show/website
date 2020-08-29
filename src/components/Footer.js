@@ -7,6 +7,7 @@ import {
   faGithub,
   faLinkedin,
 } from '@fortawesome/free-brands-svg-icons'
+import { faRss } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'gatsby'
 import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
@@ -19,7 +20,7 @@ const Footer = () => {
 
   return (
     <footer className="my-4">
-      <div className="w-full block flex-grow flex lg:items-center lg:w-auto">
+      <div className="w-full block flex-grow inline-flex md:flex lg:items-center lg:w-auto">
         <div className="text-sm flex-grow text-gray-600">
           <a
             href="/admin"
@@ -91,6 +92,15 @@ const Footer = () => {
               <FontAwesomeIcon icon={faLinkedin} />
             </OutboundLink>
           )}
+
+          <a
+            href="/rss.xml"
+            className="block flex items-center hover:text-gray-700 mr-5"
+            type="application/rss+xml"
+            rel="alternate"
+          >
+            <FontAwesomeIcon icon={faRss} />
+          </a>
         </div>
       </div>
     </footer>
