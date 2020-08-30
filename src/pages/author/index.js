@@ -1,20 +1,21 @@
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import React from 'react'
-import Helmet from 'react-helmet'
 
 import AuthorCard from '../../components/AuthorCard'
 import Layout from '../../components/Layout'
 
 import useAuthors from '../../queries/authors'
 
-const AuthorsIndexPage = () => {
+const AuthorsIndexPage = ({ data: { site: { siteMetadata: { siteUrl, title } } } }) => {
   const authors = useAuthors()
 
   return (
     <Layout>
-      <Helmet titleTemplate="%s">
-        <title>{`Authors`}</title>
-        <meta name="description" content={`website authors`} />
-      </Helmet>
+      <GatsbySeo
+        title={`Authors | ${title}`}
+        description={`List of authors`}
+        canonical={`${siteUrl}author`}
+      />
 
       <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0">
         <div className="space-y-4 text-left py-2 mb-6 lg:mb-8">
@@ -41,3 +42,15 @@ const AuthorsIndexPage = () => {
 }
 
 export default AuthorsIndexPage
+
+export const pageQuery = graphql`
+  query AuthorsQuery {
+    site {
+      siteMetadata {
+        title
+        siteUrl
+      }
+    }
+  }
+`
+

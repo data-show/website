@@ -1,20 +1,20 @@
 import { graphql, Link } from 'gatsby'
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import Img from 'gatsby-image'
 import React from 'react'
-import Helmet from 'react-helmet'
 
 import Layout from '../../components/Layout'
 
-const DataVizIndexPage = ({ data: { allMarkdownRemark } }) => {
-  console.log(allMarkdownRemark)
+const DataVizIndexPage = ({ data: { allMarkdownRemark, site: { siteMetadata: { siteUrl, title } } } }) => {
   const datavisualizations = allMarkdownRemark.edges
 
   return (
     <Layout>
-      <Helmet titleTemplate="%s">
-        <title>{`DataViz`}</title>
-        <meta name="description" content={`DataViz`} />
-      </Helmet>
+      <GatsbySeo
+        title={`DataViz | ${title}`}
+        description={`List of dataViz`}
+        canonical={`${siteUrl}dataviz`}
+      />
 
       <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0">
         <div className="space-y-4 text-left py-2 mb-6 lg:mb-8">
@@ -71,6 +71,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         siteUrl
+        title
       }
     }
   }

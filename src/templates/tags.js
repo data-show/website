@@ -7,10 +7,10 @@ import Layout from '../components/Layout'
 
 const TagRoute = ({
   data: {
-    allMarkdownRemark: { edges: posts, totalCount }
+    allMarkdownRemark: { edges: posts, totalCount },
+    site: { siteMetadata: { siteUrl } }
   },
-  pageContext: { tag, slug: tagSlug },
-  site: { siteMetadata: { siteUrl } }
+  pageContext: { tag, slug: tagSlug }
 }) => {
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? '' : 's'
