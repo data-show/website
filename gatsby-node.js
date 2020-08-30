@@ -66,6 +66,29 @@ exports.createPages = ({ actions, graphql }) => {
           }
         }
       }
+      dataviz: allMarkdownRemark(
+        limit: 1000
+        filter: { frontmatter: { templateKey: { eq: "dataviz-post" } } }
+      ) {
+        edges {
+          node {
+            id
+            fields {
+              slug
+            }
+            frontmatter {
+              title
+              tags
+              author
+              category
+              sources {
+                source
+              }
+              templateKey
+            }
+          }
+        }
+      }
       categories: allMarkdownRemark(
         filter: { frontmatter: { templateKey: { eq: "category" } } }
       ) {
@@ -117,7 +140,7 @@ exports.createPages = ({ actions, graphql }) => {
       others: allMarkdownRemark(
         filter: {
           frontmatter: {
-            templateKey: { nin: ["blog-post", "category", "author", "source"] }
+            templateKey: { nin: ["blog-post", "dataviz-post", "category", "author", "source"] }
           }
         }
       ) {
@@ -144,8 +167,11 @@ exports.createPages = ({ actions, graphql }) => {
     const postsEdges = result.data.posts.edges
     createTemplatePages(postsEdges)
 
+    const datavizEdges = result.data.dataviz.edges
+    createTemplatePages(datavizEdges)
+
     let tags = []
-    postsEdges.forEach(edge => {
+    postsEdges.concat(datavizEdges).forEach(edge => {
       if (_.get(edge, `node.frontmatter.tags`)) {
         tags = tags.concat(edge.node.frontmatter.tags)
       }

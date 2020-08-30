@@ -65,9 +65,22 @@ collections:
         }
       - { label: "Title", name: "title", widget: "string", required: true }
       - { label: "Publish Date", name: "date", widget: "datetime", required: true }
+      - { label: "Author", name: "author", widget: "relation", collection: "authors", searchFields: ["name", "github"], valueField: "github", displayFields: ["name", "github"], required: true }
       - { label: "Description", name: "description", widget: "markdown", required: true }
+      - { label: "Language", name: "language", widget: "list", options: ["en", "fr"], default: ["en"], required: true }
       - { label: "Media", name: "media", widget: image, required: true }
+      - { label: "Category", name: "category", widget: "relation", collection: "categories", searchFields: ["title"], valueField: "title", displayFields: ["title"], required: true }
       - { label: "Tags", name: "tags", widget: "list", required: false }
+      - {
+          label: "Sources",
+          name: "sources",
+          widget: "list",
+          default: [],
+          fields: [
+            { label: 'Link', name: 'link', widget: 'string', required: true },
+            { label: "Source", name: "source", widget: "relation", collection: "sources", searchFields: ["title"], valueField: "title", displayFields: ["title"], required: false }
+          ]
+        }
 
   - name: "categories"
     label: "Category"

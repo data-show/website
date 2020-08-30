@@ -6,7 +6,7 @@ import Layout from '../../components/Layout'
 
 import useAuthors from '../../queries/authors'
 
-const BlogIndexPage = () => {
+const AuthorsIndexPage = () => {
   const authors = useAuthors()
 
   return (
@@ -40,4 +40,4 @@ const BlogIndexPage = () => {
   )
 }
 
-export default BlogIndexPage
+export default AuthorsIndexPage

@@ -35,6 +35,13 @@ export default function Navbar() {
               {title}
             </Link>
           ))}
+          <Link
+            key='dataviz'
+            to={`/dataviz`}
+            className="block mt-4 inline-block leading-none mt-0 hover:text-gray-700 mr-4"
+          >
+            DataViz
+          </Link>
         </div>
       </div>
     </nav>

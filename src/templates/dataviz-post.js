@@ -1,4 +1,4 @@
-import { faFacebookF, faLinkedinIn, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+import { faFacebookF, faPinterestP, faLinkedinIn, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { format } from 'date-fns'
 import { graphql, Link } from 'gatsby'
@@ -8,13 +8,11 @@ import { GatsbySeo, ArticleJsonLd } from 'gatsby-plugin-next-seo'
 import { kebabCase } from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
-import Helmet from 'react-helmet'
-import { FacebookShareButton, LinkedinShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share'
+import { FacebookShareButton, LinkedinShareButton, PinterestShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share'
 
 import Layout from '../components/Layout'
-import { HTMLContent } from '../components/Content'
 
-const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: { title: siteName, siteUrl, social } } } }) => {
+const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadata: { title: siteName, siteUrl, social } } } }) => {
   const url = `${siteUrl}${post.fields.slug}`
   const tags = post.frontmatter.tags
   const title = post.frontmatter.title
@@ -41,16 +39,13 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
             authors: [`${siteUrl}${author.frontmatter.slug}`],
             tags: post.frontmatter.tags,
           },
-          images: [post.frontmatter.featuredimage.childImageSharp.fluid.src],
+          images: [post.frontmatter.media.childImageSharp.fluid.src],
         }}
       />
-      <Helmet>
-        <link rel="amphtml" href={`${siteUrl}/amp${post.fields.slug}`} />
-      </Helmet>
       <ArticleJsonLd
         url={`${siteUrl}${post.fields.slug}`}
         headline={post.frontmatter.title}
-        images={[post.frontmatter.featuredimage.childImageSharp.fluid.src]}
+        images={[post.frontmatter.media.childImageSharp.fluid.src]}
         datePublished={post.frontmatter.date}
         dateModified={post.frontmatter.date}
         authorName={author.frontmatter.name}
@@ -61,16 +56,15 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
         }}
       />
 
-      <article className="max-w-2xl mx-auto px-4 sm:px-6 xl:max-w-4xl xl:px-0">
+      <article className="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
+        <Img
+          fluid={post.frontmatter.media.childImageSharp.fluid}
+          alt={post.frontmatter.title}
+          className="w-full"
+        />
+
         <header className="pt-2 pb-2 xl:pb-4 lg:border-b-2 lg:border-gray-200">
           <div className="space-y-4 text-left">
-            <h1 className="text-3xl leading-12 text-gray-800 md:text-4xl md:leading-14 mb-2">
-              {title}
-            </h1>
-            <p className="text-lg leading-6 text-gray-600 md:text-xl md:leading-8 mb-4">
-              {description}
-            </p>
-
             <div className="grid grid-cols-4 gap-2 py-2">
               <div className="col-span-4 md:col-span-3 flex">
                 <Img
@@ -92,6 +86,15 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
               </div>
 
               <div className="col-span-4 md:col-span-1 inline-flex items-center text-lg">
+                <PinterestShareButton
+                  url={url}
+                  media={post.frontmatter.media.childImageSharp.fluid.src}
+                  description={description}
+                  resetButtonStyle={false}
+                  className="cursor-pointer h-8 w-8 bg-gray-700 hover:bg-white text-white hover:text-gray-900 border-solid hover:border-2 hover:border-gray-900 transition duration-300 font-bold mr-1 rounded-full"
+                >
+                  <FontAwesomeIcon icon={faPinterestP} />
+                </PinterestShareButton>
                 <FacebookShareButton
                   url={url}
                   quote={title}
@@ -135,7 +138,12 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
         </header>
 
         <div className="mt-6 mb-2">
-          <HTMLContent className="markdown" content={post.html} />
+          <h1 className="text-3xl leading-12 text-gray-800 md:text-4xl md:leading-14 mb-2">
+            {title}
+          </h1>
+          <p className="text-lg leading-4 text-gray-600 md:text-xl md:leading-6 mb-4">
+            {description}
+          </p>
 
           {tags && tags.length ? (
             <div className="py-2 my-4 md:my-8">
@@ -170,26 +178,25 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
   )
 }
 
-BlogPost.propTypes = {
+DataVizPost.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.object,
   }),
 }
 
-export default BlogPost
+export default DataVizPost
 
 export const pageQuery = graphql`
-  query BlogPostByID($id: String!, $category: String!, $author: String!) {
+  query DataVizPostByID($id: String!, $category: String!, $author: String!) {
     post: markdownRemark(id: { eq: $id }) {
       id
-      html
       fields {
         slug
       }
       frontmatter {
         date
         language
-        featuredimage {
+        media {
           childImageSharp {
             fluid {
               ...GatsbyImageSharpFluid_withWebp
