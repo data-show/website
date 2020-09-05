@@ -10,7 +10,7 @@ const title = 'Data Show'
 const description =
   'Data Show makes data visualization notebooks with open data about economics and health topics.'
 const logo = '/static/img/logo.png'
-const srcLogo = '/src/img/logo.png'
+const srcLogo = 'src/img/logo.png'
 const color = '#433e85'
 const social = {
   twitter: 'DataShow_',
@@ -205,19 +205,19 @@ module.exports = {
         respectDNT: true,
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-manifest`,
-    //   options: {
-    //     name: title,
-    //     short_name: title,
-    //     start_url: `/`,
-    //     background_color: `#ffffff`,
-    //     theme_color: color,
-    //     display: `minimal-ui`,
-    //     icon: srcLogo,
-    //     cache_busting_mode: 'none'
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: title,
+        short_name: title,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: color,
+        display: `minimal-ui`,
+        icon: srcLogo,
+        cache_busting_mode: 'none'
+      },
+    },
     {
       resolve: `gatsby-plugin-offline`,
       options: {
