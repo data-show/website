@@ -10,6 +10,7 @@ const title = 'Data Show'
 const description =
   'Data Show makes data visualization notebooks with open data about economics and health topics.'
 const logo = '/static/img/logo.png'
+const srcLogo = '/src/img/logo.png'
 const color = '#433e85'
 const social = {
   twitter: 'DataShow_',
@@ -204,20 +205,46 @@ module.exports = {
         respectDNT: true,
       },
     },
+    // {
+    //   resolve: `gatsby-plugin-manifest`,
+    //   options: {
+    //     name: title,
+    //     short_name: title,
+    //     start_url: `/`,
+    //     background_color: `#ffffff`,
+    //     theme_color: color,
+    //     display: `minimal-ui`,
+    //     icon: srcLogo,
+    //     cache_busting_mode: 'none'
+    //   },
+    // },
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: `gatsby-plugin-offline`,
       options: {
-        name: title,
-        short_name: title,
-        start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: color,
-        display: `minimal-ui`,
-        icon: 'src/img/logo.png',
+        precachePages: [],
+        workboxConfig: {
+          globPatterns: [`**logo.png*`]
+        }
       },
     },
-    'gatsby-plugin-offline',
-    'gatsby-plugin-netlify',
+    {
+      resolve: `gatsby-plugin-netlify`,
+      options: {
+        headers: {},
+        allPageHeaders: [
+          'Cache-Control: public, s-max-age=604800'
+        ],
+        mergeSecurityHeaders: true,
+        mergeLinkHeaders: true,
+        mergeCachingHeaders: true,
+        generateMatchPathRewrites: true,
+        transformHeaders: (headers, path) => {
+          const regex = /Cache-Control:(?:.*, )max-age=([0-9]+)(?:.*)/
+
+          return headers.map(header => typeof header === 'string' && regex.test(header) ? `${header}, s-max-age=${header.match(regex)[1]}` : header)
+        }
+      }
+    },
     {
       resolve: 'gatsby-plugin-netlify-cache',
       options: {
