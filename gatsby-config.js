@@ -232,7 +232,7 @@ module.exports = {
       options: {
         headers: {},
         allPageHeaders: [
-          'Cache-Control: public, s-max-age=604800'
+          'Cache-Control: public, s-maxage=604800'
         ],
         mergeSecurityHeaders: true,
         mergeLinkHeaders: true,
