@@ -242,7 +242,7 @@ module.exports = {
         transformHeaders: (headers, path) => {
           const regex = /Cache-Control:(?:.*, )max-age=([0-9]+)(?:.*)/
 
-          return headers.map(header => typeof header === 'string' && regex.test(header) ? `${header}, s-max-age=${header.match(regex)[1]}` : header)
+          return headers.map(header => typeof header === 'string' && regex.test(header) ? `${header}, s-maxage=${header.match(regex)[1]}` : header)
         }
       }
     },
