@@ -1,5 +1,5 @@
 ---
 templateKey: category
 title: Politics
-description: Politics category description
+description: Showing data and analysis around politics impacts
 ---
