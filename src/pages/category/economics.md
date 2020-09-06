@@ -1,5 +1,5 @@
 ---
 templateKey: category
 title: Economics
-description: Economics category description
+description: Analysing data around politics
 ---
