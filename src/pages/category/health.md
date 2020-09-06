@@ -1,5 +1,5 @@
 ---
 templateKey: category
 title: Health
-description: Health category description
+description: Describing health data and their social impact
 ---
