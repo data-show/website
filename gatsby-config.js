@@ -33,11 +33,13 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     {
-      resolve: 'gatsby-plugin-web-font-loader',
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
-        google: {
-          families: ['Roboto'],
-        },
+        fonts: [
+          {
+            family: `Roboto`
+          },
+        ],
       },
     },
     'gatsby-plugin-postcss',
