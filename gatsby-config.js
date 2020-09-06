@@ -215,18 +215,19 @@ module.exports = {
         theme_color: color,
         display: `minimal-ui`,
         icon: srcLogo,
-        cache_busting_mode: 'none'
+        // cache_busting_mode: 'none'
       },
     },
-    {
-      resolve: `gatsby-plugin-offline`,
-      options: {
-        precachePages: ['/'],
-        workboxConfig: {
-          globPatterns: [`**logo.png*`]
-        }
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-offline`,
+    //   options: {
+    //     precachePages: ['/'],
+    //     workboxConfig: {
+    //       globPatterns: [`**logo.png*`]
+    //     }
+    //   },
+    // },
+    'gatsby-plugin-remove-serviceworker',
     {
       resolve: `gatsby-plugin-netlify`,
       options: {
