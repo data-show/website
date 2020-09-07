@@ -57,13 +57,14 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
       />
 
       <article className="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
-        <Img
-          fluid={post.frontmatter.media.childImageSharp.fluid}
-          alt={post.frontmatter.title}
-          className="w-full"
-        />
-
         <header className="pt-2 pb-2 xl:pb-4 lg:border-b-2 lg:border-gray-200">
+          <h1 className="text-3xl leading-12 text-gray-800 md:text-4xl md:leading-14 mb-2">
+            {title}
+          </h1>
+          <p className="text-lg leading-4 text-gray-600 md:text-xl md:leading-6 mb-4">
+            {description}
+          </p>
+
           <div className="space-y-4 text-left">
             <div className="grid grid-cols-4 gap-2 py-2">
               <div className="col-span-4 md:col-span-3 flex">
@@ -137,14 +138,13 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
           </div>
         </header>
 
-        <div className="mt-6 mb-2">
-          <h1 className="text-3xl leading-12 text-gray-800 md:text-4xl md:leading-14 mb-2">
-            {title}
-          </h1>
-          <p className="text-lg leading-4 text-gray-600 md:text-xl md:leading-6 mb-4">
-            {description}
-          </p>
+        <Img
+          fluid={post.frontmatter.media.childImageSharp.fluid}
+          alt={post.frontmatter.title}
+          className="w-full"
+        />
 
+        <div className="mt-6 mb-2">
           {tags && tags.length ? (
             <div className="py-2 my-4 md:my-8">
               {tags.map(tag => (
