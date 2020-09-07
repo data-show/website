@@ -14,7 +14,11 @@ language:
 featuredimage: /img/world_press_freedom_index_2020_map.png
 category: Politics
 tags:
-  - Press Freedom
+  - press freedom
+  - politics
+  - maps
+  - index
+  - media
 sources:
   - link: https://rsf.org/en/ranking
     source: Reporters Without Borders
