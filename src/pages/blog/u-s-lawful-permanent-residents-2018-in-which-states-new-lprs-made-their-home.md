@@ -16,6 +16,7 @@ tags:
   - american lawful permanent residents
   - maps
   - politics
+  - usa
   - green card
 sources:
   - source: U.S. Department of Homeland Security
