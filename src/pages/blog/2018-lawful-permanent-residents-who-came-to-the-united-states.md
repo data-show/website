@@ -12,8 +12,11 @@ language:
 featuredimage: /img/us_new_lprs_2018_world_map.png
 category: Politics
 tags:
-  - American Lawful Permanent Residents
-  - Maps
+  - american lawful permanent residents
+  - maps
+  - politics
+  - usa
+  - green card
 sources:
   - link: https://www.dhs.gov/immigration-statistics
     source: U.S. Department of Homeland Security
