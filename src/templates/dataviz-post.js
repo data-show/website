@@ -68,11 +68,16 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
           <div className="space-y-4 text-left">
             <div className="grid grid-cols-4 gap-2 py-2">
               <div className="col-span-4 md:col-span-3 flex">
-                <Img
-                  fluid={author.frontmatter.image.childImageSharp.fluid}
-                  alt={author.frontmatter.name}
-                  className="w-10 h-10 rounded-full mr-4"
-                />
+                <Link
+                  className="text-gray-900 leading-none"
+                  to={author.fields.slug}
+                >
+                  <Img
+                    fluid={author.frontmatter.image.childImageSharp.fluid}
+                    alt={author.frontmatter.name}
+                    className="w-10 h-10 rounded-full mr-4"
+                  />
+                </Link>
                 <div className="text-sm">
                   <Link
                     className="text-gray-900 leading-none"
