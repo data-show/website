@@ -7,84 +7,14 @@ import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import BlogPostCard from '../components/BlogPostCard/BlogPostCard'
 import Layout from '../components/Layout'
-import useSiteMetadata from '../queries/site-metadata'
 
-export const AuthorTemplate = ({
-  description,
-  name,
-  image,
-  github,
-  linkedin,
-  website,
-}) => {
-  return (
-    <section>
-      <div className="space-y-4 text-left py-2 mb-6 lg:mb-8">
-        <Img
-          fluid={image.childImageSharp.fluid}
-          alt={name}
-          className="w-full"
-        />
-
-        <h1 className="text-3xl leading-9 text-gray-800 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 mb-2">
-          {name}
-        </h1>
-        <p className="text-lg text-gray-600 tracking-tight sm:text-lg md:text-xl md:leading-8 mb-4">
-          {description}
-        </p>
-      </div>
-
-      <div className="flex justify-start items-center text-lg text-gray-500">
-        {website && (
-          <OutboundLink
-            className="block flex items-center hover:text-gray-700 mr-5"
-            href={website}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {website}
-          </OutboundLink>
-        )}
-        {github && (
-          <OutboundLink
-            className="block flex items-center hover:text-gray-700 mr-5"
-            href={`https://github.com/${github}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FontAwesomeIcon icon={faGithub} />
-          </OutboundLink>
-        )}
-        {linkedin && (
-          <OutboundLink
-            className="block flex items-center hover:text-gray-700 mr-5"
-            href={linkedin}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FontAwesomeIcon icon={faLinkedin} />
-          </OutboundLink>
-        )}
-      </div>
-    </section>
-  )
-}
-
-AuthorTemplate.propTypes = {
-  description: PropTypes.string,
-  name: PropTypes.string,
-  image: PropTypes.shape,
-  github: PropTypes.string,
-  linkedin: PropTypes.string,
-  website: PropTypes.string,
-}
-
-const Author = ({ data }) => {
-  const { markdownRemark: author } = data
-  const { siteUrl } = useSiteMetadata()
-
-  return (
+const Author = ({ data: {
+  markdownRemark: author,
+  allMarkdownRemark: { edges: postEdges },
+  site: { siteUrl }
+} }) => (
     <Layout>
       <GatsbySeo
         title={author.frontmatter.name}
@@ -103,18 +33,87 @@ const Author = ({ data }) => {
       />
 
       <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0">
-        <AuthorTemplate
-          description={author.frontmatter.description}
-          name={author.frontmatter.name}
-          image={author.frontmatter.image}
-          github={author.frontmatter.github}
-          linkedin={author.frontmatter.linkedin}
-          website={author.frontmatter.website}
-        />
+        <section>
+          <div className="space-y-4 text-left py-2 mb-6 lg:mb-8">
+            <div className="grid grid-cols-6 gap-2 py-2">
+              <div className="col-span-6 md:col-span-4 flex">
+                <div>
+                  <h1 className="text-3xl leading-9 text-gray-800 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 mb-2">
+                    {author.frontmatter.name}
+                  </h1>
+                  <p className="text-lg text-gray-600 tracking-tight sm:text-lg md:text-xl md:leading-8 mb-4">
+                    {author.frontmatter.description}
+                  </p>
+                  <div className="flex justify-start items-center text-lg text-gray-500">
+                    {author.frontmatter.website && (
+                      <OutboundLink
+                        className="block flex items-center hover:text-gray-700 mr-5"
+                        href={author.frontmatter.website}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {author.frontmatter.website}
+                      </OutboundLink>
+                    )}
+                    {author.frontmatter.github && (
+                      <OutboundLink
+                        className="block flex items-center hover:text-gray-700 mr-5"
+                        href={`https://github.com/${author.frontmatter.github}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <FontAwesomeIcon icon={faGithub} />
+                      </OutboundLink>
+                    )}
+                    {author.frontmatter.linkedin && (
+                      <OutboundLink
+                        className="block flex items-center hover:text-gray-700 mr-5"
+                        href={author.frontmatter.linkedin}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <FontAwesomeIcon icon={faLinkedin} />
+                      </OutboundLink>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <Img
+                fluid={author.frontmatter.image.childImageSharp.fluid}
+                alt={author.frontmatter.name}
+                className="rounded-full ml-4"
+              />
+            </div>
+
+            <h2 className="text-lg text-gray-900 mb-2">Latest</h2>
+
+            <hr className="my-4" />
+
+            <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {postEdges.map(
+                ({
+                  node: {
+                    fields: { slug },
+                    frontmatter: { title, description, featuredimage },
+                  },
+                }) => (
+                    <BlogPostCard
+                      className="mx-4"
+                      key={slug}
+                      slug={slug}
+                      title={title}
+                      description={description}
+                      image={featuredimage}
+                    />
+                  )
+              )}
+            </div>
+          </div>
+        </section>
       </section>
     </Layout>
   )
-}
 
 Author.propTypes = {
   data: PropTypes.shape({
@@ -125,7 +124,7 @@ Author.propTypes = {
 export default Author
 
 export const pageQuery = graphql`
-  query AuthorByID($id: String!) {
+  query AuthorByID($id: String!, $title: String!) {
     markdownRemark(id: { eq: $id }) {
       id
       html
@@ -145,6 +144,41 @@ export const pageQuery = graphql`
         github
         linkedin
         website
+      }
+    }
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      skip: 0
+      limit: 10
+      filter: {
+        frontmatter: {
+          templateKey: { eq: "blog-post" }
+          author: { eq: $title }
+        }
+      }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            description
+            featuredimage {
+              childImageSharp {
+                fluid(maxWidth: 450) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
+          fields {
+            slug
+          }
+        }
+      }
+    }
+    site {
+      siteMetadata {
+        siteUrl
       }
     }
   }

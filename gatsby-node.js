@@ -11,7 +11,7 @@ exports.createPages = ({ actions, graphql }) => {
     edges.forEach(edge => {
       const context = {
         id: edge.node.id,
-        title: edge.node.frontmatter.title,
+        title: edge.node.frontmatter.title || edge.node.frontmatter.github,
       }
 
       if (edge.node.frontmatter.category) {
@@ -117,6 +117,7 @@ exports.createPages = ({ actions, graphql }) => {
             }
             frontmatter {
               name
+              github
               templateKey
             }
           }
