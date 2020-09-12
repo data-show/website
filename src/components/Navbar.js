@@ -24,7 +24,7 @@ export default function Navbar() {
           Data Show
         </Link>
       </div>
-      <div className="hidden w-full md:block flex-grow flex items-center w-auto">
+      <div className="hidden w-full md:block flex-grow flex items-center w-auto text-lg">
         <div className="flex-grow">
           {categories.map(({ title, slug }) => (
             <Link
