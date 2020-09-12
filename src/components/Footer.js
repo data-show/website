@@ -22,13 +22,6 @@ const Footer = () => {
     <footer className="my-4">
       <div className="w-full block flex-grow inline-flex md:flex lg:items-center lg:w-auto">
         <div className="text-sm flex-grow text-gray-600">
-          <a
-            href="/admin"
-            className="block mt-4 inline-block mt-0 hover:text-gray-700 mr-4"
-          >
-            Contribute
-          </a>
-
           <Link
             to={`/author`}
             className="block mt-4 inline-block mt-0 hover:text-gray-700 mr-4"
