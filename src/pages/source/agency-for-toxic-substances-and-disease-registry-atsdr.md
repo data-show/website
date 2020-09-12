@@ -1,6 +1,7 @@
 ---
 templateKey: source
 title: Agency for Toxic Substances and Disease Registry (ATSDR)
+image: /img/us-atsdr-logo.png
 description: The Agency for Toxic Substances and Disease Registry (ATSDR), based
   in Atlanta, Georgia, is a federal public health agency of the U.S. Department
   of Health and Human Services. ATSDR serves the public by using the best
