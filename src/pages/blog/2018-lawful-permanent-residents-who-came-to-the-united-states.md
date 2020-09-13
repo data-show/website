@@ -9,7 +9,7 @@ description: Each year, more than one million people around the world obtain
   who received a green card in 2018.
 language:
   - en
-featuredimage: /img/us_new_lprs_2018_world_map.png
+featuredimage: /img/jose-g-ortega-castro-vv5-vuldaba-unsplash.jpg
 category: Politics
 tags:
   - american lawful permanent residents
