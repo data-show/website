@@ -11,7 +11,7 @@ description: According to RSF’s measures, world press freedom improved very
   worldwide an unprecedented state of fear.
 language:
   - en
-featuredimage: /img/world_press_freedom_index_2020_map.png
+featuredimage: /img/pexels-kaboompics-com-6335.jpg
 category: Politics
 tags:
   - press freedom
