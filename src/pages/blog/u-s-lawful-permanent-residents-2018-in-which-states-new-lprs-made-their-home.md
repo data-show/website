@@ -10,7 +10,7 @@ description: In 2018, 1.1 million persons obtained lawful permanent resident
   their home.
 language:
   - en
-featuredimage: /img/us_new_lprs_map.png
+featuredimage: /img/pexels-nout-gons-378570.jpg
 category: Politics
 tags:
   - american lawful permanent residents
