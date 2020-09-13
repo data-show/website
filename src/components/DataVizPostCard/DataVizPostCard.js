@@ -4,13 +4,13 @@ import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 
 const DataVizPostCard = ({ name, image, slug }) => (
-  <div className="max-w-sm rounded overflow-hidden">
+  <div className="max-w-sm rounded">
     <Link to={slug}>
       <Img
         fluid={image.childImageSharp.fluid}
         alt={name}
         title={name}
-        className="w-full"
+        className="w-full opacity-100 transition duration-300 hover:opacity-75"
       />
     </Link>
   </div>

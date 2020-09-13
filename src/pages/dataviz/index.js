@@ -1,8 +1,8 @@
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
-import Img from 'gatsby-image'
 import React from 'react'
 
+import DataVizPostCard from '../../components/DataVizPostCard'
 import Layout from '../../components/Layout'
 
 const DataVizIndexPage = ({ data: { allMarkdownRemark, site: { siteMetadata: { siteUrl, title } } } }) => {
@@ -25,14 +25,11 @@ const DataVizIndexPage = ({ data: { allMarkdownRemark, site: { siteMetadata: { s
 
         <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {datavisualizations.map(({ node: { frontmatter: { title, media }, fields: { slug } } }) => (
-            <Link to={slug}>
-              <Img
-                fluid={media.childImageSharp.fluid}
-                alt={title}
-                title={title}
-                className="w-full"
-              />
-            </Link>
+            <DataVizPostCard
+              name={title}
+              slug={slug}
+              image={media}
+            />
           ))}
         </div>
       </section>
