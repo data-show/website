@@ -22,6 +22,7 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
   const publishedDate = post.frontmatter.date
   const hashtags = tags.map(tag => `${tag.split(' ').join('')}`)
   const sources = post.frontmatter.sources
+  const readingTime = Math.ceil(+post.fields.readingTime.minutes)
 
   return (
     <Layout>
@@ -35,8 +36,8 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
           url,
           type: 'article',
           article: {
-            publishedTime: post.frontmatter.date,
-            modifiedTime: post.frontmatter.date,
+            publishedTime: publishedDate,
+            modifiedTime: publishedDate,
             section: category.frontmatter.title,
             authors: [`${siteUrl}${author.frontmatter.slug}`],
             tags: post.frontmatter.tags,
@@ -51,8 +52,8 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
         url={`${siteUrl}${post.fields.slug}`}
         headline={post.frontmatter.title}
         images={[post.frontmatter.featuredimage.childImageSharp.fluid.src]}
-        datePublished={post.frontmatter.date}
-        dateModified={post.frontmatter.date}
+        datePublished={publishedDate}
+        dateModified={publishedDate}
         authorName={author.frontmatter.name}
         publisherLogo={logo.childImageSharp.fluid.src}
         description={post.frontmatter.description}
@@ -91,7 +92,7 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
                     {author.frontmatter.name}
                   </Link>
                   <p className="text-gray-600">
-                    {format(new Date(publishedDate), 'PP')}
+                    <span>{format(new Date(publishedDate), 'PP')}</span> - <span>{`${readingTime} minute${readingTime > 1 && 's'} read`}</span>
                   </p>
                 </div>
               </div>
@@ -190,6 +191,9 @@ export const pageQuery = graphql`
       html
       fields {
         slug
+        readingTime {
+          minutes
+        }
       }
       frontmatter {
         date
