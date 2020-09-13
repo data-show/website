@@ -3,12 +3,14 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
-import BlogPostCard from '../components/BlogPostCard/BlogPostCard'
+import BlogPostCard from '../components/BlogPostCard'
+import DataVizPostCard from '../components/DataVizPostCard'
 import Layout from '../components/Layout'
 
 const IndexPage = ({
   data: {
-    allMarkdownRemark,
+    postsAllMarkdownRemark: { edges: posts },
+    datavizAllMarkdownRemark: { edges: dataviz },
     markdownRemark: { title, description },
   },
 }) => (
@@ -18,13 +20,13 @@ const IndexPage = ({
         description={description}
       />
 
-      <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0">
+      <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0 mb-8">
         <h2 className="text-lg text-gray-900 mb-2">Latest</h2>
 
         <hr className="my-4" />
 
         <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {allMarkdownRemark.edges.map(
+          {posts.map(
             ({
               node: {
                 fields: { slug },
@@ -43,6 +45,31 @@ const IndexPage = ({
           )}
         </div>
       </section>
+
+      <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0 mb-8">
+        <h2 className="text-lg text-gray-900 mb-2">Latest DataViz</h2>
+
+        <hr className="my-4" />
+
+        <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {dataviz.map(
+            ({
+              node: {
+                fields: { slug },
+                frontmatter: { title, media },
+              },
+            }) => (
+                <DataVizPostCard
+                  className="mx-4"
+                  key={slug}
+                  slug={slug}
+                  title={title}
+                  image={media}
+                />
+              )
+          )}
+        </div>
+      </section>
     </Layout>
   )
 
@@ -51,11 +78,21 @@ IndexPage.propTypes = {
     markdownRemark: PropTypes.shape({
       frontmatter: PropTypes.object,
     }),
-    allMarkdownRemark: PropTypes.shape({
+    postsAllMarkdownRemark: PropTypes.shape({
       edges: PropTypes.arrayOf({
         node: PropTypes.shape({
           frontmatter: PropTypes.shape({
             title: PropTypes.string,
+            description: PropTypes.string,
+          }),
+        }),
+      }),
+    }),
+    datavizAllMarkdownRemark: PropTypes.shape({
+      edges: PropTypes.arrayOf({
+        node: PropTypes.shape({
+          frontmatter: PropTypes.shape({
+            title: PropTypes.string
           }),
         }),
       }),
@@ -73,7 +110,7 @@ export const pageQuery = graphql`
         description
       }
     }
-    allMarkdownRemark(
+    postsAllMarkdownRemark: allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       skip: 0
       limit: 10
@@ -85,6 +122,30 @@ export const pageQuery = graphql`
             title
             description
             featuredimage {
+              childImageSharp {
+                fluid(maxWidth: 450) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
+          fields {
+            slug
+          }
+        }
+      }
+    }
+    datavizAllMarkdownRemark: allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      skip: 0
+      limit: 10
+      filter: { frontmatter: { templateKey: { eq: "dataviz-post" } } }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            media {
               childImageSharp {
                 fluid(maxWidth: 450) {
                   ...GatsbyImageSharpFluid_withWebp

@@ -174,13 +174,13 @@ module.exports = {
             query: `
               {
                 allMarkdownRemark(
-                  sort: {order: DESC, fields: [frontmatter___date] }
-                  filter: {frontmatter: {templateKey: {eq: "blog-post" } } }
+                  sort: { order: DESC, fields: [frontmatter___date] }
+                  filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
                 ) {
                       edges {
                       node {
                       html
-                      fields {slug}
+                      fields { slug }
                       frontmatter {
                       title
                         description

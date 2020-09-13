@@ -2,12 +2,15 @@ import { graphql, Link } from 'gatsby'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import React from 'react'
 
-import BlogPostCard from '../components/BlogPostCard/BlogPostCard'
+import BlogPostCard from '../components/BlogPostCard'
+import DataVizPostCard from '../components/DataVizPostCard'
 import Layout from '../components/Layout'
 
 const TagRoute = ({
   data: {
-    allMarkdownRemark: { edges: posts, totalCount },
+    allMarkdownRemark: { totalCount },
+    postsAllMarkdownRemark: { edges: posts },
+    datavizAllMarkdownRemark: { edges: dataviz },
     site: { siteMetadata: { siteUrl } }
   },
   pageContext: { tag, slug: tagSlug }
@@ -34,24 +37,55 @@ const TagRoute = ({
           </div>
         </section>
 
-        <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((
-            {
-              node: {
-                fields: { slug },
-                frontmatter: { title, description, featuredimage },
-              },
-            }
-          ) => (
-              <BlogPostCard
-                className="mx-4"
-                key={slug}
-                slug={slug}
-                title={title}
-                description={description}
-                image={featuredimage}
-              />
-            ))}
+        <div className="mb-8">
+          <h2 className="text-lg text-gray-900 mb-2">Blog Posts</h2>
+
+          <hr className="my-4" />
+
+          <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map((
+              {
+                node: {
+                  fields: { slug },
+                  frontmatter: { title, description, featuredimage },
+                },
+              }
+            ) => (
+                <BlogPostCard
+                  className="mx-4"
+                  key={slug}
+                  slug={slug}
+                  title={title}
+                  description={description}
+                  image={featuredimage}
+                />
+              ))}
+          </div>
+        </div>
+
+        <div className="mb-8">
+          <h2 className="text-lg text-gray-900 mb-2">DataViz Posts</h2>
+
+          <hr className="my-4" />
+
+          <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {dataviz.map((
+              {
+                node: {
+                  fields: { slug },
+                  frontmatter: { title, media },
+                },
+              }
+            ) => (
+                <DataVizPostCard
+                  className="mx-4"
+                  key={slug}
+                  slug={slug}
+                  title={title}
+                  image={media}
+                />
+              ))}
+          </div>
         </div>
 
         <div className="mt-2">
@@ -72,6 +106,13 @@ export const tagPageQuery = graphql`
       filter: { frontmatter: { tags: { in: [$tag] } } }
     ) {
       totalCount
+    }
+    postsAllMarkdownRemark: allMarkdownRemark(
+      limit: 1000
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { templateKey: { eq: "blog-post" }, tags: { in: [$tag] } } }
+    ) {
+      totalCount
       edges {
         node {
           fields {
@@ -81,6 +122,30 @@ export const tagPageQuery = graphql`
             title
             description
             featuredimage {
+              childImageSharp {
+                fluid(maxWidth: 450) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    datavizAllMarkdownRemark: allMarkdownRemark(
+      limit: 1000
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { templateKey: { eq: "dataviz-post" }, tags: { in: [$tag] } } }
+    ) {
+      totalCount
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            media {
               childImageSharp {
                 fluid(maxWidth: 450) {
                   ...GatsbyImageSharpFluid_withWebp
