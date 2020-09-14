@@ -39,10 +39,15 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
             publishedTime: publishedDate,
             modifiedTime: publishedDate,
             section: category.frontmatter.title,
-            authors: [`${siteUrl}${author.frontmatter.slug}`],
+            authors: [`${siteUrl}${author.fields.slug}`],
             tags: post.frontmatter.tags,
           },
-          images: [post.frontmatter.featuredimage.childImageSharp.fluid.src],
+          images: [
+            {
+              url: post.frontmatter.featuredimage.childImageSharp.fluid.src,
+              alt: post.frontmatter.title
+            }
+          ],
         }}
       />
       {/* <Helmet>
