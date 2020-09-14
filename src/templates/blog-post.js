@@ -44,7 +44,7 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
           },
           images: [
             {
-              url: post.frontmatter.featuredimage.childImageSharp.fluid.src,
+              url: `${siteUrl}${post.frontmatter.featuredimage.childImageSharp.fluid.src}`,
               alt: post.frontmatter.title
             }
           ],
@@ -54,13 +54,13 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
         <link rel="amphtml" href={`${siteUrl}/amp${post.fields.slug}`} />
       </Helmet> */}
       <ArticleJsonLd
-        url={`${siteUrl}${post.fields.slug}`}
+        url={url}
         headline={post.frontmatter.title}
-        images={[post.frontmatter.featuredimage.childImageSharp.fluid.src]}
+        images={[`${siteUrl}${post.frontmatter.featuredimage.childImageSharp.fluid.src}`]}
         datePublished={publishedDate}
         dateModified={publishedDate}
         authorName={author.frontmatter.name}
-        publisherLogo={logo.childImageSharp.fluid.src}
+        publisherLogo={`${siteUrl}${logo.childImageSharp.fluid.src}`}
         description={post.frontmatter.description}
         overrides={{
           '@type': 'BlogPosting',
