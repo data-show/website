@@ -81,6 +81,7 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
                   <Img
                     fluid={author.frontmatter.image.childImageSharp.fluid}
                     alt={author.frontmatter.name}
+                    loading="eager"
                     className="w-10 h-10 rounded-full mr-4"
                   />
                 </Link>
@@ -233,8 +234,8 @@ export const pageQuery = graphql`
         twitter
         image {
           childImageSharp {
-            fluid(maxWidth: 100) {
-              ...GatsbyImageSharpFluid_withWebp
+            fluid(maxWidth: 250, maxHeight: 250) {
+              ...GatsbyImageSharpFluid_withWebp_noBase64
             }
           }
         }
@@ -250,7 +251,7 @@ export const pageQuery = graphql`
         image {
           childImageSharp {
             fluid(maxHeight: 100) {
-              ...GatsbyImageSharpFluid_withWebp
+              ...GatsbyImageSharpFluid_withWebp_noBase64
             }
           }
         }

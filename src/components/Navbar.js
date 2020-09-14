@@ -17,6 +17,8 @@ export default function Navbar() {
             fluid={logo.childImageSharp.fluid}
             alt={title}
             className="inline-block"
+            loading="eager"
+            fadeIn={false}
             style={{ height: '50px', width: '50px', backgroundColor: 'none' }}
           />
         </Link>
