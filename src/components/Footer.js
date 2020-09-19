@@ -28,6 +28,13 @@ const Footer = () => {
           >
             Authors
           </Link>
+          <OutboundLink
+            href={`https://notebooks.data-show.com/`}
+            target="_blank"
+            className="block mt-4 inline-block mt-0 hover:text-gray-700 mr-4"
+          >
+            Notebooks
+          </OutboundLink>
         </div>
 
         <div className="flex justify-start items-center text-lg text-gray-500">
