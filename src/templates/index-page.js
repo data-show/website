@@ -20,56 +20,60 @@ const IndexPage = ({
         description={description}
       />
 
-      <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0 mb-8">
-        <h2 className="text-lg text-gray-900 mb-2">Latest</h2>
+      {posts.length > 0 && (
+        <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0 mb-8">
+          <h2 className="text-lg text-gray-900 mb-2">Latest</h2>
 
-        <hr className="my-4" />
+          <hr className="my-4" />
 
-        <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map(
-            ({
-              node: {
-                fields: { slug },
-                frontmatter: { title, description, featuredimage },
-              },
-            }) => (
-                <BlogPostCard
-                  className="mx-4"
-                  key={slug}
-                  slug={slug}
-                  title={title}
-                  description={description}
-                  image={featuredimage}
-                />
-              )
-          )}
-        </div>
-      </section>
+          <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map(
+              ({
+                node: {
+                  fields: { slug },
+                  frontmatter: { title, description, featuredimage },
+                },
+              }) => (
+                  <BlogPostCard
+                    className="mx-4"
+                    key={slug}
+                    slug={slug}
+                    title={title}
+                    description={description}
+                    image={featuredimage}
+                  />
+                )
+            )}
+          </div>
+        </section>
+      )}
 
-      <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0 mb-8">
-        <h2 className="text-lg text-gray-900 mb-2">Latest DataViz</h2>
+      {dataviz.length > 0 && (
+        <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0 mb-8">
+          <h2 className="text-lg text-gray-900 mb-2">Latest DataViz</h2>
 
-        <hr className="my-4" />
+          <hr className="my-4" />
 
-        <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {dataviz.map(
-            ({
-              node: {
-                fields: { slug },
-                frontmatter: { title, media },
-              },
-            }) => (
-                <DataVizPostCard
-                  className="mx-4"
-                  key={slug}
-                  slug={slug}
-                  title={title}
-                  image={media}
-                />
-              )
-          )}
-        </div>
-      </section>
+          <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {dataviz.map(
+              ({
+                node: {
+                  fields: { slug },
+                  frontmatter: { title, media },
+                },
+              }) => (
+                  <DataVizPostCard
+                    className="mx-4"
+                    key={slug}
+                    slug={slug}
+                    title={title}
+                    image={media}
+                  />
+                )
+            )}
+          </div>
+        </section>
+      )}
     </Layout>
   )
 

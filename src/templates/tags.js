@@ -37,56 +37,60 @@ const TagRoute = ({
           </div>
         </section>
 
-        <div className="mb-8">
-          <h2 className="text-lg text-gray-900 mb-2">Blog Posts</h2>
+        {posts.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-lg text-gray-900 mb-2">Blog Posts</h2>
 
-          <hr className="my-4" />
+            <hr className="my-4" />
 
-          <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((
-              {
-                node: {
-                  fields: { slug },
-                  frontmatter: { title, description, featuredimage },
-                },
-              }
-            ) => (
-                <BlogPostCard
-                  className="mx-4"
-                  key={slug}
-                  slug={slug}
-                  title={title}
-                  description={description}
-                  image={featuredimage}
-                />
-              ))}
+            <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {posts.map((
+                {
+                  node: {
+                    fields: { slug },
+                    frontmatter: { title, description, featuredimage },
+                  },
+                }
+              ) => (
+                  <BlogPostCard
+                    className="mx-4"
+                    key={slug}
+                    slug={slug}
+                    title={title}
+                    description={description}
+                    image={featuredimage}
+                  />
+                ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        <div className="mb-8">
-          <h2 className="text-lg text-gray-900 mb-2">DataViz Posts</h2>
+        {dataviz.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-lg text-gray-900 mb-2">DataViz Posts</h2>
 
-          <hr className="my-4" />
+            <hr className="my-4" />
 
-          <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {dataviz.map((
-              {
-                node: {
-                  fields: { slug },
-                  frontmatter: { title, media },
-                },
-              }
-            ) => (
-                <DataVizPostCard
-                  className="mx-4"
-                  key={slug}
-                  slug={slug}
-                  title={title}
-                  image={media}
-                />
-              ))}
+            <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {dataviz.map((
+                {
+                  node: {
+                    fields: { slug },
+                    frontmatter: { title, media },
+                  },
+                }
+              ) => (
+                  <DataVizPostCard
+                    className="mx-4"
+                    key={slug}
+                    slug={slug}
+                    title={title}
+                    image={media}
+                  />
+                ))}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="mt-2">
           <Link to={`/tags/`}>Browse all tags</Link>
