@@ -81,6 +81,16 @@ collections:
             { label: "Source", name: "source", widget: "relation", collection: "sources", searchFields: ["title"], valueField: "title", displayFields: ["title"], required: false }
           ]
         }
+      - {
+          label: "Notebooks",
+          name: "notebooks",
+          widget: "list",
+          default: [],
+          fields: [
+            { label: "Title", name: "title", widget: "string", required: true },
+            { label: "Link", name: "link", widget: "string", required: true }
+          ]
+        }
 
   - name: "categories"
     label: "Category"
@@ -125,8 +135,18 @@ collections:
           widget: "list",
           default: [],
           fields: [
-            { label: 'Link', name: 'link', widget: 'string', required: true },
+            { label: "Link", name: "link", widget: "string", required: true },
             { label: "Source", name: "source", widget: "relation", collection: "sources", searchFields: ["title"], valueField: "title", displayFields: ["title"], required: false }
+          ]
+        }
+      - {
+          label: "Notebooks",
+          name: "notebooks",
+          widget: "list",
+          default: [],
+          fields: [
+            { label: "Title", name: "title", widget: "string", required: true },
+            { label: "Link", name: "link", widget: "string", required: true }
           ]
         }
 
