@@ -20,6 +20,9 @@ tags:
 sources:
   - link: https://www.dhs.gov/immigration-statistics
     source: U.S. Department of Homeland Security
+notebooks:
+  - title: "American Lawful Immigration 2018 : New LPRs by Country of Birth"
+    link: https://notebooks.data-show.com/american-lawful-immigration-2018-new-lprs-by-country-of-birth/#american-lawful-immigration-2018-new-lprs-by-country-of-birth
 ---
 Legal permanent residents (LPRs) are non-citizens who are lawfully authorized to live permanently within the United States, also known as green card recipients. Across the world, more than one million people obtain this status each year. 
 
