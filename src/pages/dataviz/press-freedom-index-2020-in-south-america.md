@@ -3,15 +3,10 @@ templateKey: dataviz-post
 title: Press Freedom Index 2020 in South America
 date: 2020-09-24T08:40:00.716Z
 author: mbougouin
-description: >-
-  The Press Freedom Index, yearly released by Reporters Without Borders, ranks
-  countries according to the degree of freedom that journalists, media, and
-  netizens have in each country. The score is computed on a scale from 0 (good
-  situation) to 100 (very serious situation).
-
-
-
-  In South America, a general deterioration in the situation of press freedom is observed. Journalists in Latin America operate in a complex and hostile environment. Besides the increased pressure, violence and intimidation suffered by many journalists covering sensitive subjects, vast discrediting campaigns have been launched against the profession in most of the region’s countries.
+description: The Press Freedom Index, yearly released by Reporters Without
+  Borders, ranks countries according to the degree of freedom that journalists,
+  media, and netizens have in each country. The score is computed on a scale
+  from 0 (good situation) to 100 (very serious situation).
 language:
   - en
 media: /img/world_press_freedom_index_2020_south_america_map.png
