@@ -47,7 +47,7 @@ const Category = ({
 }) => (
     <Layout>
       <GatsbySeo
-        title={category.frontmatter.title}
+        title={`${category.frontmatter.title} dataviz and data articles`}
         description={category.frontmatter.description}
         canonical={`${siteUrl}${category.fields.slug}`}
       />
@@ -128,7 +128,7 @@ export const pageQuery = graphql`
             description
             featuredimage {
               childImageSharp {
-                fluid(maxWidth: 450) {
+                fluid(maxHeight: 450) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }

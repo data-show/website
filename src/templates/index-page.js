@@ -20,6 +20,10 @@ const IndexPage = ({
         description={description}
       />
 
+      <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0 mb-8">
+        <h1 className="text-3xl leading-9 text-gray-800 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 mb-2">Data Show</h1>
+      </section>
+
       {posts.length > 0 && (
         <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0 mb-8">
           <h2 className="text-lg text-gray-900 mb-2">Latest</h2>
@@ -117,7 +121,7 @@ export const pageQuery = graphql`
     postsAllMarkdownRemark: allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       skip: 0
-      limit: 10
+      limit: 3
       filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
     ) {
       edges {
@@ -127,7 +131,7 @@ export const pageQuery = graphql`
             description
             featuredimage {
               childImageSharp {
-                fluid(maxWidth: 450) {
+                fluid(maxHeight: 450) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }
@@ -142,7 +146,7 @@ export const pageQuery = graphql`
     datavizAllMarkdownRemark: allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       skip: 0
-      limit: 10
+      limit: 3
       filter: { frontmatter: { templateKey: { eq: "dataviz-post" } } }
     ) {
       edges {
@@ -151,7 +155,7 @@ export const pageQuery = graphql`
             title
             media {
               childImageSharp {
-                fluid(maxWidth: 450) {
+                fluid(maxHeight: 450) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }

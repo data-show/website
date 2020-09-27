@@ -15,6 +15,9 @@ const TagRoute = ({
   },
   pageContext: { tag, slug: tagSlug }
 }) => {
+  const title = tag
+  const seoTitle = `Dataviz posts and articles about ${tag}`
+  const description = `Find some dataviz and articles with data about ${title}`
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? '' : 's'
     } tagged with “${tag}”`
@@ -22,14 +25,15 @@ const TagRoute = ({
   return (
     <Layout>
       <GatsbySeo
-        title={tag}
+        title={seoTitle}
+        description={description}
         canonical={`${siteUrl}${tagSlug}`}
       />
       <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0">
         <section>
           <div className="space-y-4 text-left py-2 mb-6 lg:mb-8">
             <h1 className="text-2xl leading-9 text-gray-800 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 mb-2">
-              {tag}
+              {title}
             </h1>
             <p className="text-lg text-gray-600 tracking-tight sm:text-lg md:text-xl md:leading-8 mb-4">
               {tagHeader}
@@ -127,7 +131,7 @@ export const tagPageQuery = graphql`
             description
             featuredimage {
               childImageSharp {
-                fluid(maxWidth: 450) {
+                fluid(maxHeight: 450) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }
@@ -151,7 +155,7 @@ export const tagPageQuery = graphql`
             title
             media {
               childImageSharp {
-                fluid(maxWidth: 450) {
+                fluid(maxHeight: 450) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }

@@ -16,6 +16,7 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
   const url = `${siteUrl}${post.fields.slug}`
   const tags = post.frontmatter.tags
   const title = post.frontmatter.title
+  const seoTitle = `${title} DataViz`
   const description = post.frontmatter.description
   const publishedDate = post.frontmatter.date
   const hashtags = tags.map(tag => `${tag.split(' ').join('')}`)
@@ -24,11 +25,11 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
   return (
     <Layout>
       <GatsbySeo
-        title={post.frontmatter.title}
+        title={seoTitle}
         description={post.frontmatter.description}
         canonical={url}
         openGraph={{
-          title: post.frontmatter.title,
+          title: seoTitle,
           description: post.frontmatter.description,
           url,
           type: 'article',
@@ -44,7 +45,7 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
       />
       <ArticleJsonLd
         url={`${siteUrl}${post.fields.slug}`}
-        headline={post.frontmatter.title}
+        headline={seoTitle}
         images={[post.frontmatter.media.childImageSharp.fluid.src]}
         datePublished={post.frontmatter.date}
         dateModified={post.frontmatter.date}
@@ -146,6 +147,7 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
         <Img
           fluid={post.frontmatter.media.childImageSharp.fluid}
           alt={post.frontmatter.title}
+          title={title}
           className="w-full"
         />
 
@@ -261,7 +263,7 @@ export const pageQuery = graphql`
     }
     logo: file(relativePath: { eq: "logo.png" }) {
       childImageSharp {
-        fluid(maxWidth: 100, maxHeight: 100) {
+        fluid(maxWidth: 200, maxHeight: 200) {
           ...GatsbyImageSharpFluid_withWebp_noBase64
         }
       }

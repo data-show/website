@@ -26,7 +26,7 @@ const DataVizIndexPage = ({ data: { allMarkdownRemark, site: { siteMetadata: { s
         <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {datavisualizations.map(({ node: { frontmatter: { title, media }, fields: { slug } } }) => (
             <DataVizPostCard
-              name={title}
+              title={title}
               slug={slug}
               image={media}
             />
@@ -53,7 +53,7 @@ export const pageQuery = graphql`
             title
             media {
               childImageSharp {
-                fluid(maxWidth: 450) {
+                fluid(maxHeight: 450) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }

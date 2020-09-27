@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 
 const BlogPostCard = ({ title, description, image, slug }) => (
-  <div className="max-w-sm rounded overflow-hidden">
+  <div className="max-w-sm rounded">
     {image && (
       <Link to={slug}>
         <Img
@@ -16,10 +16,10 @@ const BlogPostCard = ({ title, description, image, slug }) => (
       </Link>
     )}
     <Link to={slug}>
-      <div className="py-2">
+      <div className="py-3">
         <h3 className="font-bold text-xl mb-2">{title}</h3>
         <p className="text-gray-700 text-lg">
-          {description.substr(0, description.lastIndexOf(' ', 80)) + '...'}
+          {description}
         </p>
       </div>
     </Link>

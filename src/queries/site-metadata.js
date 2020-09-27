@@ -6,7 +6,7 @@ const useSiteMetadata = () => {
       query MetadataQuery {
         logo: file(relativePath: { eq: "logo.png" }) {
           childImageSharp {
-            fluid(maxWidth: 100, maxHeight: 100) {
+            fluid(maxWidth: 200, maxHeight: 200) {
               ...GatsbyImageSharpFluid_withWebp_noBase64
             }
           }

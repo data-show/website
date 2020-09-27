@@ -18,7 +18,7 @@ const useAuthors = () => {
               description
               image {
                 childImageSharp {
-                  fluid(maxWidth: 450) {
+                  fluid(maxHeight: 450) {
                     ...GatsbyImageSharpFluid_withWebp
                   }
                 }
