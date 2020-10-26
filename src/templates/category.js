@@ -1,7 +1,8 @@
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
-import React from 'react'
+import { kebabCase, uniq } from 'lodash'
 import PropTypes from 'prop-types'
+import React from 'react'
 
 import Content, { HTMLContent } from '../components/Content'
 import BlogPostCard from '../components/BlogPostCard/BlogPostCard'
@@ -41,10 +42,14 @@ CategoryTemplate.propTypes = {
 const Category = ({
   data: {
     markdownRemark: category,
+    tagsMarkdownRemark: { edges: tagsEdges },
     allMarkdownRemark: { edges: postEdges },
     site: { siteMetadata: { siteUrl } }
   },
-}) => (
+}) => {
+  const tags = uniq(tagsEdges.reduce((acc, { node: { frontmatter: { tags } } }) => acc.concat(tags), []))
+
+  return (
     <Layout>
       <GatsbySeo
         title={`${category.frontmatter.title} dataviz and data articles`}
@@ -84,8 +89,29 @@ const Category = ({
           )}
         </div>
       </section>
+
+      <section className="max-w-3xl mx-auto my-4 px-2 sm:px-4 xl:max-w-5xl xl:px-0">
+        <h2 className="text-lg text-gray-900 mb-2">Discover more tags</h2>
+
+        <hr className="my-1" />
+
+        {tags && tags.length ? (
+          <div className="py-2 my-1 md:my-2">
+            {tags.map(tag => (
+              <Link
+                key={tag + `tag`}
+                to={`/tags/${kebabCase(tag)}/`}
+                className="inline-block bg-gray-200 px-4 py-2 text-sm text-gray-700 mr-2 mb-2"
+              >
+                {tag}
+              </Link>
+            ))}
+          </div>
+        ) : null}
+      </section>
     </Layout>
   )
+}
 
 Category.propTypes = {
   data: PropTypes.shape({
@@ -136,6 +162,22 @@ export const pageQuery = graphql`
           }
           fields {
             slug
+          }
+        }
+      }
+    }
+    tagsMarkdownRemark: allMarkdownRemark(
+      filter: {
+        frontmatter: {
+          templateKey: { eq: "blog-post" }
+          category: { eq: $title }
+        }
+      }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            tags
           }
         }
       }
