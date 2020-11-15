@@ -8,7 +8,7 @@ import { GatsbySeo, ArticleJsonLd } from 'gatsby-plugin-next-seo'
 import { kebabCase } from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
-// import Helmet from 'react-helmet'
+import Helmet from 'react-helmet'
 import { FacebookShareButton, LinkedinShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share'
 
 import Layout from '../components/Layout'
@@ -51,9 +51,9 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
           ],
         }}
       />
-      {/* <Helmet>
+      <Helmet>
         <link rel="amphtml" href={`${siteUrl}/amp${post.fields.slug}`} />
-      </Helmet> */}
+      </Helmet>
       <ArticleJsonLd
         url={url}
         headline={post.frontmatter.title}
