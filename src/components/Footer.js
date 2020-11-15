@@ -36,7 +36,7 @@ const Footer = () => {
               className="block flex items-center hover:text-gray-700 mr-5"
               href={`https://twitter.com/${twitter}`}
               target="_blank"
-              rel="noreferrer"
+              rel="noreferrer nofollow"
             >
               <FontAwesomeIcon icon={faTwitter} />
             </OutboundLink>
@@ -47,7 +47,7 @@ const Footer = () => {
               className="block flex items-center hover:text-gray-700 mr-5"
               href={`https://www.instagram.com/${instagram}`}
               target="_blank"
-              rel="noreferrer"
+              rel="noreferrer nofollow"
             >
               <FontAwesomeIcon icon={faInstagram} />
             </OutboundLink>
@@ -58,7 +58,7 @@ const Footer = () => {
               className="block flex items-center hover:text-gray-700 mr-5"
               href={`https://www.youtube.com/channel/${youtube}`}
               target="_blank"
-              rel="noreferrer"
+              rel="noreferrer nofollow"
             >
               <FontAwesomeIcon icon={faYoutube} />
             </OutboundLink>
@@ -69,7 +69,7 @@ const Footer = () => {
               className="block flex items-center hover:text-gray-700 mr-5"
               href={`https://github.com/${github}`}
               target="_blank"
-              rel="noreferrer"
+              rel="noreferrer nofollow"
             >
               <FontAwesomeIcon icon={faGithub} />
             </OutboundLink>
@@ -80,7 +80,7 @@ const Footer = () => {
               className="block flex items-center hover:text-gray-700 mr-5"
               href={`https://www.linkedin.com/company/${linkedin}`}
               target="_blank"
-              rel="noreferrer"
+              rel="noreferrer nofollow"
             >
               <FontAwesomeIcon icon={faLinkedin} />
             </OutboundLink>
@@ -90,7 +90,7 @@ const Footer = () => {
             href="/rss.xml"
             className="block flex items-center hover:text-gray-700 mr-5"
             type="application/rss+xml"
-            rel="alternate"
+            rel="alternate nofollow"
           >
             <FontAwesomeIcon icon={faRss} />
           </a>

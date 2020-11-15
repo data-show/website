@@ -171,7 +171,7 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
               <hr className="my-4" />
 
               {sources.map(source => (
-                <OutboundLink href={source.link} target="_blank" rel="noreferrer">
+                <OutboundLink href={source.link} target="_blank" rel="noopener nofollow">
                   {source.source}
                 </OutboundLink>
               ))}
@@ -185,7 +185,7 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
               <hr className="my-4" />
 
               {notebooks.map(notebook => (
-                <OutboundLink href={notebook.link} target="_blank" rel="noreferrer">
+                <OutboundLink href={notebook.link} target="_blank">
                   {notebook.title}
                 </OutboundLink>
               ))}

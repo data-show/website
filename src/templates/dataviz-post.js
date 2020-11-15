@@ -173,7 +173,7 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
               <hr className="my-4" />
 
               {sources.map(source => (
-                <OutboundLink href={source.link} target="_blank" rel="noreferrer">
+                <OutboundLink href={source.link} target="_blank" rel="noopener nofollow">
                   {source.source}
                 </OutboundLink>
               ))}

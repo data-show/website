@@ -50,7 +50,7 @@ const Author = ({ data: {
                         className="block flex items-center hover:text-gray-700 mr-5"
                         href={author.frontmatter.website}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener nofollow"
                       >
                         {author.frontmatter.website}
                       </OutboundLink>
@@ -60,7 +60,7 @@ const Author = ({ data: {
                         className="block flex items-center hover:text-gray-700 mr-5"
                         href={`https://github.com/${author.frontmatter.github}`}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener nofollow"
                       >
                         <FontAwesomeIcon icon={faGithub} />
                       </OutboundLink>
@@ -70,7 +70,7 @@ const Author = ({ data: {
                         className="block flex items-center hover:text-gray-700 mr-5"
                         href={author.frontmatter.linkedin}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener nofollow"
                       >
                         <FontAwesomeIcon icon={faLinkedin} />
                       </OutboundLink>
