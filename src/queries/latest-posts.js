@@ -19,7 +19,7 @@ const useLatestPosts = () => {
                 description
                 featuredimage {
                   childImageSharp {
-                    fluid(maxWidth: 450) {
+                    fluid(maxWidth: 350) {
                       ...GatsbyImageSharpFluid_withWebp
                     }
                   }

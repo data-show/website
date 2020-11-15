@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
+import Img from 'gatsby-image'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
-import BlogPostCard from '../components/BlogPostCard'
 import DataVizPostCard from '../components/DataVizPostCard'
 import Layout from '../components/Layout'
 
@@ -20,45 +20,74 @@ const IndexPage = ({
         description={description}
       />
 
-      <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0 mb-8">
-        <h1 className="text-3xl leading-9 text-gray-800 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 mb-2">Data Show</h1>
-      </section>
-
       {posts.length > 0 && (
-        <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0 mb-8">
-          <h2 className="text-lg text-gray-900 mb-2">Latest</h2>
+        <div className="flex flex-wrap md:flex-no-wrap space-x-0 md:space-x-6 mb-16">
+          <div className="mb-4 lg:mb-0  p-4 lg:p-0 w-full md:w-4/7 relative rounded block">
+            <Link to={posts[0].node.fields.slug}>
+              <Img
+                fluid={posts[0].node.frontmatter.featuredimage.childImageSharp.fluid}
+                alt={posts[0].node.frontmatter.title}
+                title={posts[0].node.frontmatter.title}
+                className="rounded-md object-cover w-full h-64"
+              />
+            </Link>
+            <span className="text-gray-700 text-sm hidden md:block mt-4">{posts[0].node.frontmatter.category}</span>
+            <Link to={posts[0].node.fields.slug}>
+              <h2 className="text-gray-800 text-4xl font-bold mt-2 mb-2 leading-tight">
+                {posts[0].node.frontmatter.title}
+              </h2>
+            </Link>
+            <p className="text-gray-600 mb-4">
+              {posts[0].node.frontmatter.description}
+            </p>
+            <Link to={posts[0].node.fields.slug} className="inline-block px-6 py-3 mt-2 rounded-md bg-gray-700 text-gray-100">
+              Read more
+            </Link>
+          </div>
 
-          <hr className="my-4" />
-
-          <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map(
+          <div className="w-full md:w-4/7">
+            {posts.slice(1, 5).map(
               ({
                 node: {
                   fields: { slug },
-                  frontmatter: { title, description, featuredimage },
+                  frontmatter: { category, title, description, featuredimage },
                 },
               }) => (
-                  <BlogPostCard
-                    className="mx-4"
-                    key={slug}
-                    slug={slug}
-                    title={title}
-                    description={description}
-                    image={featuredimage}
-                  />
-                )
-            )}
+                  <div key={slug} className="rounded w-full flex flex-col md:flex-row mb-10">
+                    <Link to={slug}>
+                      <Img
+                        fluid={featuredimage.childImageSharp.fluid}
+                        alt={title}
+                        title={title}
+                        className="block lg:block rounded-md w-64 h-64 md:w-56 md:h-32 m-4 md:m-0"
+                      />
+                    </Link>
+                    <div className="bg-white rounded px-4">
+                      <span className="text-gray-700 text-sm hidden md:block">{category}</span>
+                      <Link to={slug}>
+                        <h3 className="md:mt-0 text-gray-800 font-semibold text-xl mb-2">
+                          {title}
+                        </h3>
+                      </Link>
+                      <p className="block md:hidden p-2 pl-0 pt-1 text-sm text-gray-600">
+                        {description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
           </div>
-        </section>
+        </div>
       )}
 
       {dataviz.length > 0 && (
-        <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0 mb-8">
-          <h2 className="text-lg text-gray-900 mb-2">Latest DataViz</h2>
-
-          <hr className="my-4" />
-
-          <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <section>
+          <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
+            <h2 className="font-bold text-3xl">Latest DataViz</h2>
+            <Link to={`/dataviz`} className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded cursor-pointer">
+              View all
+            </Link>
+          </div>
+          <div className="block space-x-0 lg:flex lg:space-x-6">
             {dataviz.map(
               ({
                 node: {
@@ -67,7 +96,7 @@ const IndexPage = ({
                 },
               }) => (
                   <DataVizPostCard
-                    className="mx-4"
+                    className="lg:w-1/2 lg:w-1/3 p-4 lg:p-0"
                     key={slug}
                     slug={slug}
                     title={title}
@@ -121,7 +150,7 @@ export const pageQuery = graphql`
     postsAllMarkdownRemark: allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       skip: 0
-      limit: 3
+      limit: 5
       filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
     ) {
       edges {
@@ -131,11 +160,12 @@ export const pageQuery = graphql`
             description
             featuredimage {
               childImageSharp {
-                fluid(maxHeight: 450) {
+                fluid(maxHeight: 550) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }
+            category
           }
           fields {
             slug
@@ -155,7 +185,7 @@ export const pageQuery = graphql`
             title
             media {
               childImageSharp {
-                fluid(maxHeight: 450) {
+                fluid(maxHeight: 350) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }

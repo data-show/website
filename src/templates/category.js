@@ -65,10 +65,9 @@ const Category = ({
           title={category.frontmatter.title}
         />
 
-        <h2 className="text-lg text-gray-900 mb-2">Latest</h2>
-
-        <hr className="my-4" />
-
+        <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
+          <h2 className="font-bold text-3xl">Latest</h2>
+        </div>
         <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {postEdges.map(
             ({
@@ -88,26 +87,25 @@ const Category = ({
               )
           )}
         </div>
-      </section>
 
-      <section className="max-w-3xl mx-auto my-4 px-2 sm:px-4 xl:max-w-5xl xl:px-0">
-        <h2 className="text-lg text-gray-900 mb-2">Discover more tags</h2>
-
-        <hr className="my-1" />
-
-        {tags && tags.length ? (
-          <div className="py-2 my-1 md:my-2">
-            {tags.map(tag => (
-              <Link
-                key={tag + `tag`}
-                to={`/tags/${kebabCase(tag)}/`}
-                className="inline-block bg-gray-200 px-4 py-2 text-sm text-gray-700 mr-2 mb-2"
-              >
-                {tag}
-              </Link>
-            ))}
-          </div>
-        ) : null}
+        <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
+          <h2 className="font-bold text-3xl">Discover more tags</h2>
+        </div>
+        <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {tags && tags.length ? (
+            <div className="py-2 my-1 md:my-2">
+              {tags.map(tag => (
+                <Link
+                  key={tag + `tag`}
+                  to={`/tags/${kebabCase(tag)}/`}
+                  className="inline-block bg-gray-200 px-4 py-2 text-sm text-gray-700 mr-2 mb-2"
+                >
+                  {tag}
+                </Link>
+              ))}
+            </div>
+          ) : null}
+        </div>
       </section>
     </Layout>
   )
@@ -154,7 +152,7 @@ export const pageQuery = graphql`
             description
             featuredimage {
               childImageSharp {
-                fluid(maxHeight: 450) {
+                fluid(maxHeight: 350) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }

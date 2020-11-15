@@ -10,42 +10,34 @@ export default function Navbar() {
   const categories = useCategories()
 
   return (
-    <nav className="flex items-center justify-between font-medium text-gray-600 p-3 md:p-6 mb-1 md:mb-4 lg:mb-8">
-      <div className="flex items-center flex-shrink-0 md:mr-6">
-        <Link to={`/`} className="block inline-block mr-4">
-          <Img
-            fluid={logo.childImageSharp.fluid}
-            alt={title}
-            className="inline-block"
-            loading="eager"
-            fadeIn={false}
-            style={{ height: '50px', width: '50px', backgroundColor: 'none' }}
-          />
-        </Link>
-        <Link to={`/`} className="block md:hidden inline-block visible md:invisible text-2xl py-2">
-          Data Show
-        </Link>
-      </div>
-      <div className="hidden w-full md:block flex-grow flex items-center w-auto text-lg">
-        <div className="flex-grow">
-          {categories.map(({ title, slug }) => (
-            <Link
-              key={slug}
-              to={slug}
-              className="block mt-4 inline-block leading-none mt-0 hover:text-gray-700 mr-4"
-            >
+    <header className="flex items-center justify-between py-2">
+      <Link to={`/`} className="px-2 lg:px-0 font-bold capitalize">
+        <Img
+          fluid={logo.childImageSharp.fluid}
+          alt={title}
+          className="inline-block"
+          loading="eager"
+          fadeIn={false}
+          style={{ height: '50px', width: '50px', backgroundColor: 'none' }}
+        />
+      </Link>
+      <button className="block md:hidden px-2 text-3xl">
+        <i className="bx bx-menu"></i>
+      </button>
+      <ul className="hidden md:inline-flex items-center">
+        {categories.map(({ title, slug }) => (
+          <li key={slug} className="px-2 md:px-4">
+            <Link to={slug} className="text-gray-500 font-semibold hover:text-gray-700">
               {title}
             </Link>
-          ))}
-          <Link
-            key='dataviz'
-            to={`/dataviz`}
-            className="block mt-4 inline-block leading-none mt-0 hover:text-gray-700 mr-4"
-          >
+          </li>
+        ))}
+        <li key='dataviz' className="px-2 md:px-4">
+          <Link to={`/dataviz`} className="text-gray-500 font-semibold hover:text-gray-700">
             DataViz
-          </Link>
-        </div>
-      </div>
-    </nav>
+           </Link>
+        </li>
+      </ul>
+    </header>
   )
 }

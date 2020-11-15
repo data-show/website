@@ -61,17 +61,15 @@ const TemplateWrapper = ({ children }) => {
         <meta name="msapplication-TileColor" content={color} />
       </Helmet>
 
-      <body>
-        <main className="antialiased">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
-            <Navbar />
-          </div>
+      <div className="max-w-screen-lg mx-auto antialiased">
+        <Navbar />
+
+        <main className="mt-12">
           {children}
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
-            <Footer />
-          </div>
         </main>
-      </body>
+
+        <Footer />
+      </div>
     </>
   )
 }

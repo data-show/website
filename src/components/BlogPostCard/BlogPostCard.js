@@ -4,25 +4,26 @@ import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 
 const BlogPostCard = ({ title, description, image, slug }) => (
-  <div className="max-w-sm rounded">
-    {image && (
-      <Link to={slug}>
-        <Img
-          fluid={image.childImageSharp.fluid}
-          alt={title}
-          title={title}
-          className="w-full"
-        />
-      </Link>
-    )}
+  <div className="rounded w-full">
     <Link to={slug}>
-      <div className="py-3">
-        <h3 className="font-bold text-xl mb-2">{title}</h3>
-        <p className="text-gray-700 text-lg">
-          {description}
-        </p>
-      </div>
+      <Img
+        fluid={image.childImageSharp.fluid}
+        alt={title}
+        title={title}
+        className="h-40 rounded"
+      />
     </Link>
+
+    <div className="p-4 pl-0">
+      <Link to={slug}>
+        <h2 className="font-bold text-2xl text-gray-800">{title}</h2>
+      </Link>
+      <p className="text-gray-700 mt-2">
+        {description}
+      </p>
+
+      <Link to={slug} className="inline-block py-2 rounded text-green-900 mt-2 ml-auto">Read more</Link>
+    </div>
   </div>
 )
 

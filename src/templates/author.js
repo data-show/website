@@ -86,9 +86,9 @@ const Author = ({ data: {
               />
             </div>
 
-            <h2 className="text-lg text-gray-900 mb-2">Latest</h2>
-
-            <hr className="my-4" />
+            <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
+              <h2 className="font-bold text-3xl">Latest</h2>
+            </div>
 
             <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {postEdges.map(
@@ -164,7 +164,7 @@ export const pageQuery = graphql`
             description
             featuredimage {
               childImageSharp {
-                fluid(maxHeight: 450) {
+                fluid(maxHeight: 350) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }

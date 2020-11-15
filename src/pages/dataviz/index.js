@@ -53,7 +53,7 @@ export const pageQuery = graphql`
             title
             media {
               childImageSharp {
-                fluid(maxHeight: 450) {
+                fluid(maxHeight: 350) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }
