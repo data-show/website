@@ -23,4 +23,7 @@ tags:
 sources:
   - link: https://rsf.org/en/ranking
     source: Reporters Without Borders
+notebooks:
+  - title: World Press Freedom Index 2020
+    link: https://notebooks.data-show.com/world-press-freedom-index-2020/#world-press-freedom-index-2020
 ---
