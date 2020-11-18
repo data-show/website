@@ -21,6 +21,9 @@ tags:
 sources:
   - source: U.S. Department of Homeland Security
     link: https://www.dhs.gov/immigration-statistics
+notebooks:
+  - title: "American Lawful Immigration 2018 : New LPRs by State of Residence"
+    link: https://notebooks.data-show.com/american-lawful-immigration-2018-new-lprs-by-state-of-residence/#american-lawful-immigration-2018-new-lprs-by-state-of-residence
 ---
 Lawful permanent residents (LPRs) are non-citizens who are lawfully authorized to live permanently within the United States, also known as green card recipients.
 
@@ -28,7 +31,7 @@ Nearly 1.1 million persons have been granted Lawful Permanent Resident (LPRs) st
 
 ## New U.S. Lawful Permanent Residents by State of Residence in 2018
 
-![U.S. New Lawful Permanent Residents by State of Residence in 2018 - Map](/img/us_new_lprs_2018_world_map.png "U.S. New Lawful Permanent Residents by State of Residence in 2018 - Map")
+![U.S. New Lawful Permanent Residents by State of Residence in 2018 - Map](/img/us_new_lprs_2018_map.png "U.S. New Lawful Permanent Residents by State of Residence in 2018 - Map")
 
 In 2018, 1.1 million persons were granted refugee Lawful Permanent Resident status in the United States. Very attractive, California was the state of residence of more than 200,000 (18.4 %) persons granted LPR status in 2018. The next leading states of residence for new LPRs in 2018 were New York (12.3 %), Florida (11.9 %), Texas (9.5 %), and New Jersey (5.0 %), each having between 50,000 and 140,000 new LPRs. West Virginia (0.06 %), Montana (0.05 %) and Wyoming (0.04 %) brought up the rear, each with fewer than 700 new LPRs.
 
