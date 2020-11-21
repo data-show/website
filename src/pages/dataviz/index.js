@@ -44,7 +44,7 @@ export const pageQuery = graphql`
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       skip: 0
-      limit: 10
+      limit: 20
       filter: { frontmatter: { templateKey: { eq: "dataviz-post" } } }
     ) {
       edges {
