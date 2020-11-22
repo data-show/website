@@ -15,7 +15,7 @@ const DataVizPostCard = ({ title, description, image, slug }) => (
     </Link>
     <div className="p-4 pl-0">
       <Link to={slug}>
-        <h2 className="font-bold text-2xl text-gray-800">{title}</h2>
+        <h2 className="font-bold text-xl text-gray-800">{title}</h2>
       </Link>
       {description && (
         <p className="text-gray-700 mt-2">{description}</p>

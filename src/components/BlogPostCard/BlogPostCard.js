@@ -16,13 +16,13 @@ const BlogPostCard = ({ title, description, image, slug }) => (
 
     <div className="p-4 pl-0">
       <Link to={slug}>
-        <h2 className="font-bold text-2xl text-gray-800">{title}</h2>
+        <h2 className="font-bold text-xl text-gray-800">{title}</h2>
       </Link>
       <p className="text-gray-700 mt-2">
         {description}
       </p>
 
-      <Link to={slug} className="inline-block py-2 rounded text-green-900 mt-2 ml-auto">Read more</Link>
+      <Link to={slug} className="inline-block py-2 rounded text-gray-900 mt-2 ml-auto">Read more</Link>
     </div>
   </div>
 )
