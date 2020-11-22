@@ -91,21 +91,19 @@ const Category = ({
         <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
           <h2 className="font-bold text-3xl">Discover more tags</h2>
         </div>
-        <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {tags && tags.length ? (
-            <div className="py-2 my-1 md:my-2">
-              {tags.map(tag => (
-                <Link
-                  key={tag + `tag`}
-                  to={`/tags/${kebabCase(tag)}/`}
-                  className="inline-block bg-gray-200 px-4 py-2 text-sm text-gray-700 mr-2 mb-2"
-                >
-                  {tag}
-                </Link>
-              ))}
-            </div>
-          ) : null}
-        </div>
+        {tags && tags.length ? (
+          <div className="py-2 my-1 md:my-2">
+            {tags.map(tag => (
+              <Link
+                key={tag + `tag`}
+                to={`/tags/${kebabCase(tag)}/`}
+                className="inline-block bg-gray-200 px-4 py-2 text-sm text-gray-700 mr-2 mb-2"
+              >
+                {tag}
+              </Link>
+            ))}
+          </div>
+        ) : null}
       </section>
     </Layout>
   )
