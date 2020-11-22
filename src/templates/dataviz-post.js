@@ -21,6 +21,7 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
   const publishedDate = post.frontmatter.date
   const hashtags = tags.map(tag => `${tag.split(' ').join('')}`)
   const sources = post.frontmatter.sources
+  const notebooks = post.frontmatter.notebooks
 
   return (
     <Layout>
@@ -179,6 +180,20 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
               ))}
             </div>
           ) : null}
+
+          {notebooks && notebooks.length ? (
+            <div className="my-4 md:my-8">
+              <h2 className="text-lg text-gray-900 mb-2">Notebooks</h2>
+
+              <hr className="my-4" />
+
+              {notebooks.map(notebook => (
+                <OutboundLink href={notebook.link} target="_blank">
+                  {notebook.title}
+                </OutboundLink>
+              ))}
+            </div>
+          ) : null}
         </div>
       </article>
     </Layout>
@@ -216,6 +231,10 @@ export const pageQuery = graphql`
         sources {
           link
           source
+        }
+        notebooks {
+          link
+          title
         }
       }
     }
