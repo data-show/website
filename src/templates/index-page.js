@@ -26,6 +26,8 @@ const IndexPage = ({
             <Link to={posts[0].node.fields.slug}>
               <Img
                 fluid={posts[0].node.frontmatter.featuredimage.childImageSharp.fluid}
+                fadeIn={false}
+                loading="eager"
                 alt={posts[0].node.frontmatter.title}
                 title={posts[0].node.frontmatter.title}
                 className="rounded-md object-cover w-full h-64"

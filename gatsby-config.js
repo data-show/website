@@ -31,6 +31,7 @@ module.exports = {
     social,
   },
   plugins: [
+    `gatsby-plugin-preact`,
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-postcss',
     {
@@ -73,9 +74,8 @@ module.exports = {
           {
             resolve: 'gatsby-remark-images',
             options: {
-              maxWidth: 1920,
               linkImagesToOriginal: true,
-              loading: 'auto',
+              loading: 'lazy',
               showCaptions: true,
               disableBgImage: true,
               withWebp: true
@@ -195,6 +195,7 @@ module.exports = {
       options: {
         trackingId,
         head: false,
+        defer: true,
         anonymize: true,
         respectDNT: true,
       },
@@ -221,7 +222,6 @@ module.exports = {
     //     }
     //   },
     // },
-    'gatsby-plugin-remove-serviceworker',
     {
       resolve: `gatsby-plugin-netlify`,
       options: {

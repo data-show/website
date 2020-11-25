@@ -257,7 +257,7 @@ export const pageQuery = graphql`
         twitter
         image {
           childImageSharp {
-            fluid(maxWidth: 100) {
+            fluid(maxWidth: 75) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }
@@ -273,7 +273,7 @@ export const pageQuery = graphql`
         name
         image {
           childImageSharp {
-            fluid(maxHeight: 100) {
+            fluid(maxHeight: 75) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }
@@ -282,7 +282,7 @@ export const pageQuery = graphql`
     }
     logo: file(relativePath: { eq: "logo.png" }) {
       childImageSharp {
-        fluid(maxWidth: 200, maxHeight: 200) {
+        fluid(maxWidth: 75, maxHeight: 75) {
           ...GatsbyImageSharpFluid_withWebp_noBase64
         }
       }
