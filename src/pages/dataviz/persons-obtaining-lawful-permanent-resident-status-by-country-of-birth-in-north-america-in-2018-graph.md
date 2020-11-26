@@ -18,6 +18,7 @@ tags:
   - politics
   - usa
   - green card
+  - north america
 sources:
   - source: U.S. Department of Homeland Security
     link: https://www.dhs.gov/immigration-statistics
