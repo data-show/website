@@ -5,10 +5,9 @@ title: "2020 World Press Freedom Index : A decisive decade for the future of
 date: 2020-08-11T22:15:59.195Z
 author: mbougouin
 description: According to RSF’s measures, world press freedom improved very
-  slightly in 2019. However, the flagrant attacks on the media and open
-  hostility towards journalists in many democracies result in more and more
-  frequent acts of violence, intimidation, but also censorship, that create
-  worldwide an unprecedented state of fear.
+  slightly in 2019. However, the Covid-19 pandemic highlights and amplifies the
+  multiple crises that threaten the right to free, independent, pluralistic and
+  reliable information.
 language:
   - en
 featuredimage: /img/pexels-kaboompics-com-6335.jpg
@@ -50,31 +49,31 @@ The final score is defined on a scale from 0 to 100. The higher the score of a c
 
 ![World Press Freedom Index - Europe Map](/img/world_press_freedom_index_2020_europe_map.png "Press Freedom Index 2020 in Europe")
 
-Europe remains the continent most in favor of press freedom, despite the repressive policies of certain countries of the European Union and the Balkans. Although several Member States are among those which respect press freedom the best, the EU is increasingly heterogeneous. Undermined by the successive economic crises, the fight against terrorism, but also by States sliding more and more towards a more authoritarian regime, Europe is showing itself less and less credible in this role of example that we could have given him in the past.
+Europe remains the continent most in favor of press freedom, despite the repressive policies of certain countries. Although several states are among those which respect press freedom the best, the EU is increasingly heterogeneous, undermined by the successive economic crises, the fight against terrorism, but also by states sliding more and more towards a more authoritarian regime.
 
 ### North America
 
 ![World Press Freedom Index - North America Map](/img/world_press_freedom_index_2020_north_america_map.png "Press Freedom Index 2020 in North America")
 
-Across North America, despite a slight improvement, worrying trends persist. Journalists and the media continue to face verbal and physical threats, denied access to information, as laws and lawsuits restricting their rights multiply. In the United States, press freedom continues to suffer under Donald Trump's presidency. Indeed, hostility towards journalists and the media grew and intensified, and the most virulent attacks turned out to be those carried out by the president himself. At the dawn of this new decade, the United States urgently needs to regain its credentials in terms of press freedom within and beyond its borders in order to re-position itself as a leading democracy.
+In North America, though  nations have historically respected the press, journalists in these countries are being challenged by the very institutions on which they report. Journalists and the media regularly face verbal and physical threats, denied access to information, as laws and lawsuits restricting their rights multiply.
 
 ### South America
 
 ![World Press Freedom Index - South America Map](/img/world_press_freedom_index_2020_south_america_map.png "Press Freedom Index 2020 in South America")
 
-In South America, the decade begins with a general deterioration in the situation of press freedom. The context in which journalists in Latin America operate is increasingly complex and hostile. In addition to the increased pressure, violence and intimidation suffered by many journalists covering sensitive issues, extensive discrediting campaigns have been launched against the profession in most countries in the region. Brazil, Colombia, Honduras, and Mexico remain among the world’s most dangerous places for journalists, who sometimes pay with their lives to investigate corruption or drug traffickers.
+In South America, the decade begins with a general deterioration in the situation of press freedom. The context in which journalists in Latin America operate is increasingly complex and hostile, and several countries are among the world’s most dangerous places for journalists.
 
 ### Africa
 
 ![World Press Freedom Index - Africa Map](/img/world_press_freedom_index_2020_africa_map.png "Press Freedom Index 2020 in Africa")
 
-Africa is recording significant setbacks, due in particular to an increase in long-term arbitrary detentions, but also to attacks, particularly online, and new repressive laws which, in the name of the fight against disinformation or cybercrime, can be used to unreasonably restrict freedom of information. The situation of those who try to produce information is difficult, even critical. The economic weakness of the media also exposes them to political or economic influences detrimental to their independence.
+Africa is recording significant setbacks, due in particular to an increase in long-term arbitrary detentions, but also to attacks, particularly online, and new repressive laws which, in the name of the fight against disinformation or cybercrime, can be used to unreasonably restrict freedom of information. The economic weakness of the media also exposes them to political or economic influences detrimental to their independence.
 
 ### Asia
 
 ![World Press Freedom Index - Asia Map](/img/world_press_freedom_index_2020_asia_map.png "Press Freedom Index 2020 in Asia")
 
-The Asia zone brings together the largest prisons in the world for journalists and bloggers, such as China or Vietnam, with countries among the most dangerous for the profession, such as Afghanistan, Pakistan, the Philippines and Bangladesh. The Asia-Pacific region also holds the record for the greatest number of "predators of press freedom", at the head of the worst dictatorships, and in particular North Korea and Laos, true black holes of information.
+The Asia zone, counts manifold countries among the most dangerous for the profession and brings together the largest prisons in the world for journalists and bloggers. The Asia-Pacific region also holds a great number of "predators of press freedom" states, true black holes of information.
 
 ## Conclusion
 
