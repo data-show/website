@@ -85,4 +85,4 @@ This 2020 World Press Freedom Index states that the coming decade is going to be
 * a trust crisis due to suspicion and even hatred of the media
 * a technological crisis due to a lack of democratic guarantees
 
-To these five types of crisis is now added a health crisis. Indeed, the coronavirus epidemic has allowed us to witness a real regression of press freedom in the world, between censorship and repression of the media, disinformation but also a total and unlimited control of certain States on the media. What will the press of tomorrow look like? The future of journalism is playing out today.
+To these five types of crisis is now added a health crisis. Indeed, the coronavirus pandemic highlights and amplifies these multiple crises which today threaten the right to free, independent, pluralistic and reliable information.
