@@ -82,7 +82,7 @@ Asia was the second region of birth of new LPRs in 2018 with 36.2% of green card
 
 ![Persons Obtaining Lawful Permanent Resident Status by Country of Birth in Africa in 2018 - Map](/img/us_new_lprs_2018_africa_map.png "Persons Obtaining Lawful Permanent Resident Status by Country of Birth in Africa in 2018 - Map")
 
-Africa represented 10.6% of Green Card recipients in 2018. Nigeria, ranked 19th, was the first African country in the ranking with 1.3% of new LPRs 19th, and Ethiopia, ranked 22nd  was granted 1.1% of the Green Cards.
+Africa represented 10.6% of Green Card recipients in 2018. Nigeria, ranked 19th, was the first African country in the ranking with 1.3% of new LPRs, and Ethiopia, ranked 22nd  was granted 1.1% of the Green Cards.
 
 ![Persons Obtaining Lawful Permanent Resident Status by Country of Birth in Africa in 2018 - Graph](/img/us_new_lprs_2018_africa_graph.png "Persons Obtaining Lawful Permanent Resident Status by Country of Birth in Africa in 2018 - Graph")
 
