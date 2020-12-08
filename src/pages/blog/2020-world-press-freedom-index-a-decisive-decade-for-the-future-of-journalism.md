@@ -51,6 +51,19 @@ The final score is defined on a scale from 0 to 100. The higher the score of a c
 
 Europe remains the continent most in favor of press freedom, despite the repressive policies of certain countries. Although several states are among those which respect press freedom the best, the EU is increasingly heterogeneous, undermined by the successive economic crises, the fight against terrorism, but also by states sliding more and more towards a more authoritarian regime.
 
+Top and bottom of the Press Freedom Index ranking in Europe :
+
+| Ranking | Country  |
+| ------- | -------  |
+| 1st     | Norway   |
+| 2nd     | Finland  |
+| 3rd     | Denmark  |
+| …       | …        |
+| 111th   | Bulgaria |
+| 149th   | Russia   |
+| 153rd   | Belarus  |
+
+
 ### North America
 
 ![World Press Freedom Index - North America Map](/img/world_press_freedom_index_2020_north_america_map.png "Press Freedom Index 2020 in North America")
