@@ -7,38 +7,39 @@ const webpack = require(`webpack`)
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
-  const createTemplatePages = edges => {
-    edges.forEach(edge => {
-      const context = {
-        id: edge.node.id,
-        title: edge.node.frontmatter.title || edge.node.frontmatter.github,
-      }
+  const edgesPerPage = 15
 
-      if (edge.node.frontmatter.category) {
-        context.category = edge.node.frontmatter.category
-      }
+  const createTemplatePage = (node, pagePath, pageContext = {}) => {
+    const context = {
+      id: node.id,
+      title: node.frontmatter.title || node.frontmatter.github,
+      ...pageContext
+    }
 
-      if (edge.node.frontmatter.author) {
-        context.author = edge.node.frontmatter.author
-      }
+    if (node.frontmatter.category) {
+      context.category = node.frontmatter.category
+    }
 
-      if (
-        edge.node.frontmatter.sources &&
-        edge.node.frontmatter.sources.length > 0
-      ) {
-        context.sources = edge.node.frontmatter.sources.map(
-          ({ source }) => source
-        )
-      }
+    if (node.frontmatter.author) {
+      context.author = node.frontmatter.author
+    }
 
-      createPage({
-        path: edge.node.fields.slug,
-        tags: edge.node.frontmatter.tags,
-        component: path.resolve(
-          `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
-        ),
-        context,
-      })
+    if (
+      node.frontmatter.sources &&
+      node.frontmatter.sources.length > 0
+    ) {
+      context.sources = node.frontmatter.sources.map(
+        ({ source }) => source
+      )
+    }
+
+    createPage({
+      path: pagePath,
+      tags: node.frontmatter.tags,
+      component: path.resolve(
+        `src/templates/${String(node.frontmatter.templateKey)}.js`
+      ),
+      context,
     })
   }
 
@@ -167,10 +168,20 @@ exports.createPages = ({ actions, graphql }) => {
     }
 
     const postsEdges = result.data.posts.edges
-    createTemplatePages(postsEdges)
+    postsEdges.forEach(({ node }, index) => {
+      const previous = index === postsEdges.length - 1 ? null : postsEdges[index + 1].node.id
+      const next = index === 0 ? null : postsEdges[index - 1].node.id
+
+      createTemplatePage(node, node.fields.slug, { previous, next })
+    })
 
     const datavizEdges = result.data.dataviz.edges
-    createTemplatePages(datavizEdges)
+    datavizEdges.forEach(({ node }, index) => {
+      const previous = index === datavizEdges.length - 1 ? null : datavizEdges[index + 1].node.id
+      const next = index === 0 ? null : datavizEdges[index - 1].node.id
+
+      createTemplatePage(node, node.fields.slug, { previous, next })
+    })
 
     let tags = []
     postsEdges.concat(datavizEdges).forEach(edge => {
@@ -193,16 +204,63 @@ exports.createPages = ({ actions, graphql }) => {
     })
 
     const categoriesEdges = result.data.categories.edges
-    createTemplatePages(categoriesEdges)
+    categoriesEdges.forEach(({ node }) => {
+      const numPages = Math.ceil(postsEdges.filter(e => e.node.frontmatter.category === node.frontmatter.title).length / edgesPerPage)
+
+      Array.from({ length: numPages }).forEach((_, index) => {
+        const context = {
+          limit: edgesPerPage,
+          skip: index * edgesPerPage,
+          numPages,
+          currentPage: index + 1
+        }
+
+        createTemplatePage(node, `${node.fields.slug}${index === 0 ? `` : `page/${index + 1}`}`, context)
+      })
+    })
 
     const authorsEdges = result.data.authors.edges
-    createTemplatePages(authorsEdges)
+    authorsEdges.forEach(({ node }) => {
+      const numPages = Math.ceil(postsEdges.filter(e => e.node.frontmatter.author === node.frontmatter.github).length / edgesPerPage)
+
+      Array.from({ length: numPages }).forEach((_, index) => {
+        const context = {
+          limit: edgesPerPage,
+          skip: index * edgesPerPage,
+          numPages,
+          currentPage: index + 1
+        }
+
+        createTemplatePage(node, `${node.fields.slug}${index === 0 ? `` : `page/${index + 1}`}`, context)
+      })
+    })
 
     const sourcesEdges = result.data.sources.edges
-    createTemplatePages(sourcesEdges)
+    sourcesEdges.forEach(({ node }) => {
+      const sourcePosts = postsEdges
+        .reduce((acc, e) => acc.concat(e.node.frontmatter.sources.map(s => ([e.node.id, s.source]))), [])
+        .filter(([, s]) => s === node.frontmatter.name)
+        .filter(([id], i, self) =>
+          self.findIndex(([selfId]) => selfId === id) === i
+        )
+      const numPages = Math.ceil(sourcePosts.length / edgesPerPage)
+
+      Array.from({ length: numPages }).forEach((_, index) => {
+        const context = {
+          limit: edgesPerPage,
+          skip: index * edgesPerPage,
+          numPages,
+          currentPage: index + 1
+        }
+
+        createTemplatePage(node, `${node.fields.slug}${index === 0 ? `` : `page/${index + 1}`}`, context)
+      })
+    })
 
     const othersEdges = result.data.others.edges
-    createTemplatePages(othersEdges)
+    othersEdges.forEach(({ node }) => {
+      createTemplatePage(node, node.fields.slug)
+    })
   })
 }
 
