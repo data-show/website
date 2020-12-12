@@ -78,7 +78,7 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
           {
             position: 2,
             name: category.frontmatter.title,
-            item: `${siteUrl}/${category.fields.slug}`
+            item: `${siteUrl}${category.fields.slug}`
           },
 
           {
