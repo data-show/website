@@ -30,7 +30,7 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
       <GatsbySeo
         title={post.frontmatter.title}
         description={post.frontmatter.description}
-        canonical={url}
+        canonical={post.frontmatter.canonical || url}
         openGraph={{
           title: post.frontmatter.title,
           description: post.frontmatter.description,
@@ -247,6 +247,7 @@ export const pageQuery = graphql`
             }
           }
         }
+        canonical
         title
         description
         tags

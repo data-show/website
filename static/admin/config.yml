@@ -119,6 +119,7 @@ collections:
           widget: "hidden",
           default: "blog-post",
         }
+      - { label: "Canonical", name: "canonical", widget: "string", required: false }
       - { label: "Title", name: "title", widget: "string", required: true }
       - { label: "Publish Date", name: "date", widget: "datetime", required: true }
       - { label: "Author", name: "author", widget: "relation", collection: "authors", searchFields: ["name", "github"], valueField: "github", displayFields: ["name", "github"], required: true }
