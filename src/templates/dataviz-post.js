@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 import { OutboundLink } from 'gatsby-plugin-google-analytics'
-import { GatsbySeo, ArticleJsonLd } from 'gatsby-plugin-next-seo'
+import { GatsbySeo, ArticleJsonLd, BreadcrumbJsonLd, JsonLd } from 'gatsby-plugin-next-seo'
 import { kebabCase } from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -53,8 +53,33 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
         authorName={author.frontmatter.name}
         publisherLogo={logo.childImageSharp.fluid.src}
         description={post.frontmatter.description}
-        overrides={{
-          '@type': 'BlogPosting',
+      />
+      <BreadcrumbJsonLd
+        itemListElements={[
+          {
+            position: 1,
+            name: 'Home',
+            item: `${siteUrl}/`
+          },
+
+          {
+            position: 2,
+            name: 'Dataviz',
+            item: `${siteUrl}/dataviz/`
+          },
+
+          {
+            position: 3,
+            name: title,
+            item: url
+          }
+        ]}
+      />
+      <JsonLd
+        json={{
+          '@context': 'https://schema.org/',
+          '@type': 'ImageObject',
+          contentUrl: post.frontmatter.media.childImageSharp.fluid.src
         }}
       />
 

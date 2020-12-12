@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 import { OutboundLink } from 'gatsby-plugin-google-analytics'
-import { GatsbySeo, ArticleJsonLd } from 'gatsby-plugin-next-seo'
+import { GatsbySeo, ArticleJsonLd, BreadcrumbJsonLd } from 'gatsby-plugin-next-seo'
 import { kebabCase } from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -66,6 +66,27 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
         overrides={{
           '@type': 'BlogPosting',
         }}
+      />
+      <BreadcrumbJsonLd
+        itemListElements={[
+          {
+            position: 1,
+            name: 'Home',
+            item: `${siteUrl}/`
+          },
+
+          {
+            position: 2,
+            name: category.frontmatter.title,
+            item: `${siteUrl}/${category.fields.slug}`
+          },
+
+          {
+            position: 3,
+            name: title,
+            item: url
+          }
+        ]}
       />
 
       <article className="max-w-2xl mx-auto px-4 sm:px-6 xl:max-w-4xl xl:px-0">
