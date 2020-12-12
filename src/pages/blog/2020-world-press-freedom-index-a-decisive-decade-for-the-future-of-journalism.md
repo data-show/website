@@ -51,15 +51,15 @@ The final score is defined on a scale from 0 to 100. The higher the score of a c
 
 Top and bottom of the Press Freedom Index ranking in Europe :
 
-| Ranking | Country  | RSF Score 2020 |
-| ------- | -------- | -------------- |
-| 1       | Norway   | 7.84           |
-| 2       | Finland  | 7.93           |
-| 3       | Denmark  | 8.13           |
-| ...     | ...      | ...            |
-| 111     | Bulgaria | 35.06          |
-| 149     | Russia   | 48.92          |
-| 153     | Belarus  | 49.75          |
+| Ranking | Country  | RSF Score 2020   |
+| ------- | -------- | :--------------: |
+| 1       | Norway   | 7.84             |
+| 2       | Finland  | 7.93             |
+| 3       | Denmark  | 8.13             |
+| ...     | ...      | ...              |
+| 111     | Bulgaria | 35.06            |
+| 149     | Russia   | 48.92            |
+| 153     | Belarus  | 49.75            |
 
 
 
@@ -71,15 +71,15 @@ Europe remains the continent the most in favor of press freedom, despite the rep
 
 Top and bottom of the Press Freedom Index ranking in North and Central America :
 
-| Ranking | Country    | RSF Score 2020 |
-| ------- | ---------- | -------------- |
-| 6       | Jamaica    | 10.51          |
-| 7       | Costa Rica | 10.53          |
-| 16      | Canada     | 15.29          |
-| ...     | ...        | ...            |
-| 143     | Mexico     | 45.45          |
-| 148     | Honduras   | 48.20          |
-| 171     | Cuba       | 63.81          |
+| Ranking | Country    | RSF Score 2020   |
+| ------- | ---------- | :--------------: |
+| 6       | Jamaica    | 10.51            |
+| 7       | Costa Rica | 10.53            |
+| 16      | Canada     | 15.29            |
+| ...     | ...        | ...              |
+| 143     | Mexico     | 45.45            |
+| 148     | Honduras   | 48.20            |
+| 171     | Cuba       | 63.81            |
 
 
 
@@ -91,15 +91,15 @@ In North America, though  nations have historically respected the press, journal
 
 Top and bottom of the Press Freedom Index ranking in South America :
 
-| Ranking | Country   | RSF Score 2020 |
-| ------- | --------- | -------------- |
-| 19      | Uruguay   | 15.79          |
-| 20      | Surinam   | 17.50          |
-| 49      | Guyana    | 26.63          |
-| ...     | ...       | ...            |
-| 114     | Bolivia   | 35.37          |
-| 130     | Colombia  | 42.66          |
-| 147     | Venezuela | 45.66          |
+| Ranking | Country   | RSF Score 2020   |
+| ------- | --------- | :--------------: |
+| 19      | Uruguay   | 15.79            |
+| 20      | Surinam   | 17.50            |
+| 49      | Guyana    | 26.63            |
+| ...     | ...       | ...              |
+| 114     | Bolivia   | 35.37            |
+| 130     | Colombia  | 42.66            |
+| 147     | Venezuela | 45.66            |
 
 
 
@@ -111,15 +111,15 @@ In South America, the decade begins with a general deterioration in the situatio
 
 Top and bottom of the Press Freedom Index ranking in Africa :
 
-| Ranking | Country    | RSF Score 2020 |
-| ------- | ---------- | -------------- |
-| 23      | Namibia    | 19.25          |
-| 25      | Cabo Verde | 20.15          |
-| 30      | Ghana      | 22.26          |
-| ...     | ...        | ...            |
-| 166     | Egypt      | 56.82          |
-| 176     | Djibouti   | 76.73          |
-| 178     | Eritrea    | 83.50          |
+| Ranking | Country    | RSF Score 2020   |
+| ------- | ---------- | :--------------: |
+| 23      | Namibia    | 19.25            |
+| 25      | Cabo Verde | 20.15            |
+| 30      | Ghana      | 22.26            |
+| ...     | ...        | ...              |
+| 166     | Egypt      | 56.82            |
+| 176     | Djibouti   | 76.73            |
+| 178     | Eritrea    | 83.50            |
 
 
 
@@ -131,15 +131,15 @@ Africa is recording significant setbacks, due in particular to an increase in lo
 
 Top and bottom of the Press Freedom Index ranking in Asia-Pacific :
 
-| Ranking | Country      | RSF Score 2020 |
-| ------- | ------------ | -------------- |
-| 9       | New Zealand  | 10.69          |
-| 21      | Samoa        | 18.25          |
-| 26      | Australia    | 20.21          |
-| ...     | ...          | ...            |
-| 177     | China        | 78.48          |
-| 179     | Turkmenistan | 85.44          |
-| 180     | North Korea  | 85.82          |
+| Ranking | Country      | RSF Score 2020   |
+| ------- | ------------ | :--------------: |
+| 9       | New Zealand  | 10.69            |
+| 21      | Samoa        | 18.25            |
+| 26      | Australia    | 20.21            |
+| ...     | ...          | ...              |
+| 177     | China        | 78.48            |
+| 179     | Turkmenistan | 85.44            |
+| 180     | North Korea  | 85.82            |
 
 
 
