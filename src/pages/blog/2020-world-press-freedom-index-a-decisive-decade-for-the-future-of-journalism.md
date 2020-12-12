@@ -51,17 +51,19 @@ The final score is defined on a scale from 0 to 100. The higher the score of a c
 
 Top and bottom of the Press Freedom Index ranking in Europe :
 
-| Ranking   | Country    | RSF Score 2020 |
-| :-------: | :-------:  | :-------:      |
-| 1         | Norway     | 7.84           |
-| 2         | Finland    | 7.93           |
-| 3         | Denmark    | 8.13           |
-| ...       | ...        | ...            |
-| 111       | Bulgaria   | 35.06          |
-| 149       | Russia     | 48.92          |
-| 153       | Belarus    | 49.75          |
+| Ranking | Country  | RSF Score 2020 |
+| ------- | -------- | -------------- |
+| 1       | Norway   | 7.84           |
+| 2       | Finland  | 7.93           |
+| 3       | Denmark  | 8.13           |
+| ...     | ...      | ...            |
+| 111     | Bulgaria | 35.06          |
+| 149     | Russia   | 48.92          |
+| 153     | Belarus  | 49.75          |
 
-Europe remains the continent most in favor of press freedom, despite the repressive policies of certain countries. Although several states are among those which respect press freedom the best, the EU is increasingly heterogeneous, undermined by the successive economic crises, the fight against terrorism, but also by states sliding more and more towards a more authoritarian regime.
+
+
+Europe remains the continent the most in favor of press freedom, despite the repressive policies of certain countries. Although several states are among those which respect press freedom the best, the EU is increasingly heterogeneous, undermined by the successive economic crises, the fight against terrorism, but also by states sliding more and more towards a more authoritarian regime.
 
 ### North America
 
@@ -69,15 +71,17 @@ Europe remains the continent most in favor of press freedom, despite the repress
 
 Top and bottom of the Press Freedom Index ranking in North and Central America :
 
-| Ranking   | Country    | RSF Score 2020 |
-| :-------: | :-------:  | :-------:      |
-| 6         | Jamaica    | 10.51          |
-| 7         | Costa Rica | 10.53          |
-| 16        | Canada     | 15.29          |
-| ...       | ...        | ...            |
-| 143       | Mexico     | 45.45          |
-| 148       | Honduras   | 48.20          |
-| 171       | Cuba       | 63.81          |
+| Ranking | Country    | RSF Score 2020 |
+| ------- | ---------- | -------------- |
+| 6       | Jamaica    | 10.51          |
+| 7       | Costa Rica | 10.53          |
+| 16      | Canada     | 15.29          |
+| ...     | ...        | ...            |
+| 143     | Mexico     | 45.45          |
+| 148     | Honduras   | 48.20          |
+| 171     | Cuba       | 63.81          |
+
+
 
 In North America, though  nations have historically respected the press, journalists in these countries are being challenged by the very institutions on which they report. Journalists and the media regularly face verbal and physical threats, denied access to information, as laws and lawsuits restricting their rights multiply.
 
@@ -87,15 +91,17 @@ In North America, though  nations have historically respected the press, journal
 
 Top and bottom of the Press Freedom Index ranking in South America :
 
-| Ranking   | Country   | RSF Score 2020 |
-| :-------: | :-------: | :-------:      |
-| 19        | Uruguay   | 15.79          |
-| 20        | Surinam   | 17.50          |
-| 49        | Guyana    | 26.63          |
-| ...       | ...       | ...            |
-| 114       | Bolivia   | 35.37          |
-| 130       | Colombia  | 42.66          |
-| 147       | Venezuela | 45.66          |
+| Ranking | Country   | RSF Score 2020 |
+| ------- | --------- | -------------- |
+| 19      | Uruguay   | 15.79          |
+| 20      | Surinam   | 17.50          |
+| 49      | Guyana    | 26.63          |
+| ...     | ...       | ...            |
+| 114     | Bolivia   | 35.37          |
+| 130     | Colombia  | 42.66          |
+| 147     | Venezuela | 45.66          |
+
+
 
 In South America, the decade begins with a general deterioration in the situation of press freedom. The context in which journalists in Latin America operate is increasingly complex and hostile, and several countries are among the world’s most dangerous places for journalists.
 
@@ -105,15 +111,17 @@ In South America, the decade begins with a general deterioration in the situatio
 
 Top and bottom of the Press Freedom Index ranking in Africa :
 
-| Ranking   | Country    | RSF Score 2020 |
-| :-------: | :-------:  | :-------:      |
-| 23        | Namibia    | 19.25          |
-| 25        | Cabo Verde | 20.15          |
-| 30        | Ghana      | 22.26          |
-| ...       | ...        | ...            |
-| 166       | Egypt      | 56.82          |
-| 176       | Djibouti   | 76.73          |
-| 178       | Eritrea    | 83.50          |
+| Ranking | Country    | RSF Score 2020 |
+| ------- | ---------- | -------------- |
+| 23      | Namibia    | 19.25          |
+| 25      | Cabo Verde | 20.15          |
+| 30      | Ghana      | 22.26          |
+| ...     | ...        | ...            |
+| 166     | Egypt      | 56.82          |
+| 176     | Djibouti   | 76.73          |
+| 178     | Eritrea    | 83.50          |
+
+
 
 Africa is recording significant setbacks, due in particular to an increase in long-term arbitrary detentions, but also to attacks, particularly online, and new repressive laws which, in the name of the fight against disinformation or cybercrime, can be used to unreasonably restrict freedom of information. The economic weakness of the media also exposes them to political or economic influences detrimental to their independence.
 
@@ -123,15 +131,17 @@ Africa is recording significant setbacks, due in particular to an increase in lo
 
 Top and bottom of the Press Freedom Index ranking in Asia-Pacific :
 
-| Ranking   | Country      | RSF Score 2020 |
-| :-------: | :-------:    | :-------:      |
-| 9         | New Zealand  | 10.69          |
-| 21        | Samoa        | 18.25          |
-| 26        | Australia    | 20.21          |
-| ...       | ...          | ...            |
-| 177       | China        | 78.48          |
-| 179       | Turkmenistan | 85.44          |
-| 180       | North Korea  | 85.82          |
+| Ranking | Country      | RSF Score 2020 |
+| ------- | ------------ | -------------- |
+| 9       | New Zealand  | 10.69          |
+| 21      | Samoa        | 18.25          |
+| 26      | Australia    | 20.21          |
+| ...     | ...          | ...            |
+| 177     | China        | 78.48          |
+| 179     | Turkmenistan | 85.44          |
+| 180     | North Korea  | 85.82          |
+
+
 
 The Asia zone, counts manifold countries among the most dangerous for the profession and brings together the largest prisons in the world for journalists and bloggers. The Asia-Pacific region also holds a great number of "predators of press freedom" states, true black holes of information.
 
