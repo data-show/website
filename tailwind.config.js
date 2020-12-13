@@ -1,16 +1,17 @@
 module.exports = {
-  purge: false,
+  purge: [],
+  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Roboto', 'Helvetica', 'Arial', 'sans-serif']
+        'sans': ['Open Sans', 'Helvetica', 'Arial', 'sans-serif']
       }
     },
   },
-  variants: {},
-  plugins: [],
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true
+  variants: {
+    extend: {},
   },
+  plugins: [
+    require('@tailwindcss/typography')
+  ],
 }

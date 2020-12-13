@@ -169,7 +169,7 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
         </header>
 
         <div className="mt-6 mb-2">
-          <HTMLContent className="markdown" content={post.html} />
+          <HTMLContent className="prose prose-lg max-w-none" content={post.html} />
 
           {tags && tags.length ? (
             <div className="py-2 my-4 md:my-8">
@@ -247,7 +247,6 @@ export const pageQuery = graphql`
             }
           }
         }
-        canonical
         title
         description
         tags

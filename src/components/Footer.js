@@ -24,24 +24,11 @@ const Footer = () => {
   return (
     <footer className="border-t mt-12 pt-12 pb-12 px-4 lg:px-0">
       <div className="flex flex-wrap">
-        <div className="w-full lg:w-2/5">
+        <div className="w-full lg:w-3/5">
+          <h6 className="font-semibold text-gray-700 mb-4">Project</h6>
           <p className="text-gray-600 hidden lg:block p-0 lg:pr-12">
             {description}
           </p>
-        </div>
-
-        <div className="w-full mt-6 lg:mt-0 md:w-1/2 lg:w-1/5">
-          <h6 className="font-semibold text-gray-700 mb-4">Project</h6>
-          <ul>
-            <li>
-              <Link
-                to={`/author`}
-                className="block text-gray-600 py-2"
-              >
-                Authors
-              </Link>
-            </li>
-          </ul>
         </div>
 
         <div className="w-full mt-6 lg:mt-0 md:w-1/2 lg:w-1/5">

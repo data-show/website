@@ -37,10 +37,10 @@ const TagRoute = ({
       <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0">
         <section>
           <div className="space-y-4 text-left py-2 mb-6 lg:mb-8">
-            <h1 className="text-2xl leading-9 text-gray-800 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 mb-2">
+            <h1 className="text-2xl leading-9 text-gray-800 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 mb-2">
               {title}
             </h1>
-            <p className="text-lg text-gray-600 tracking-tight sm:text-lg md:text-xl md:leading-8 mb-4">
+            <p className="text-lg text-gray-600 sm:text-lg md:text-xl md:leading-8 mb-4">
               {tagHeader}
             </p>
           </div>

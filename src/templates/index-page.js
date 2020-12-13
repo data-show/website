@@ -21,8 +21,8 @@ const IndexPage = ({
       />
 
       {posts.length > 0 && (
-        <div className="flex flex-wrap md:flex-no-wrap space-x-0 md:space-x-6 mb-16">
-          <div className="mb-4 lg:mb-0  p-4 lg:p-0 w-full md:w-4/7 relative rounded block">
+        <div className="flex space-x-0 md:space-x-6 mb-16">
+          <div className="mb-4 lg:mb-0 p-4 lg:p-0 w-full md:w-1/2 rounded block">
             <Link to={posts[0].node.fields.slug}>
               <Img
                 fluid={posts[0].node.frontmatter.featuredimage.childImageSharp.fluid}
@@ -47,7 +47,7 @@ const IndexPage = ({
             </Link>
           </div>
 
-          <div className="w-full md:w-4/7">
+          <div className="w-full md:w-1/2">
             {posts.slice(1, 5).map(
               ({
                 node: {

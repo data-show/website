@@ -23,7 +23,7 @@ export const SourceTemplate = ({
               {name}
             </h1>
             <p>{description}</p>
-            <sourceContent content={content} />
+            <sourceContent className="prose prose-lg" content={content} />
           </div>
         </div>
       </div>

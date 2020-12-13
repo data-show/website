@@ -1,6 +1,7 @@
+import 'fontsource-open-sans'
+import { withPrefix } from 'gatsby'
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { withPrefix } from 'gatsby'
 
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
