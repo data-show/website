@@ -91,6 +91,7 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
 
       <article className="max-w-2xl mx-auto px-4 sm:px-6 xl:max-w-4xl xl:px-0">
         <header className="pt-2 pb-2 xl:pb-4 lg:border-b-2 lg:border-gray-200">
+          <Img fluid={post.frontmatter.featuredimage.childImageSharp.fluid} className="rounded-md object-cover w-full h-64 lg:h-96 mb-4 lg:mb-8" alt={title} title={title} />
           <div className="space-y-4 text-left">
             <h1 className="text-3xl leading-12 text-gray-800 md:text-4xl md:leading-14 mb-2">
               {title}
