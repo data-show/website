@@ -26,7 +26,7 @@ const Author = ({ data: {
           url: `${siteUrl}${author.fields.slug}`,
           type: 'profile',
           profile: {
-            username: author.frontmatter.github,
+            username: author.frontmatter.username,
           },
           images: [author.frontmatter.image.childImageSharp.fluid.src],
         }}
@@ -141,6 +141,7 @@ export const pageQuery = graphql`
             }
           }
         }
+        username
         github
         linkedin
         website

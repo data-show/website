@@ -270,7 +270,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    author: markdownRemark(frontmatter: { github: { eq: $author } }) {
+    author: markdownRemark(frontmatter: { username: { eq: $author } }) {
       id
       fields {
         slug
@@ -287,7 +287,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    sources: markdownRemark(frontmatter: { github: { eq: $author } }) {
+    sources: markdownRemark(frontmatter: { username: { eq: $author } }) {
       id
       fields {
         slug
