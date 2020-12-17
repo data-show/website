@@ -10,7 +10,7 @@ description: Some countries dominate the number of medals in the Asian Games,
   analysis?
 language:
   - en
-featuredimage: /img/pexels-kaboompics-com-6335.jpg
+featuredimage: /img/olympic-and-asian-games-–-the-path-to-the-medal-count.jpg
 category: Sport
 tags:
   - sport
