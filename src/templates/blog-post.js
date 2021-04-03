@@ -8,13 +8,16 @@ import { GatsbySeo, ArticleJsonLd, BreadcrumbJsonLd } from 'gatsby-plugin-next-s
 import { kebabCase } from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 import Helmet from 'react-helmet'
 import { FacebookShareButton, LinkedinShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share'
 
-import Layout from '../components/Layout'
+import BlogPostCard from '../components/BlogPostCard'
+import DataVizPostCard from '../components/DataVizPostCard'
 import { HTMLContent } from '../components/Content'
+import Layout from '../components/Layout'
 
-const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: { title: siteName, siteUrl, social } } } }) => {
+const BlogPost = ({ data: { post, category, author, lastPosts: { edges: lastPosts }, lastDataviz: { edges: lastDataviz }, logo, site: { siteMetadata: { title: siteName, siteUrl, social } } } }) => {
   const url = `${siteUrl}${post.fields.slug}`
   const tags = post.frontmatter.tags
   const title = post.frontmatter.title
@@ -97,6 +100,8 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
             alt={title}
             title={title} />
           <div className="space-y-4 text-left">
+            <AnchorLink href="#sources" className="underline">Sources</AnchorLink> <AnchorLink href="#notebooks" className="underline">Notebooks</AnchorLink>
+
             <h1 className="text-3xl leading-12 text-gray-800 md:text-4xl md:leading-14 mb-2">
               {title}
             </h1>
@@ -174,48 +179,113 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
 
         <div className="mt-6 mb-2">
           <HTMLContent className="prose prose-lg max-w-none" content={post.html} />
+        </div>
 
-          {tags && tags.length ? (
-            <div className="py-2 my-4 md:my-8">
-              {tags.map(tag => (
-                <Link
-                  key={tag + `tag`}
-                  to={`/tags/${kebabCase(tag)}/`}
-                  className="inline-block bg-gray-200 px-4 py-2 text-sm text-gray-700 mr-2 mb-2"
-                >
-                  {tag}
-                </Link>
-              ))}
+        <div className="mt-6 mb-2">
+          <div className="my-4 md:my-8" id="sources">
+            <h2 className="font-bold text-xl mb-2">Sources</h2>
+
+            <hr className="my-4" />
+
+            {
+              sources.length > 0
+                ? (
+                  sources.map(source => (
+                    <OutboundLink className="underline" href={source.link} target="_blank" rel="noopener nofollow">
+                      {source.source}
+                    </OutboundLink>
+                  ))
+                )
+                : (
+                  <span>There is no sources for this article.</span>
+                )
+            }
+          </div>
+
+          <div className="my-4 md:my-8" id="notebooks">
+            <h2 className="font-bold text-xl mb-2">Notebooks</h2>
+
+            <hr className="my-4" />
+
+            {
+              notebooks.length > 0
+                ? notebooks.map(notebook => (
+                  <OutboundLink className="underline" href={notebook.link} target="_blank">
+                    {notebook.title}
+                  </OutboundLink>
+                ))
+                : (
+                  <span>There is no notebooks for this article.</span>
+                )
+            }
+          </div>
+
+          <section className="mt-8">
+            <h3 className="font-bold text-xl mb-2">Latest Posts</h3>
+
+            <hr className="my-4" />
+
+            <div className="block space-x-0 lg:flex lg:space-x-6">
+              {lastPosts.map(
+                ({
+                  node: {
+                    fields: { slug },
+                    frontmatter: { title, featuredimage },
+                  },
+                }) => (
+                    <BlogPostCard
+                      className="mx-4"
+                      key={slug}
+                      slug={slug}
+                      title={title}
+                      image={featuredimage}
+                    />
+                  )
+              )}
             </div>
-          ) : null}
+          </section>
 
-          {sources && sources.length ? (
-            <div className="my-4 md:my-8">
-              <h2 className="text-lg text-gray-900 mb-2">Sources</h2>
-
-              <hr className="my-4" />
-
-              {sources.map(source => (
-                <OutboundLink href={source.link} target="_blank" rel="noopener nofollow">
-                  {source.source}
-                </OutboundLink>
-              ))}
+          <section className="mt-8">
+            <div className="flex mb-2 px-4 lg:px-0 items-center justify-between">
+              <h2 className="font-bold text-xl">Latest DataViz</h2>
+              <Link to={`/dataviz`} className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded cursor-pointer">
+                View all
+              </Link>
             </div>
-          ) : null}
 
-          {notebooks && notebooks.length ? (
-            <div className="my-4 md:my-8">
-              <h2 className="text-lg text-gray-900 mb-2">Notebooks</h2>
+            <hr className="my-4" />
 
-              <hr className="my-4" />
-
-              {notebooks.map(notebook => (
-                <OutboundLink href={notebook.link} target="_blank">
-                  {notebook.title}
-                </OutboundLink>
-              ))}
+            <div className="block space-x-0 lg:flex lg:space-x-6">
+              {lastDataviz.map(
+                ({
+                  node: {
+                    fields: { slug },
+                    frontmatter: { title, media },
+                  },
+                }) => (
+                    <DataVizPostCard
+                      className="lg:w-1/2 lg:w-1/3 p-4 lg:p-0"
+                      key={slug}
+                      slug={slug}
+                      title={title}
+                      image={getImage(media)}
+                    />
+                  )
+              )}
             </div>
-          ) : null}
+          </section>
+
+          <div className="my-4 md:my-8">
+            {tags.map(tag => (
+              <Link
+                key={tag + `tag`}
+                to={`/tags/${kebabCase(tag)}/`}
+                className="inline-block bg-gray-200 px-4 py-2 text-sm text-gray-700 mr-2 mb-2"
+              >
+                {tag}
+              </Link>
+            ))}
+          </div>
         </div>
       </article>
     </Layout>
@@ -296,6 +366,51 @@ export const pageQuery = graphql`
       image {
         childImageSharp {
           gatsbyImageData(height: 75, placeholder: NONE, layout: FULL_WIDTH)
+        }
+      }
+    }
+  }
+  lastPosts: allMarkdownRemark(
+    sort: { fields: [frontmatter___date], order: DESC }
+    skip: 0
+    limit: 3
+    filter: { frontmatter: { templateKey: { eq: "blog-post" } }, id: { ne: $id } }
+  ) {
+    edges {
+      node {
+        frontmatter {
+          title
+          featuredimage {
+            childImageSharp {
+              gatsbyImageData(height: 550, layout: FULL_WIDTH)
+            }
+          }
+          category
+        }
+        fields {
+          slug
+        }
+      }
+    }
+  }
+  lastDataviz: allMarkdownRemark(
+    sort: { fields: [frontmatter___date], order: DESC }
+    skip: 0
+    limit: 3
+    filter: {frontmatter: {templateKey: {eq: "dataviz-post"}}}
+  ) {
+    edges {
+      node {
+        frontmatter {
+          title
+          media {
+            childImageSharp {
+              gatsbyImageData(height: 350, layout: FULL_WIDTH)
+            }
+          }
+        }
+        fields {
+          slug
         }
       }
     }

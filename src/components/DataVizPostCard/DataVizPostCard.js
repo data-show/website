@@ -16,17 +16,19 @@ const DataVizPostCard = ({ title, description, image, slug }) => (
       <Link to={slug}>
         <h2 className="font-bold text-xl text-gray-800">{title}</h2>
       </Link>
-      {description && (
-        <p className="text-gray-800 mt-2">{description}</p>
-      )}
 
-      <Link to={slug} className="inline-block py-2 rounded text-gray-900 mt-2 ml-auto">Read more</Link>
+      {description && (
+        <>
+          <p className="text-gray-800 mt-2">{description}</p>
+          <Link to={slug} className="inline-block py-2 rounded text-gray-900 mt-2 ml-auto">Read more</Link>
+        </>
+      )}
     </div>
   </div>
 )
 
 DataVizPostCard.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   image: PropTypes.object,
   slug: PropTypes.string,
 }

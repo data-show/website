@@ -51,6 +51,7 @@
     "preact-render-to-string": "^5.1.12",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
+    "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-helmet-async": "^1.0.6",

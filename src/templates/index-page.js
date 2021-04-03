@@ -81,7 +81,7 @@ const IndexPage = ({
 
       {dataviz.length > 0 && (
         <section>
-          <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
+          <div className="flex mt-16 mb-8 px-4 lg:px-0 items-center justify-between">
             <h2 className="font-bold text-3xl">Latest DataViz</h2>
             <Link to={`/dataviz`} className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded cursor-pointer">
               View all
