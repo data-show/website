@@ -2,7 +2,7 @@ import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { graphql } from 'gatsby'
 import { GatsbyImage, getSrc, getImage } from 'gatsby-plugin-image';
-import { OutboundLink } from 'gatsby-plugin-google-analytics'
+import { OutboundLink } from 'gatsby-plugin-google-gtag'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import PropTypes from 'prop-types'
 import React from 'react'

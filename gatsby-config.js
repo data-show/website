@@ -19,7 +19,7 @@ const social = {
   github: 'data-show',
   linkedin: 'data-show-blog',
 }
-const trackingId = 'UA-162035849-1'
+const gtagId = 'G-7JKYHNXE4G'
 
 module.exports = {
   siteMetadata: {
@@ -197,13 +197,9 @@ module.exports = {
     },
     'gatsby-plugin-sitemap',
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingId,
-        head: false,
-        defer: true,
-        anonymize: true,
-        respectDNT: true,
+        trackingIds: [gtagId],
       },
     },
     {

@@ -9,7 +9,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import { faRss } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'gatsby'
-import { OutboundLink } from 'gatsby-plugin-google-analytics'
+import { OutboundLink } from 'gatsby-plugin-google-gtag'
 
 import useSiteMetadata from '../queries/site-metadata'
 import useCategories from '../queries/categories'
