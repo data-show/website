@@ -9,7 +9,6 @@ import { kebabCase } from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
-import Helmet from 'react-helmet'
 import { FacebookShareButton, LinkedinShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share'
 
 import BlogPostCard from '../components/BlogPostCard'
@@ -54,9 +53,6 @@ const BlogPost = ({ data: { post, category, author, lastPosts: { edges: lastPost
           ],
         }}
       />
-      <Helmet>
-        <link rel="amphtml" href={`${siteUrl}/amp${post.fields.slug}`} />
-      </Helmet>
       <ArticleJsonLd
         url={url}
         headline={post.frontmatter.title}

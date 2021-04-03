@@ -1,7 +1,6 @@
 import { graphql, Link } from 'gatsby'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import React from 'react'
-import Helmet from 'react-helmet'
 
 import BlogPostCard from '../components/BlogPostCard'
 import DataVizPostCard from '../components/DataVizPostCard'
@@ -30,9 +29,6 @@ const TagRoute = ({
         description={description}
         canonical={`${siteUrl}${tagSlug}`}
       />
-      <Helmet>
-        <link rel="amphtml" href={`${siteUrl}/amp${tagSlug}`} />
-      </Helmet>
 
       <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0">
         <section>

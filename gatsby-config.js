@@ -132,15 +132,6 @@ module.exports = {
         },
       },
     },
-    // {
-    //   resolve: 'gatsby-plugin-html2amp',
-    //   options: {
-    //     files: ['/blog/**/*.html', '/tags/**/*.html'],
-    //     dist: 'public/amp',
-    //     gaConfigPath: 'gaconfig.json',
-    //     optimize: true,
-    //   },
-    // },
     {
       resolve: `gatsby-plugin-feed`,
       options: {
