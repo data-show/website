@@ -110,68 +110,63 @@ const TagRoute = ({
 
 export default TagRoute
 
-export const tagPageQuery = graphql`
-  query TagPage($tag: String) {
-    allMarkdownRemark(
-      limit: 1000
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] } } }
-    ) {
-      totalCount
-    }
-    postsAllMarkdownRemark: allMarkdownRemark(
-      limit: 1000
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { templateKey: { eq: "blog-post" }, tags: { in: [$tag] } } }
-    ) {
-      totalCount
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            description
-            featuredimage {
-              childImageSharp {
-                fluid(maxHeight: 350) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
+export const tagPageQuery = graphql`query TagPage($tag: String) {
+  allMarkdownRemark(
+    limit: 1000
+    sort: {fields: [frontmatter___date], order: DESC}
+    filter: {frontmatter: {tags: {in: [$tag]}}}
+  ) {
+    totalCount
+  }
+  postsAllMarkdownRemark: allMarkdownRemark(
+    limit: 1000
+    sort: {fields: [frontmatter___date], order: DESC}
+    filter: {frontmatter: {templateKey: {eq: "blog-post"}, tags: {in: [$tag]}}}
+  ) {
+    totalCount
+    edges {
+      node {
+        fields {
+          slug
+        }
+        frontmatter {
+          title
+          description
+          featuredimage {
+            childImageSharp {
+              gatsbyImageData(height: 350, layout: FULL_WIDTH)
             }
           }
         }
-      }
-    }
-    datavizAllMarkdownRemark: allMarkdownRemark(
-      limit: 1000
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { templateKey: { eq: "dataviz-post" }, tags: { in: [$tag] } } }
-    ) {
-      totalCount
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            media {
-              childImageSharp {
-                fluid(maxHeight: 350) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    site {
-      siteMetadata {
-        siteUrl
       }
     }
   }
+  datavizAllMarkdownRemark: allMarkdownRemark(
+    limit: 1000
+    sort: {fields: [frontmatter___date], order: DESC}
+    filter: {frontmatter: {templateKey: {eq: "dataviz-post"}, tags: {in: [$tag]}}}
+  ) {
+    totalCount
+    edges {
+      node {
+        fields {
+          slug
+        }
+        frontmatter {
+          title
+          media {
+            childImageSharp {
+              gatsbyImageData(height: 350, layout: FULL_WIDTH)
+            }
+          }
+        }
+      }
+    }
+  }
+  site {
+    siteMetadata {
+      siteUrl
+    }
+  }
+}
 `

@@ -39,38 +39,35 @@ const DataVizIndexPage = ({ data: { allMarkdownRemark, site: { siteMetadata: { s
 
 export default DataVizIndexPage
 
-export const pageQuery = graphql`
-  query PaginatedDataViz {
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      skip: 0
-      limit: 50
-      filter: { frontmatter: { templateKey: { eq: "dataviz-post" } } }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            title
-            media {
-              childImageSharp {
-                fluid(maxHeight: 350) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
+export const pageQuery = graphql`query PaginatedDataViz {
+  allMarkdownRemark(
+    sort: {fields: [frontmatter___date], order: DESC}
+    skip: 0
+    limit: 50
+    filter: {frontmatter: {templateKey: {eq: "dataviz-post"}}}
+  ) {
+    edges {
+      node {
+        frontmatter {
+          title
+          media {
+            childImageSharp {
+              gatsbyImageData(height: 350, layout: FULL_WIDTH)
             }
           }
-          fields {
-            slug
-          }
+        }
+        fields {
+          slug
         }
       }
     }
-    site {
-      siteMetadata {
-        siteUrl
-        title
-      }
+  }
+  site {
+    siteMetadata {
+      siteUrl
+      title
     }
   }
+}
 `
 

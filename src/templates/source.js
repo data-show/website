@@ -6,7 +6,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 
-export const SourceTemplate = ({
+const SourceTemplate = ({
   content,
   contentComponent,
   description,

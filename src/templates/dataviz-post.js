@@ -2,7 +2,7 @@ import { faFacebookF, faPinterestP, faLinkedinIn, faTwitter, faWhatsapp } from '
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { format } from 'date-fns'
 import { graphql, Link } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage, getImage, getSrc } from 'gatsby-plugin-image'
 import { OutboundLink } from 'gatsby-plugin-google-analytics'
 import { GatsbySeo, ArticleJsonLd, BreadcrumbJsonLd, JsonLd } from 'gatsby-plugin-next-seo'
 import { kebabCase } from 'lodash'
@@ -41,17 +41,17 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
             authors: [`${siteUrl}${author.frontmatter.slug}`],
             tags: post.frontmatter.tags,
           },
-          images: [post.frontmatter.media.childImageSharp.fluid.src],
+          images: [getSrc(post.frontmatter.media)],
         }}
       />
       <ArticleJsonLd
         url={`${siteUrl}${post.fields.slug}`}
         headline={seoTitle}
-        images={[post.frontmatter.media.childImageSharp.fluid.src]}
+        images={[getSrc(post.frontmatter.media)]}
         datePublished={post.frontmatter.date}
         dateModified={post.frontmatter.date}
         authorName={author.frontmatter.name}
-        publisherLogo={logo.childImageSharp.fluid.src}
+        publisherLogo={getSrc(logo)}
         description={post.frontmatter.description}
       />
       <BreadcrumbJsonLd
@@ -79,7 +79,7 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
         json={{
           '@context': 'https://schema.org/',
           '@type': 'ImageObject',
-          contentUrl: post.frontmatter.media.childImageSharp.fluid.src
+          contentUrl: getSrc(post.frontmatter.media)
         }}
       />
 
@@ -99,11 +99,10 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
                   className="text-gray-900 leading-none"
                   to={author.fields.slug}
                 >
-                  <Img
-                    fluid={author.frontmatter.image.childImageSharp.fluid}
+                  <GatsbyImage
+                    image={getImage(author.frontmatter.image)}
                     alt={author.frontmatter.name}
-                    className="w-10 h-10 rounded-full mr-4"
-                  />
+                    className="w-10 h-10 rounded-full mr-4" />
                 </Link>
                 <div className="text-sm">
                   <Link
@@ -121,7 +120,7 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
               <div className="col-span-4 md:col-span-1 inline-flex items-center text-lg">
                 <PinterestShareButton
                   url={url}
-                  media={post.frontmatter.media.childImageSharp.fluid.src}
+                  media={getSrc(post.frontmatter.media)}
                   description={description}
                   resetButtonStyle={false}
                   className="cursor-pointer h-8 w-8 bg-gray-700 hover:bg-white text-white hover:text-gray-900 border-solid hover:border-2 hover:border-gray-900 transition duration-300 font-bold mr-1 rounded-full"
@@ -170,12 +169,11 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
           </div>
         </header>
 
-        <Img
-          fluid={post.frontmatter.media.childImageSharp.fluid}
+        <GatsbyImage
+          image={getImage(post.frontmatter.media)}
           alt={post.frontmatter.title}
           title={title}
-          className="w-full"
-        />
+          className="w-full" />
 
         <div className="mt-6 mb-2">
           {tags && tags.length ? (
@@ -222,7 +220,7 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
         </div>
       </article>
     </Layout>
-  )
+  );
 }
 
 DataVizPost.propTypes = {
@@ -233,93 +231,84 @@ DataVizPost.propTypes = {
 
 export default DataVizPost
 
-export const pageQuery = graphql`
-  query DataVizPostByID($id: String!, $category: String!, $author: String!) {
-    post: markdownRemark(id: { eq: $id }) {
-      id
-      fields {
-        slug
-      }
-      frontmatter {
-        date
-        language
-        media {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-        title
-        description
-        tags
-        sources {
-          link
-          source
-        }
-        notebooks {
-          link
-          title
-        }
-      }
+export const pageQuery = graphql`query DataVizPostByID($id: String!, $category: String!, $author: String!) {
+  post: markdownRemark(id: {eq: $id}) {
+    id
+    fields {
+      slug
     }
-    category: markdownRemark(frontmatter: { title: { eq: $category } }) {
-      id
-      fields {
-        slug
+    frontmatter {
+      date
+      language
+      media {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
+        }
       }
-      frontmatter {
+      title
+      description
+      tags
+      sources {
+        link
+        source
+      }
+      notebooks {
+        link
         title
       }
     }
-    author: markdownRemark(frontmatter: { username: { eq: $author } }) {
-      id
-      fields {
-        slug
-      }
-      frontmatter {
-        name
-        twitter
-        image {
-          childImageSharp {
-            fluid(maxWidth: 75) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-      }
+  }
+  category: markdownRemark(frontmatter: {title: {eq: $category}}) {
+    id
+    fields {
+      slug
     }
-    sources: markdownRemark(frontmatter: { username: { eq: $author } }) {
-      id
-      fields {
-        slug
-      }
-      frontmatter {
-        name
-        image {
-          childImageSharp {
-            fluid(maxHeight: 75) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-      }
+    frontmatter {
+      title
     }
-    logo: file(relativePath: { eq: "logo.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 75, maxHeight: 75) {
-          ...GatsbyImageSharpFluid_withWebp_noBase64
-        }
-      }
+  }
+  author: markdownRemark(frontmatter: {username: {eq: $author}}) {
+    id
+    fields {
+      slug
     }
-    site {
-      siteMetadata {
-        title
-        siteUrl
-        social {
-          twitter
+    frontmatter {
+      name
+      twitter
+      image {
+        childImageSharp {
+          gatsbyImageData(width: 75, layout: CONSTRAINED)
         }
       }
     }
   }
+  sources: markdownRemark(frontmatter: {username: {eq: $author}}) {
+    id
+    fields {
+      slug
+    }
+    frontmatter {
+      name
+      image {
+        childImageSharp {
+          gatsbyImageData(height: 75, layout: FULL_WIDTH)
+        }
+      }
+    }
+  }
+  logo: file(relativePath: {eq: "logo.png"}) {
+    childImageSharp {
+      gatsbyImageData(width: 75, height: 75, placeholder: NONE, layout: CONSTRAINED)
+    }
+  }
+  site {
+    siteMetadata {
+      title
+      siteUrl
+      social {
+        twitter
+      }
+    }
+  }
+}
 `

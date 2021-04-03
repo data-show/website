@@ -1,17 +1,16 @@
 import { Link } from 'gatsby'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import React from 'react'
 import PropTypes from 'prop-types'
-import Img from 'gatsby-image'
 
 const BlogPostCard = ({ title, description, image, slug }) => (
   <div className="rounded w-full">
     <Link to={slug}>
-      <Img
-        fluid={image.childImageSharp.fluid}
+      <GatsbyImage
+        image={getImage(image)}
         alt={title}
         title={title}
-        className="h-40 rounded"
-      />
+        className="h-40 rounded" />
     </Link>
 
     <div className="p-4 pl-0">

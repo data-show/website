@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql, Link } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
 import DataVizPostCard from '../components/DataVizPostCard'
@@ -24,14 +24,13 @@ const IndexPage = ({
         <div className="flex space-x-0 md:space-x-6 mb-16">
           <div className="mb-4 lg:mb-0 p-4 lg:p-0 w-full md:w-1/2 rounded block">
             <Link to={posts[0].node.fields.slug}>
-              <Img
-                fluid={posts[0].node.frontmatter.featuredimage.childImageSharp.fluid}
+              <GatsbyImage
+                image={getImage(posts[0].node.frontmatter.featuredimage)}
                 fadeIn={false}
                 loading="eager"
                 alt={posts[0].node.frontmatter.title}
                 title={posts[0].node.frontmatter.title}
-                className="rounded-md object-cover w-full h-64"
-              />
+                className="rounded-md object-cover w-full h-64" />
             </Link>
             <span className="text-gray-700 text-sm hidden md:block mt-4">{posts[0].node.frontmatter.category}</span>
             <Link to={posts[0].node.fields.slug}>
@@ -57,12 +56,11 @@ const IndexPage = ({
               }) => (
                   <div key={slug} className="rounded w-full flex flex-col md:flex-row mb-10">
                     <Link to={slug}>
-                      <Img
-                        fluid={featuredimage.childImageSharp.fluid}
+                      <GatsbyImage
+                        image={getImage(featuredimage)}
                         alt={title}
                         title={title}
-                        className="block lg:block rounded-md w-64 h-64 md:w-56 md:h-32 m-4 md:m-0"
-                      />
+                        className="block lg:block rounded-md w-64 h-64 md:w-56 md:h-32 m-4 md:m-0" />
                     </Link>
                     <div className="bg-white rounded px-4">
                       <span className="text-gray-700 text-sm hidden md:block">{category}</span>
@@ -102,7 +100,7 @@ const IndexPage = ({
                     key={slug}
                     slug={slug}
                     title={title}
-                    image={media}
+                    image={getImage(media)}
                   />
                 )
             )}
@@ -141,63 +139,58 @@ IndexPage.propTypes = {
 
 export default IndexPage
 
-export const pageQuery = graphql`
-  query IndexPageTemplate {
-    markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
-      frontmatter {
-        title
-        description
-      }
+export const pageQuery = graphql`query IndexPageTemplate {
+  markdownRemark(frontmatter: {templateKey: {eq: "index-page"}}) {
+    frontmatter {
+      title
+      description
     }
-    postsAllMarkdownRemark: allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      skip: 0
-      limit: 5
-      filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            title
-            description
-            featuredimage {
-              childImageSharp {
-                fluid(maxHeight: 550) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
+  }
+  postsAllMarkdownRemark: allMarkdownRemark(
+    sort: {fields: [frontmatter___date], order: DESC}
+    skip: 0
+    limit: 5
+    filter: {frontmatter: {templateKey: {eq: "blog-post"}}}
+  ) {
+    edges {
+      node {
+        frontmatter {
+          title
+          description
+          featuredimage {
+            childImageSharp {
+              gatsbyImageData(height: 550, layout: FULL_WIDTH)
             }
-            category
           }
-          fields {
-            slug
-          }
+          category
         }
-      }
-    }
-    datavizAllMarkdownRemark: allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      skip: 0
-      limit: 3
-      filter: { frontmatter: { templateKey: { eq: "dataviz-post" } } }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            title
-            media {
-              childImageSharp {
-                fluid(maxHeight: 350) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
-            }
-          }
-          fields {
-            slug
-          }
+        fields {
+          slug
         }
       }
     }
   }
+  datavizAllMarkdownRemark: allMarkdownRemark(
+    sort: {fields: [frontmatter___date], order: DESC}
+    skip: 0
+    limit: 3
+    filter: {frontmatter: {templateKey: {eq: "dataviz-post"}}}
+  ) {
+    edges {
+      node {
+        frontmatter {
+          title
+          media {
+            childImageSharp {
+              gatsbyImageData(height: 350, layout: FULL_WIDTH)
+            }
+          }
+        }
+        fields {
+          slug
+        }
+      }
+    }
+  }
+}
 `

@@ -8,7 +8,7 @@ import Content, { HTMLContent } from '../components/Content'
 import BlogPostCard from '../components/BlogPostCard/BlogPostCard'
 import Layout from '../components/Layout'
 
-export const CategoryTemplate = ({
+const CategoryTemplate = ({
   content,
   contentComponent,
   description,
@@ -119,69 +119,56 @@ Category.propTypes = {
 
 export default Category
 
-export const pageQuery = graphql`
-  query CategoryByID($id: String!, $title: String!) {
-    markdownRemark(id: { eq: $id }) {
-      id
-      html
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-        description
-      }
+export const pageQuery = graphql`query CategoryByID($id: String!, $title: String!) {
+  markdownRemark(id: {eq: $id}) {
+    id
+    html
+    fields {
+      slug
     }
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      skip: 0
-      limit: 10
-      filter: {
-        frontmatter: {
-          templateKey: { eq: "blog-post" }
-          category: { eq: $title }
-        }
-      }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            title
-            description
-            featuredimage {
-              childImageSharp {
-                fluid(maxHeight: 350) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
+    frontmatter {
+      title
+      description
+    }
+  }
+  allMarkdownRemark(
+    sort: {fields: [frontmatter___date], order: DESC}
+    skip: 0
+    limit: 10
+    filter: {frontmatter: {templateKey: {eq: "blog-post"}, category: {eq: $title}}}
+  ) {
+    edges {
+      node {
+        frontmatter {
+          title
+          description
+          featuredimage {
+            childImageSharp {
+              gatsbyImageData(height: 350, layout: FULL_WIDTH)
             }
           }
-          fields {
-            slug
-          }
         }
-      }
-    }
-    tagsMarkdownRemark: allMarkdownRemark(
-      filter: {
-        frontmatter: {
-          templateKey: { eq: "blog-post" }
-          category: { eq: $title }
+        fields {
+          slug
         }
-      }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            tags
-          }
-        }
-      }
-    }
-    site {
-      siteMetadata {
-        siteUrl
       }
     }
   }
+  tagsMarkdownRemark: allMarkdownRemark(
+    filter: {frontmatter: {templateKey: {eq: "blog-post"}, category: {eq: $title}}}
+  ) {
+    edges {
+      node {
+        frontmatter {
+          tags
+        }
+      }
+    }
+  }
+  site {
+    siteMetadata {
+      siteUrl
+    }
+  }
+}
 `

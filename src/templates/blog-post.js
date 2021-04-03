@@ -2,7 +2,7 @@ import { faFacebookF, faLinkedinIn, faTwitter, faWhatsapp } from '@fortawesome/f
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { format } from 'date-fns'
 import { graphql, Link } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage, getImage, getSrc } from 'gatsby-plugin-image'
 import { OutboundLink } from 'gatsby-plugin-google-analytics'
 import { GatsbySeo, ArticleJsonLd, BreadcrumbJsonLd } from 'gatsby-plugin-next-seo'
 import { kebabCase } from 'lodash'
@@ -45,7 +45,7 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
           },
           images: [
             {
-              url: `${siteUrl}${post.frontmatter.featuredimage.childImageSharp.fluid.src}`,
+              url: `${siteUrl}${getSrc(post.frontmatter.featuredimage)}`,
               alt: post.frontmatter.title
             }
           ],
@@ -57,11 +57,11 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
       <ArticleJsonLd
         url={url}
         headline={post.frontmatter.title}
-        images={[`${siteUrl}${post.frontmatter.featuredimage.childImageSharp.fluid.src}`]}
+        images={[`${siteUrl}${getSrc(post.frontmatter.featuredimage)}`]}
         datePublished={publishedDate}
         dateModified={publishedDate}
         authorName={author.frontmatter.name}
-        publisherLogo={`${siteUrl}${logo.childImageSharp.fluid.src}`}
+        publisherLogo={`${siteUrl}${getSrc(logo)}`}
         description={post.frontmatter.description}
         overrides={{
           '@type': 'BlogPosting',
@@ -91,7 +91,11 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
 
       <article className="max-w-2xl mx-auto px-4 sm:px-6 xl:max-w-4xl xl:px-0">
         <header className="pt-2 pb-2 xl:pb-4 lg:border-b-2 lg:border-gray-200">
-          <Img fluid={post.frontmatter.featuredimage.childImageSharp.fluid} className="rounded-md object-cover w-full h-64 lg:h-96 mb-4 lg:mb-8" alt={title} title={title} />
+          <GatsbyImage
+            image={getImage(post.frontmatter.featuredimage)}
+            className="rounded-md object-cover w-full h-64 lg:h-96 mb-4 lg:mb-8"
+            alt={title}
+            title={title} />
           <div className="space-y-4 text-left">
             <h1 className="text-3xl leading-12 text-gray-800 md:text-4xl md:leading-14 mb-2">
               {title}
@@ -106,12 +110,11 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
                   className="text-gray-900 leading-none"
                   to={author.fields.slug}
                 >
-                  <Img
-                    fluid={author.frontmatter.image.childImageSharp.fluid}
+                  <GatsbyImage
+                    image={getImage(author.frontmatter.image)}
                     alt={author.frontmatter.name}
                     loading="eager"
-                    className="w-10 h-10 rounded-full mr-4"
-                  />
+                    className="w-10 h-10 rounded-full mr-4" />
                 </Link>
                 <div className="text-sm">
                   <Link
@@ -216,7 +219,7 @@ const BlogPost = ({ data: { post, category, author, logo, site: { siteMetadata: 
         </div>
       </article>
     </Layout>
-  )
+  );
 }
 
 BlogPost.propTypes = {
@@ -229,95 +232,87 @@ export default BlogPost
 
 export const pageQuery = graphql`
   query BlogPostByID($id: String!, $category: String!, $author: String!) {
-    post: markdownRemark(id: { eq: $id }) {
-      id
-      html
-      fields {
-        slug
-        readingTime {
-          minutes
-        }
-      }
-      frontmatter {
-        date
-        language
-        featuredimage {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-        title
-        description
-        tags
-        sources {
-          link
-          source
-        }
-        notebooks {
-          link
-          title
-        }
+  post: markdownRemark(id: {eq: $id}) {
+    id
+    html
+    fields {
+      slug
+      readingTime {
+        minutes
       }
     }
-    category: markdownRemark(frontmatter: { title: { eq: $category } }) {
-      id
-      fields {
-        slug
+    frontmatter {
+      date
+      language
+      featuredimage {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
+        }
       }
-      frontmatter {
+      title
+      description
+      tags
+      sources {
+        link
+        source
+      }
+      notebooks {
+        link
         title
       }
     }
-    author: markdownRemark(frontmatter: { username: { eq: $author } }) {
-      id
-      fields {
-        slug
-      }
-      frontmatter {
-        name
-        twitter
-        image {
-          childImageSharp {
-            fluid(maxWidth: 75, maxHeight: 75) {
-              ...GatsbyImageSharpFluid_withWebp_noBase64
-            }
-          }
-        }
-      }
+  }
+  category: markdownRemark(frontmatter: {title: {eq: $category}}) {
+    id
+    fields {
+      slug
     }
-    sources: markdownRemark(frontmatter: { username: { eq: $author } }) {
-      id
-      fields {
-        slug
-      }
-      frontmatter {
-        name
-        image {
-          childImageSharp {
-            fluid(maxHeight: 75) {
-              ...GatsbyImageSharpFluid_withWebp_noBase64
-            }
-          }
-        }
-      }
+    frontmatter {
+      title
     }
-    logo: file(relativePath: { eq: "logo.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 75, maxHeight: 75) {
-          ...GatsbyImageSharpFluid_withWebp_noBase64
-        }
-      }
+  }
+  author: markdownRemark(frontmatter: {username: {eq: $author}}) {
+    id
+    fields {
+      slug
     }
-    site {
-      siteMetadata {
-        title
-        siteUrl
-        social {
-          twitter
+    frontmatter {
+      name
+      twitter
+      image {
+        childImageSharp {
+          gatsbyImageData(width: 75, height: 75, placeholder: NONE, layout: CONSTRAINED)
         }
       }
     }
   }
+  sources: markdownRemark(frontmatter: {username: {eq: $author}}) {
+    id
+    fields {
+      slug
+    }
+    frontmatter {
+      name
+      image {
+        childImageSharp {
+          gatsbyImageData(height: 75, placeholder: NONE, layout: FULL_WIDTH)
+        }
+      }
+    }
+  }
+  logo: file(relativePath: {eq: "logo.png"}) {
+    childImageSharp {
+      gatsbyImageData(width: 75, height: 75, placeholder: NONE, layout: CONSTRAINED)
+    }
+  }
+  site {
+    siteMetadata {
+      title
+      siteUrl
+      social {
+        twitter
+      }
+    }
+  }
+}
 `

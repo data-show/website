@@ -30,6 +30,9 @@ module.exports = {
     color,
     social,
   },
+  flags: {
+    PRESERVE_WEBPACK_CACHE: true
+  },
   plugins: [
     `gatsby-plugin-preact`,
     'gatsby-plugin-react-helmet',
@@ -56,6 +59,7 @@ module.exports = {
       },
     },
     netlifyCmsPaths,
+    `gatsby-plugin-image`,
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
@@ -68,12 +72,14 @@ module.exports = {
           {
             resolve: 'gatsby-remark-relative-images',
             options: {
-              name: 'uploads',
+              staticFolderName: 'static',
             },
           },
           {
             resolve: 'gatsby-remark-images',
             options: {
+              maxWidth: 1024,
+
               linkImagesToOriginal: true,
               loading: 'lazy',
               showCaptions: true,
@@ -126,15 +132,15 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: 'gatsby-plugin-html2amp',
-      options: {
-        files: ['/blog/**/*.html', '/tags/**/*.html'],
-        dist: 'public/amp',
-        gaConfigPath: 'gaconfig.json',
-        optimize: true,
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-html2amp',
+    //   options: {
+    //     files: ['/blog/**/*.html', '/tags/**/*.html'],
+    //     dist: 'public/amp',
+    //     gaConfigPath: 'gaconfig.json',
+    //     optimize: true,
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-feed`,
       options: {

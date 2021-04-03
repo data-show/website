@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import useSiteMetadata from '../queries/site-metadata'
 import useCategories from '../queries/categories'
@@ -12,14 +12,13 @@ export default function Navbar() {
   return (
     <header className="flex items-center justify-between py-2">
       <Link to={`/`} className="px-2 lg:px-0 font-bold capitalize">
-        <Img
-          fluid={logo.childImageSharp.fluid}
+        <GatsbyImage
+          image={getImage(logo)}
           alt={title}
           className="inline-block"
           loading="eager"
           fadeIn={false}
-          style={{ height: '50px', width: '50px', backgroundColor: 'none' }}
-        />
+          style={{ height: '50px', width: '50px', backgroundColor: 'none' }} />
       </Link>
       <button className="block md:hidden px-2 text-3xl">
         <i className="bx bx-menu"></i>
@@ -39,5 +38,5 @@ export default function Navbar() {
         </li>
       </ul>
     </header>
-  )
+  );
 }

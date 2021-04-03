@@ -1,7 +1,7 @@
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage, getSrc, getImage } from 'gatsby-plugin-image';
 import { OutboundLink } from 'gatsby-plugin-google-analytics'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import PropTypes from 'prop-types'
@@ -28,7 +28,7 @@ const Author = ({ data: {
           profile: {
             username: author.frontmatter.username,
           },
-          images: [author.frontmatter.image.childImageSharp.fluid.src],
+          images: [getSrc(author.frontmatter.image)],
         }}
       />
 
@@ -79,11 +79,10 @@ const Author = ({ data: {
                 </div>
               </div>
 
-              <Img
-                fluid={author.frontmatter.image.childImageSharp.fluid}
+              <GatsbyImage
+                image={getImage(author.frontmatter.image)}
                 alt={author.frontmatter.name}
-                className="rounded-full ml-4"
-              />
+                className="rounded-full ml-4" />
             </div>
 
             <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
@@ -104,7 +103,7 @@ const Author = ({ data: {
                       slug={slug}
                       title={title}
                       description={description}
-                      image={featuredimage}
+                      image={getImage(featuredimage)}
                     />
                   )
               )}
@@ -123,64 +122,54 @@ Author.propTypes = {
 
 export default Author
 
-export const pageQuery = graphql`
-  query AuthorByID($id: String!, $title: String!) {
-    markdownRemark(id: { eq: $id }) {
-      id
-      html
-      fields {
-        slug
+export const pageQuery = graphql`query AuthorByID($id: String!, $title: String!) {
+  markdownRemark(id: {eq: $id}) {
+    id
+    html
+    fields {
+      slug
+    }
+    frontmatter {
+      name
+      description
+      image {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
+        }
       }
-      frontmatter {
-        name
-        description
-        image {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid_withWebp
+      username
+      github
+      linkedin
+      website
+    }
+  }
+  allMarkdownRemark(
+    sort: {fields: [frontmatter___date], order: DESC}
+    skip: 0
+    limit: 10
+    filter: {frontmatter: {templateKey: {eq: "blog-post"}, author: {eq: $title}}}
+  ) {
+    edges {
+      node {
+        frontmatter {
+          title
+          description
+          featuredimage {
+            childImageSharp {
+              gatsbyImageData(height: 350, layout: FULL_WIDTH)
             }
           }
         }
-        username
-        github
-        linkedin
-        website
-      }
-    }
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      skip: 0
-      limit: 10
-      filter: {
-        frontmatter: {
-          templateKey: { eq: "blog-post" }
-          author: { eq: $title }
+        fields {
+          slug
         }
-      }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            title
-            description
-            featuredimage {
-              childImageSharp {
-                fluid(maxHeight: 350) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
-            }
-          }
-          fields {
-            slug
-          }
-        }
-      }
-    }
-    site {
-      siteMetadata {
-        siteUrl
       }
     }
   }
+  site {
+    siteMetadata {
+      siteUrl
+    }
+  }
+}
 `

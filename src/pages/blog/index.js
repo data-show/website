@@ -42,39 +42,36 @@ const BlogIndexPage = ({
 
 export default BlogIndexPage
 
-export const pageQuery = graphql`
-  query BlogIndexPage {
-    postsAllMarkdownRemark: allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      skip: 0
-      limit: 10
-      filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            title
-            description
-            featuredimage {
-              childImageSharp {
-                fluid(maxHeight: 350) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
+export const pageQuery = graphql`query BlogIndexPage {
+  postsAllMarkdownRemark: allMarkdownRemark(
+    sort: {fields: [frontmatter___date], order: DESC}
+    skip: 0
+    limit: 10
+    filter: {frontmatter: {templateKey: {eq: "blog-post"}}}
+  ) {
+    edges {
+      node {
+        frontmatter {
+          title
+          description
+          featuredimage {
+            childImageSharp {
+              gatsbyImageData(height: 350, layout: FULL_WIDTH)
             }
           }
-          fields {
-            slug
-          }
+        }
+        fields {
+          slug
         }
       }
     }
-    site {
-      siteMetadata {
-        siteUrl
-        title
-        description
-      }
+  }
+  site {
+    siteMetadata {
+      siteUrl
+      title
+      description
     }
   }
+}
 `
