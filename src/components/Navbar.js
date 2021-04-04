@@ -1,24 +1,19 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import useSiteMetadata from '../queries/site-metadata'
 import useCategories from '../queries/categories'
 
+import Logo from './Logo'
+
 export default function Navbar() {
-  const { logo, title } = useSiteMetadata()
+  const { title } = useSiteMetadata()
   const categories = useCategories()
 
   return (
     <header className="flex items-center justify-between py-2">
       <Link to={`/`} className="px-2 lg:px-0 font-bold capitalize">
-        <GatsbyImage
-          image={getImage(logo)}
-          alt={title}
-          className="inline-block"
-          loading="eager"
-          fadeIn={false}
-          style={{ height: '50px', width: '50px', backgroundColor: 'none' }} />
+        <Logo title={title} className="inline-block" />
       </Link>
       <button className="block md:hidden px-2 text-3xl">
         <i className="bx bx-menu"></i>

@@ -12,7 +12,7 @@ import { FacebookShareButton, LinkedinShareButton, PinterestShareButton, Twitter
 
 import Layout from '../components/Layout'
 
-const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadata: { title: siteName, siteUrl, social } } } }) => {
+const DataVizPost = ({ data: { post, category, author, site: { siteMetadata: { title: siteName, siteUrl, social } } } }) => {
   const url = `${siteUrl}${post.fields.slug}`
   const tags = post.frontmatter.tags
   const title = post.frontmatter.title
@@ -51,7 +51,7 @@ const DataVizPost = ({ data: { post, category, author, logo, site: { siteMetadat
         datePublished={post.frontmatter.date}
         dateModified={post.frontmatter.date}
         authorName={author.frontmatter.name}
-        publisherLogo={getSrc(logo)}
+        publisherLogo={`${siteUrl}/logo.png`}
         description={post.frontmatter.description}
       />
       <BreadcrumbJsonLd
@@ -294,11 +294,6 @@ export const pageQuery = graphql`query DataVizPostByID($id: String!, $category: 
           gatsbyImageData(height: 75, layout: FULL_WIDTH)
         }
       }
-    }
-  }
-  logo: file(relativePath: {eq: "logo.png"}) {
-    childImageSharp {
-      gatsbyImageData(width: 75, height: 75, placeholder: NONE, layout: CONSTRAINED)
     }
   }
   site {

@@ -26,8 +26,6 @@ const IndexPage = ({
             <Link to={posts[0].node.fields.slug}>
               <GatsbyImage
                 image={getImage(posts[0].node.frontmatter.featuredimage)}
-                fadeIn={false}
-                loading="eager"
                 alt={posts[0].node.frontmatter.title}
                 title={posts[0].node.frontmatter.title}
                 className="rounded-md object-cover w-full h-64" />

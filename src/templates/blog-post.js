@@ -16,7 +16,7 @@ import DataVizPostCard from '../components/DataVizPostCard'
 import { HTMLContent } from '../components/Content'
 import Layout from '../components/Layout'
 
-const BlogPost = ({ data: { post, category, author, lastPosts: { edges: lastPosts }, lastDataviz: { edges: lastDataviz }, logo, site: { siteMetadata: { title: siteName, siteUrl, social } } } }) => {
+const BlogPost = ({ data: { post, category, author, lastPosts: { edges: lastPosts }, lastDataviz: { edges: lastDataviz }, site: { siteMetadata: { title: siteName, siteUrl, social } } } }) => {
   const url = `${siteUrl}${post.fields.slug}`
   const tags = post.frontmatter.tags
   const title = post.frontmatter.title
@@ -60,7 +60,7 @@ const BlogPost = ({ data: { post, category, author, lastPosts: { edges: lastPost
         datePublished={publishedDate}
         dateModified={publishedDate}
         authorName={author.frontmatter.name}
-        publisherLogo={`${siteUrl}${getSrc(logo)}`}
+        publisherLogo={`${siteUrl}/logo.png`}
         description={post.frontmatter.description}
         overrides={{
           '@type': 'BlogPosting',
@@ -114,7 +114,6 @@ const BlogPost = ({ data: { post, category, author, lastPosts: { edges: lastPost
                   <GatsbyImage
                     image={getImage(author.frontmatter.image)}
                     alt={author.frontmatter.name}
-                    loading="eager"
                     className="w-10 h-10 rounded-full mr-4" />
                 </Link>
                 <div className="text-sm">
@@ -409,11 +408,6 @@ export const pageQuery = graphql`
           slug
         }
       }
-    }
-  }
-  logo: file(relativePath: {eq: "logo.png"}) {
-    childImageSharp {
-      gatsbyImageData(width: 75, height: 75, placeholder: NONE, layout: CONSTRAINED)
     }
   }
   site {
