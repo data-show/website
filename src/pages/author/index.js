@@ -18,9 +18,9 @@ const AuthorsIndexPage = ({ data: { site: { siteMetadata: { siteUrl, title } } }
         canonical={`${siteUrl}author`}
       />
 
-      <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0">
+      <section className="max-w-3xl mx-auto px-2 xl:max-w-5xl xl:px-0">
         <div className="space-y-4 text-left py-2 mb-6 lg:mb-8">
-          <h1 className="text-3xl leading-9 text-gray-800 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 mb-2">
+          <h1 className="text-xl lg:text-3xl leading-9 text-gray-800 lg:leading-14 mb-2">
             Authors
           </h1>
         </div>

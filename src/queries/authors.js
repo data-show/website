@@ -15,7 +15,12 @@ const useAuthors = () => {
         description
         image {
           childImageSharp {
-            gatsbyImageData(height: 350, layout: FULL_WIDTH)
+            gatsbyImageData(
+              height: 350
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
+              layout: CONSTRAINED
+            )
           }
         }
       }

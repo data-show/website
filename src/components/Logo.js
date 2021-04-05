@@ -1,14 +1,18 @@
 import { StaticImage } from 'gatsby-plugin-image'
 import PropTypes from 'prop-types'
+import React from 'react'
 
 export default function Logo({ title, className }) {
   return (
     <StaticImage
-      image="./logo.png"
+      src="../images/logo.png"
+      formats={["auto", "webp", "avif"]}
       alt={title}
       title={title}
       className={className}
-      style={{ height: '50px', width: '50px', backgroundColor: 'none' }}
+      placeholder="blurred"
+      width={50}
+      height={50}
     />
   )
 }

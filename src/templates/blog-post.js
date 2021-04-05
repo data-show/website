@@ -14,6 +14,7 @@ import { FacebookShareButton, LinkedinShareButton, TwitterShareButton, WhatsappS
 import BlogPostCard from '../components/BlogPostCard'
 import DataVizPostCard from '../components/DataVizPostCard'
 import { HTMLContent } from '../components/Content'
+import NewsletterForm from '../components/NewsletterForm'
 import Layout from '../components/Layout'
 
 const BlogPost = ({ data: { post, category, author, lastPosts: { edges: lastPosts }, lastDataviz: { edges: lastDataviz }, site: { siteMetadata: { title: siteName, siteUrl, social } } } }) => {
@@ -98,15 +99,15 @@ const BlogPost = ({ data: { post, category, author, lastPosts: { edges: lastPost
           <div className="space-y-4 text-left">
             <AnchorLink href="#sources" className="underline">Sources</AnchorLink> <AnchorLink href="#notebooks" className="underline">Notebooks</AnchorLink>
 
-            <h1 className="text-3xl leading-12 text-gray-800 md:text-4xl md:leading-14 mb-2">
+            <h1 className="text-3xl leading-12 text-gray-800 lg:text-4xl lg:leading-14 mb-2">
               {title}
             </h1>
-            <p className="text-lg leading-6 text-gray-600 md:text-xl md:leading-8 mb-4">
+            <p className="text-lg leading-6 text-gray-600 lg:text-xl lg:leading-8 mb-4">
               {description}
             </p>
 
             <div className="grid grid-cols-4 gap-2 py-2">
-              <div className="col-span-4 md:col-span-3 flex">
+              <div className="col-span-4 lg:col-span-3 flex">
                 <Link
                   className="text-gray-900 leading-none"
                   to={author.fields.slug}
@@ -129,7 +130,7 @@ const BlogPost = ({ data: { post, category, author, lastPosts: { edges: lastPost
                 </div>
               </div>
 
-              <div className="col-span-4 md:col-span-1 inline-flex items-center text-lg">
+              <div className="col-span-4 lg:col-span-1 inline-flex items-center text-lg">
                 <FacebookShareButton
                   url={url}
                   quote={title}
@@ -177,7 +178,7 @@ const BlogPost = ({ data: { post, category, author, lastPosts: { edges: lastPost
         </div>
 
         <div className="mt-6 mb-2">
-          <div className="my-4 md:my-8" id="sources">
+          <div className="my-4 lg:my-8" id="sources">
             <h2 className="font-bold text-xl mb-2">Sources</h2>
 
             <hr className="my-4" />
@@ -197,7 +198,7 @@ const BlogPost = ({ data: { post, category, author, lastPosts: { edges: lastPost
             }
           </div>
 
-          <div className="my-4 md:my-8" id="notebooks">
+          <div className="my-4 lg:my-8" id="notebooks">
             <h2 className="font-bold text-xl mb-2">Notebooks</h2>
 
             <hr className="my-4" />
@@ -214,6 +215,11 @@ const BlogPost = ({ data: { post, category, author, lastPosts: { edges: lastPost
                 )
             }
           </div>
+
+          <section className="my-8 lg:my-12 mx-auto bg-gray-700 p-6 w-full lg:w-3/4">
+            <p className="font-bold text-white text-lg mb-4">Did you find this article interesting ? Subscribe to the newsletter.</p>
+            <NewsletterForm />
+          </section>
 
           <section className="mt-8">
             <h3 className="font-bold text-xl mb-2">Latest Posts</h3>
@@ -270,7 +276,7 @@ const BlogPost = ({ data: { post, category, author, lastPosts: { edges: lastPost
             </div>
           </section>
 
-          <div className="my-4 md:my-8">
+          <div className="my-4 lg:my-8">
             {tags.map(tag => (
               <Link
                 key={tag + `tag`}
@@ -311,7 +317,12 @@ export const pageQuery = graphql`
       language
       featuredimage {
         childImageSharp {
-          gatsbyImageData(layout: FULL_WIDTH)
+          gatsbyImageData(
+            height: 350
+            placeholder: BLURRED
+            formats: [AUTO, WEBP, AVIF]
+            layout: CONSTRAINED
+          )
         }
       }
       title
@@ -327,7 +338,7 @@ export const pageQuery = graphql`
       }
     }
   }
-  category: markdownRemark(frontmatter: {title: {eq: $category}}) {
+  category: markdownRemark(frontmatter: { title: { eq: $category } }) {
     id
     fields {
       slug
@@ -336,7 +347,7 @@ export const pageQuery = graphql`
       title
     }
   }
-  author: markdownRemark(frontmatter: {username: {eq: $author}}) {
+  author: markdownRemark(frontmatter: { username: { eq: $author } }) {
     id
     fields {
       slug
@@ -346,7 +357,13 @@ export const pageQuery = graphql`
       twitter
       image {
         childImageSharp {
-          gatsbyImageData(width: 75, height: 75, placeholder: NONE, layout: CONSTRAINED)
+          gatsbyImageData(
+            width: 75
+            height: 75
+            placeholder: BLURRED
+            formats: [AUTO, WEBP, AVIF]
+            layout: CONSTRAINED
+          )
         }
       }
     }
@@ -358,11 +375,6 @@ export const pageQuery = graphql`
     }
     frontmatter {
       name
-      image {
-        childImageSharp {
-          gatsbyImageData(height: 75, placeholder: NONE, layout: FULL_WIDTH)
-        }
-      }
     }
   }
   lastPosts: allMarkdownRemark(
@@ -377,7 +389,12 @@ export const pageQuery = graphql`
           title
           featuredimage {
             childImageSharp {
-              gatsbyImageData(height: 550, layout: FULL_WIDTH)
+              gatsbyImageData(
+                height: 350
+                width: 350
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+              )
             }
           }
           category
@@ -400,7 +417,12 @@ export const pageQuery = graphql`
           title
           media {
             childImageSharp {
-              gatsbyImageData(height: 350, layout: FULL_WIDTH)
+              gatsbyImageData(
+                height: 350
+                width: 350
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+              )
             }
           }
         }

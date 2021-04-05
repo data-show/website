@@ -36,12 +36,12 @@ const Author = ({ data: {
         <section>
           <div className="space-y-4 text-left py-2 mb-6 lg:mb-8">
             <div className="grid grid-cols-6 gap-2 py-2">
-              <div className="col-span-6 md:col-span-4 flex">
+              <div className="col-span-6 lg:col-span-4 flex">
                 <div>
-                  <h1 className="text-3xl leading-9 text-gray-800 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 mb-2">
+                  <h1 className="text-3xl leading-9 text-gray-800 sm:text-4xl sm:leading-10 lg:text-5xl lg:leading-14 mb-2">
                     {author.frontmatter.name}
                   </h1>
-                  <p className="text-lg text-gray-600 prose lg:prose-lg md:leading-8 mb-4">
+                  <p className="text-lg text-gray-600 prose lg:prose-lg lg:leading-8 mb-4">
                     {author.frontmatter.description}
                   </p>
                   <div className="flex justify-start items-center text-lg text-gray-500">
@@ -134,7 +134,12 @@ export const pageQuery = graphql`query AuthorByID($id: String!, $title: String!)
       description
       image {
         childImageSharp {
-          gatsbyImageData(layout: FULL_WIDTH)
+          gatsbyImageData(
+            height: 90
+            placeholder: BLURRED
+            formats: [AUTO, WEBP, AVIF]
+            layout: CONSTRAINED
+          )
         }
       }
       username
@@ -156,7 +161,12 @@ export const pageQuery = graphql`query AuthorByID($id: String!, $title: String!)
           description
           featuredimage {
             childImageSharp {
-              gatsbyImageData(height: 350, layout: FULL_WIDTH)
+              gatsbyImageData(
+                height: 350
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+                layout: CONSTRAINED
+              )
             }
           }
         }

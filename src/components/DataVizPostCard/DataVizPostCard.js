@@ -1,10 +1,11 @@
+import clsx from 'clsx'
 import { Link } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const DataVizPostCard = ({ title, description, image, slug }) => (
-  <div className="rounded w-full">
+const DataVizPostCard = ({ className, title, description, image, slug }) => (
+  <div className={clsx('rounded w-full', className)}>
     <Link to={slug}>
       <GatsbyImage
         image={getImage(image)}
@@ -28,6 +29,7 @@ const DataVizPostCard = ({ title, description, image, slug }) => (
 )
 
 DataVizPostCard.propTypes = {
+  className: PropTypes.string,
   title: PropTypes.string.isRequired,
   image: PropTypes.object,
   slug: PropTypes.string,

@@ -85,16 +85,16 @@ const DataVizPost = ({ data: { post, category, author, site: { siteMetadata: { t
 
       <article className="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
         <header className="pt-2 pb-2 xl:pb-4 lg:border-b-2 lg:border-gray-200">
-          <h1 className="text-3xl leading-12 text-gray-800 md:text-4xl md:leading-14 mb-2">
+          <h1 className="text-3xl leading-12 text-gray-800 lg:text-4xl lg:leading-14 mb-2">
             {title}
           </h1>
-          <p className="text-lg leading-4 text-gray-600 md:text-xl md:leading-6 mb-4">
+          <p className="text-lg leading-4 text-gray-600 lg:text-xl lg:leading-6 mb-4">
             {description}
           </p>
 
           <div className="space-y-4 text-left">
             <div className="grid grid-cols-4 gap-2 py-2">
-              <div className="col-span-4 md:col-span-3 flex">
+              <div className="col-span-4 lg:col-span-3 flex">
                 <Link
                   className="text-gray-900 leading-none"
                   to={author.fields.slug}
@@ -117,7 +117,7 @@ const DataVizPost = ({ data: { post, category, author, site: { siteMetadata: { t
                 </div>
               </div>
 
-              <div className="col-span-4 md:col-span-1 inline-flex items-center text-lg">
+              <div className="col-span-4 lg:col-span-1 inline-flex items-center text-lg">
                 <PinterestShareButton
                   url={url}
                   media={getSrc(post.frontmatter.media)}
@@ -177,7 +177,7 @@ const DataVizPost = ({ data: { post, category, author, site: { siteMetadata: { t
 
         <div className="mt-6 mb-2">
           {tags && tags.length ? (
-            <div className="py-2 my-4 md:my-8">
+            <div className="py-2 my-4 lg:my-8">
               {tags.map(tag => (
                 <Link
                   key={tag + `tag`}
@@ -191,7 +191,7 @@ const DataVizPost = ({ data: { post, category, author, site: { siteMetadata: { t
           ) : null}
 
           {sources && sources.length ? (
-            <div className="my-4 md:my-8">
+            <div className="my-4 lg:my-8">
               <h2 className="text-lg text-gray-900 mb-2">Sources</h2>
 
               <hr className="my-4" />
@@ -205,7 +205,7 @@ const DataVizPost = ({ data: { post, category, author, site: { siteMetadata: { t
           ) : null}
 
           {notebooks && notebooks.length ? (
-            <div className="my-4 md:my-8">
+            <div className="my-4 lg:my-8">
               <h2 className="text-lg text-gray-900 mb-2">Notebooks</h2>
 
               <hr className="my-4" />
@@ -242,7 +242,7 @@ export const pageQuery = graphql`query DataVizPostByID($id: String!, $category: 
       language
       media {
         childImageSharp {
-          gatsbyImageData(layout: FULL_WIDTH)
+          gatsbyImageData(layout: CONSTRAINED)
         }
       }
       title
@@ -277,7 +277,12 @@ export const pageQuery = graphql`query DataVizPostByID($id: String!, $category: 
       twitter
       image {
         childImageSharp {
-          gatsbyImageData(width: 75, layout: CONSTRAINED)
+          gatsbyImageData(
+            height: 75
+            width: 75
+            formats: [AUTO, WEBP, AVIF]
+            layout: CONSTRAINED
+          )
         }
       }
     }
@@ -289,11 +294,6 @@ export const pageQuery = graphql`query DataVizPostByID($id: String!, $category: 
     }
     frontmatter {
       name
-      image {
-        childImageSharp {
-          gatsbyImageData(height: 75, layout: FULL_WIDTH)
-        }
-      }
     }
   }
   site {

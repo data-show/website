@@ -20,6 +20,7 @@ const social = {
   linkedin: 'data-show-blog',
 }
 const gtagId = 'G-7JKYHNXE4G'
+const mailchimpEndpoint = 'https://data-show.us1.list-manage.com/subscribe/post?u=68dc700424036ced77e68077d&amp;id=ef2464c33c'
 
 module.exports = {
   siteMetadata: {
@@ -54,7 +55,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/src/img`,
+        path: `${__dirname}/src/images`,
         name: 'images',
       },
     },
@@ -130,6 +131,12 @@ module.exports = {
           site: social.twitter,
           cardType: 'summary_large_image',
         },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-mailchimp',
+      options: {
+        endpoint: mailchimpEndpoint,
       },
     },
     {

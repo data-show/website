@@ -19,10 +19,10 @@ const CategoryTemplate = ({
   return (
     <section>
       <div className="space-y-4 text-left py-2 mb-6 lg:mb-8">
-        <h1 className="text-3xl leading-9 text-gray-800 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 mb-2">
+        <h1 className="text-3xl leading-9 text-gray-800 sm:text-4xl sm:leading-10 lg:text-5xl lg:leading-14 mb-2">
           {title}
         </h1>
-        <p className="text-lg text-gray-600 sm:text-lg md:text-xl md:leading-8 mb-4">
+        <p className="text-lg text-gray-600 sm:text-lg lg:text-xl lg:leading-8 mb-4">
           {description}
         </p>
       </div>
@@ -89,10 +89,10 @@ const Category = ({
         </div>
 
         <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
-          <h2 className="font-bold text-3xl">Discover more tags</h2>
+          <h2 className="font-bold text-xl lg:text-3xl">Discover more tags</h2>
         </div>
         {tags && tags.length ? (
-          <div className="py-2 my-1 md:my-2">
+          <div className="py-2 my-1 lg:my-2">
             {tags.map(tag => (
               <Link
                 key={tag + `tag`}
@@ -144,7 +144,12 @@ export const pageQuery = graphql`query CategoryByID($id: String!, $title: String
           description
           featuredimage {
             childImageSharp {
-              gatsbyImageData(height: 350, layout: FULL_WIDTH)
+              gatsbyImageData(
+                height: 350
+                width: 350
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]  
+              )
             }
           }
         }

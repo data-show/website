@@ -65,7 +65,7 @@ const TemplateWrapper = ({ children }) => {
       <div className="max-w-screen-lg mx-auto antialiased">
         <Navbar />
 
-        <main className="mt-12">
+        <main className="mt-4 lg:mt-12">
           {children}
         </main>
 

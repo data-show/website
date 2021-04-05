@@ -21,8 +21,8 @@ const IndexPage = ({
       />
 
       {posts.length > 0 && (
-        <div className="flex space-x-0 md:space-x-6 mb-16">
-          <div className="mb-4 lg:mb-0 p-4 lg:p-0 w-full md:w-1/2 rounded block">
+        <div className="lg:flex space-x-0 lg:space-x-6 mb-16">
+          <div className="mb-4 lg:mb-0 p-4 lg:p-0 w-full lg:w-1/2 rounded block">
             <Link to={posts[0].node.fields.slug}>
               <GatsbyImage
                 image={getImage(posts[0].node.frontmatter.featuredimage)}
@@ -30,9 +30,9 @@ const IndexPage = ({
                 title={posts[0].node.frontmatter.title}
                 className="rounded-md object-cover w-full h-64" />
             </Link>
-            <span className="text-gray-700 text-sm hidden md:block mt-4">{posts[0].node.frontmatter.category}</span>
+            <span className="text-gray-700 text-sm hidden lg:block mt-4">{posts[0].node.frontmatter.category}</span>
             <Link to={posts[0].node.fields.slug}>
-              <h2 className="text-gray-800 text-4xl font-bold mt-2 mb-2 leading-tight">
+              <h2 className="text-gray-800 text-xl lg:text-3xl lg:text-4xl font-bold mt-2 mb-2 leading-tight">
                 {posts[0].node.frontmatter.title}
               </h2>
             </Link>
@@ -44,7 +44,7 @@ const IndexPage = ({
             </Link>
           </div>
 
-          <div className="w-full md:w-1/2">
+          <div className="w-full lg:w-1/2">
             {posts.slice(1, 5).map(
               ({
                 node: {
@@ -52,22 +52,22 @@ const IndexPage = ({
                   frontmatter: { category, title, description, featuredimage },
                 },
               }) => (
-                  <div key={slug} className="rounded w-full flex flex-col md:flex-row mb-10">
+                  <div key={slug} className="rounded w-full flex flex-col lg:flex-row mb-10">
                     <Link to={slug}>
                       <GatsbyImage
                         image={getImage(featuredimage)}
                         alt={title}
                         title={title}
-                        className="block lg:block rounded-md w-64 h-64 md:w-56 md:h-32 m-4 md:m-0" />
+                        className="block lg:block rounded-md h-32 m-4 lg:m-0" />
                     </Link>
                     <div className="bg-white rounded px-4">
-                      <span className="text-gray-700 text-sm hidden md:block">{category}</span>
+                      <span className="text-gray-700 text-sm hidden lg:block">{category}</span>
                       <Link to={slug}>
-                        <h3 className="md:mt-0 text-gray-800 font-semibold text-xl mb-2">
+                        <h3 className="lg:mt-0 text-gray-800 font-semibold text-lg lg:text-xl mb-2">
                           {title}
                         </h3>
                       </Link>
-                      <p className="block md:hidden p-2 pl-0 pt-1 text-sm text-gray-600">
+                      <p className="block lg:hidden p-2 pl-0 pt-1 text-sm text-gray-600">
                         {description}
                       </p>
                     </div>
@@ -79,8 +79,8 @@ const IndexPage = ({
 
       {dataviz.length > 0 && (
         <section>
-          <div className="flex mt-16 mb-8 px-4 lg:px-0 items-center justify-between">
-            <h2 className="font-bold text-3xl">Latest DataViz</h2>
+          <div className="flex mt-8 lg:mt-16 mb-8 px-4 lg:px-0 items-center justify-between">
+            <h2 className="font-bold text-xl lg:text-3xl">Latest DataViz</h2>
             <Link to={`/dataviz`} className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded cursor-pointer">
               View all
             </Link>
@@ -94,7 +94,7 @@ const IndexPage = ({
                 },
               }) => (
                   <DataVizPostCard
-                    className="lg:w-1/2 lg:w-1/3 p-4 lg:p-0"
+                    className="lg:w-1/3 p-4 lg:p-0"
                     key={slug}
                     slug={slug}
                     title={title}
@@ -114,23 +114,10 @@ IndexPage.propTypes = {
       frontmatter: PropTypes.object,
     }),
     postsAllMarkdownRemark: PropTypes.shape({
-      edges: PropTypes.arrayOf({
-        node: PropTypes.shape({
-          frontmatter: PropTypes.shape({
-            title: PropTypes.string,
-            description: PropTypes.string,
-          }),
-        }),
-      }),
+      edges: PropTypes.arrayOf(PropTypes.object),
     }),
     datavizAllMarkdownRemark: PropTypes.shape({
-      edges: PropTypes.arrayOf({
-        node: PropTypes.shape({
-          frontmatter: PropTypes.shape({
-            title: PropTypes.string
-          }),
-        }),
-      }),
+      edges: PropTypes.arrayOf(PropTypes.object),
     }),
   }),
 }
@@ -157,7 +144,13 @@ export const pageQuery = graphql`query IndexPageTemplate {
           description
           featuredimage {
             childImageSharp {
-              gatsbyImageData(height: 550, layout: FULL_WIDTH)
+              gatsbyImageData(
+                height: 120
+                width: 350
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+                layout: CONSTRAINED
+              )
             }
           }
           category
@@ -180,7 +173,13 @@ export const pageQuery = graphql`query IndexPageTemplate {
           title
           media {
             childImageSharp {
-              gatsbyImageData(height: 350, layout: FULL_WIDTH)
+              gatsbyImageData(
+                height: 120
+                width: 350
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+                layout: CONSTRAINED
+              )
             }
           }
         }

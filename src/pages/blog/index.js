@@ -22,7 +22,7 @@ const BlogIndexPage = ({
 
       <section className="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0">
         <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
-          <h2 className="font-bold text-3xl">Latest Posts</h2>
+          <h2 className="font-bold text-xl lg:text-3xl">Latest Posts</h2>
         </div>
 
         <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -56,7 +56,12 @@ export const pageQuery = graphql`query BlogIndexPage {
           description
           featuredimage {
             childImageSharp {
-              gatsbyImageData(height: 350, layout: FULL_WIDTH)
+              gatsbyImageData(
+                height: 350
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+                layout: CONSTRAINED
+              )
             }
           }
         }
