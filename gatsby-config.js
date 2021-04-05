@@ -9,8 +9,8 @@ const siteUrl = 'https://www.data-show.com/'
 const title = 'Data Show'
 const description =
   'Data Show makes data visualization notebooks with open data about economics and health topics.'
-const logo = '/static/img/logo.png'
-const srcLogo = 'src/img/logo.png'
+const logo = '/img/logo.png'
+const srcLogo = 'src/images/logo.png'
 const color = '#433e85'
 const social = {
   twitter: 'DataShow_',
@@ -131,6 +131,13 @@ module.exports = {
           site: social.twitter,
           cardType: 'summary_large_image',
         },
+      },
+    },
+    {
+      resolve: "@sentry/gatsby",
+      options: {
+        dsn: "https://3aad5956d63d4049bd4612805e4e76c8@o564567.ingest.sentry.io/5705355",
+        sampleRate: 0.7,
       },
     },
     {
