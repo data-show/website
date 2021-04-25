@@ -246,12 +246,6 @@ module.exports = {
           return headers.map(header => typeof header === 'string' && regex.test(header) ? `${header}, s-maxage=${header.match(regex)[1]}` : header)
         }
       }
-    },
-    {
-      resolve: 'gatsby-plugin-netlify-cache',
-      options: {
-        cachePublic: true,
-      },
-    },
+    }
   ],
 }
