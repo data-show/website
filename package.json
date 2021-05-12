@@ -46,7 +46,7 @@
     "netlify-cms-app": "2.14.35",
     "netlify-purge-cloudflare-on-deploy": "1.2.0",
     "node-sass": "5.0.0",
-    "postcss": "8.2.9",
+    "postcss": "8.2.10",
     "preact": "10.5.13",
     "preact-render-to-string": "5.1.18",
     "prop-types": "15.7.2",
