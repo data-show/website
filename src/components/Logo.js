@@ -6,7 +6,7 @@ export default function Logo({ title, className }) {
   return (
     <StaticImage
       src="../images/logo.png"
-      formats={["auto", "webp", "avif"]}
+      formats={['auto', 'webp', 'avif']}
       alt={title}
       title={title}
       className={className}
@@ -19,5 +19,5 @@ export default function Logo({ title, className }) {
 
 Logo.propTypes = {
   title: PropTypes.string.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
 }

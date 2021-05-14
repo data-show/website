@@ -7,7 +7,13 @@ import Layout from '../../components/Layout'
 
 import useAuthors from '../../queries/authors'
 
-const AuthorsIndexPage = ({ data: { site: { siteMetadata: { siteUrl, title } } } }) => {
+const AuthorsIndexPage = ({
+  data: {
+    site: {
+      siteMetadata: { siteUrl, title },
+    },
+  },
+}) => {
   const authors = useAuthors()
 
   return (
@@ -54,4 +60,3 @@ export const pageQuery = graphql`
     }
   }
 `
-

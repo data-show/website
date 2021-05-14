@@ -1,18 +1,44 @@
-import { faFacebookF, faPinterestP, faLinkedinIn, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+import {
+  faFacebookF,
+  faPinterestP,
+  faLinkedinIn,
+  faTwitter,
+  faWhatsapp,
+} from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { format } from 'date-fns'
 import { graphql, Link } from 'gatsby'
 import { GatsbyImage, getImage, getSrc } from 'gatsby-plugin-image'
 import { OutboundLink } from 'gatsby-plugin-google-gtag'
-import { GatsbySeo, ArticleJsonLd, BreadcrumbJsonLd, JsonLd } from 'gatsby-plugin-next-seo'
+import {
+  GatsbySeo,
+  ArticleJsonLd,
+  BreadcrumbJsonLd,
+  JsonLd,
+} from 'gatsby-plugin-next-seo'
 import { kebabCase } from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { FacebookShareButton, LinkedinShareButton, PinterestShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share'
+import {
+  FacebookShareButton,
+  LinkedinShareButton,
+  PinterestShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from 'react-share'
 
 import Layout from '../components/Layout'
 
-const DataVizPost = ({ data: { post, category, author, site: { siteMetadata: { title: siteName, siteUrl, social } } } }) => {
+const DataVizPost = ({
+  data: {
+    post,
+    category,
+    author,
+    site: {
+      siteMetadata: { title: siteName, siteUrl, social },
+    },
+  },
+}) => {
   const url = `${siteUrl}${post.fields.slug}`
   const tags = post.frontmatter.tags
   const title = post.frontmatter.title
@@ -59,27 +85,27 @@ const DataVizPost = ({ data: { post, category, author, site: { siteMetadata: { t
           {
             position: 1,
             name: 'Home',
-            item: `${siteUrl}/`
+            item: `${siteUrl}/`,
           },
 
           {
             position: 2,
             name: 'Dataviz',
-            item: `${siteUrl}/dataviz`
+            item: `${siteUrl}/dataviz`,
           },
 
           {
             position: 3,
             name: title,
-            item: url
-          }
+            item: url,
+          },
         ]}
       />
       <JsonLd
         json={{
           '@context': 'https://schema.org/',
           '@type': 'ImageObject',
-          contentUrl: getSrc(post.frontmatter.media)
+          contentUrl: getSrc(post.frontmatter.media),
         }}
       />
 
@@ -102,7 +128,8 @@ const DataVizPost = ({ data: { post, category, author, site: { siteMetadata: { t
                   <GatsbyImage
                     image={getImage(author.frontmatter.image)}
                     alt={author.frontmatter.name}
-                    className="w-10 h-10 rounded-full mr-4" />
+                    className="w-10 h-10 rounded-full mr-4"
+                  />
                 </Link>
                 <div className="text-sm">
                   <Link
@@ -173,7 +200,8 @@ const DataVizPost = ({ data: { post, category, author, site: { siteMetadata: { t
           image={getImage(post.frontmatter.media)}
           alt={post.frontmatter.title}
           title={title}
-          className="w-full" />
+          className="w-full"
+        />
 
         <div className="mt-6 mb-2">
           {tags && tags.length ? (
@@ -197,7 +225,11 @@ const DataVizPost = ({ data: { post, category, author, site: { siteMetadata: { t
               <hr className="my-4" />
 
               {sources.map(source => (
-                <OutboundLink href={source.link} target="_blank" rel="noopener nofollow">
+                <OutboundLink
+                  href={source.link}
+                  target="_blank"
+                  rel="noopener nofollow"
+                >
                   {source.source}
                 </OutboundLink>
               ))}
@@ -220,7 +252,7 @@ const DataVizPost = ({ data: { post, category, author, site: { siteMetadata: { t
         </div>
       </article>
     </Layout>
-  );
+  )
 }
 
 DataVizPost.propTypes = {
@@ -231,79 +263,80 @@ DataVizPost.propTypes = {
 
 export default DataVizPost
 
-export const pageQuery = graphql`query DataVizPostByID($id: String!, $category: String!, $author: String!) {
-  post: markdownRemark(id: {eq: $id}) {
-    id
-    fields {
-      slug
-    }
-    frontmatter {
-      date
-      language
-      media {
-        childImageSharp {
-          gatsbyImageData(layout: CONSTRAINED)
+export const pageQuery = graphql`
+  query DataVizPostByID($id: String!, $category: String!, $author: String!) {
+    post: markdownRemark(id: { eq: $id }) {
+      id
+      fields {
+        slug
+      }
+      frontmatter {
+        date
+        language
+        media {
+          childImageSharp {
+            gatsbyImageData(layout: CONSTRAINED)
+          }
+        }
+        title
+        description
+        tags
+        sources {
+          link
+          source
+        }
+        notebooks {
+          link
+          title
         }
       }
-      title
-      description
-      tags
-      sources {
-        link
-        source
+    }
+    category: markdownRemark(frontmatter: { title: { eq: $category } }) {
+      id
+      fields {
+        slug
       }
-      notebooks {
-        link
+      frontmatter {
         title
       }
     }
-  }
-  category: markdownRemark(frontmatter: {title: {eq: $category}}) {
-    id
-    fields {
-      slug
+    author: markdownRemark(frontmatter: { username: { eq: $author } }) {
+      id
+      fields {
+        slug
+      }
+      frontmatter {
+        name
+        twitter
+        image {
+          childImageSharp {
+            gatsbyImageData(
+              height: 75
+              width: 75
+              formats: [AUTO, WEBP, AVIF]
+              layout: CONSTRAINED
+            )
+          }
+        }
+      }
     }
-    frontmatter {
-      title
+    sources: markdownRemark(frontmatter: { username: { eq: $author } }) {
+      id
+      fields {
+        slug
+      }
+      frontmatter {
+        name
+      }
     }
-  }
-  author: markdownRemark(frontmatter: {username: {eq: $author}}) {
-    id
-    fields {
-      slug
-    }
-    frontmatter {
-      name
-      twitter
-      image {
-        childImageSharp {
-          gatsbyImageData(
-            height: 75
-            width: 75
-            formats: [AUTO, WEBP, AVIF]
-            layout: CONSTRAINED
-          )
+    site {
+      siteMetadata {
+        title
+        siteUrl
+        social {
+          twitter
         }
       }
     }
   }
-  sources: markdownRemark(frontmatter: {username: {eq: $author}}) {
-    id
-    fields {
-      slug
-    }
-    frontmatter {
-      name
-    }
-  }
-  site {
-    siteMetadata {
-      title
-      siteUrl
-      social {
-        twitter
-      }
-    }
-  }
-}
 `

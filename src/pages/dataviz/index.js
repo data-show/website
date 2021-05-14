@@ -5,7 +5,14 @@ import React from 'react'
 import DataVizPostCard from '../../components/DataVizPostCard'
 import Layout from '../../components/Layout'
 
-const DataVizIndexPage = ({ data: { allMarkdownRemark, site: { siteMetadata: { siteUrl, title } } } }) => {
+const DataVizIndexPage = ({
+  data: {
+    allMarkdownRemark,
+    site: {
+      siteMetadata: { siteUrl, title },
+    },
+  },
+}) => {
   const datavisualizations = allMarkdownRemark.edges
 
   return (
@@ -24,13 +31,16 @@ const DataVizIndexPage = ({ data: { allMarkdownRemark, site: { siteMetadata: { s
         </div>
 
         <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {datavisualizations.map(({ node: { frontmatter: { title, media }, fields: { slug } } }) => (
-            <DataVizPostCard
-              title={title}
-              slug={slug}
-              image={media}
-            />
-          ))}
+          {datavisualizations.map(
+            ({
+              node: {
+                frontmatter: { title, media },
+                fields: { slug },
+              },
+            }) => (
+              <DataVizPostCard title={title} slug={slug} image={media} />
+            )
+          )}
         </div>
       </section>
     </Layout>
@@ -39,40 +49,40 @@ const DataVizIndexPage = ({ data: { allMarkdownRemark, site: { siteMetadata: { s
 
 export default DataVizIndexPage
 
-export const pageQuery = graphql`query PaginatedDataViz {
-  allMarkdownRemark(
-    sort: {fields: [frontmatter___date], order: DESC}
-    skip: 0
-    limit: 50
-    filter: {frontmatter: {templateKey: {eq: "dataviz-post"}}}
-  ) {
-    edges {
-      node {
-        frontmatter {
-          title
-          media {
-            childImageSharp {
-              gatsbyImageData(
-                height: 350
-                placeholder: BLURRED
-                formats: [AUTO, WEBP, AVIF]
-                layout: CONSTRAINED
-              )
+export const pageQuery = graphql`
+  query PaginatedDataViz {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      skip: 0
+      limit: 50
+      filter: { frontmatter: { templateKey: { eq: "dataviz-post" } } }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            media {
+              childImageSharp {
+                gatsbyImageData(
+                  height: 350
+                  placeholder: BLURRED
+                  formats: [AUTO, WEBP, AVIF]
+                  layout: CONSTRAINED
+                )
+              }
             }
           }
-        }
-        fields {
-          slug
+          fields {
+            slug
+          }
         }
       }
     }
-  }
-  site {
-    siteMetadata {
-      siteUrl
-      title
+    site {
+      siteMetadata {
+        siteUrl
+        title
+      }
     }
   }
-}
 `
-

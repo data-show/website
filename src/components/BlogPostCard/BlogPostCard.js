@@ -10,7 +10,8 @@ const BlogPostCard = ({ title, description, image, slug }) => (
         image={getImage(image)}
         alt={title}
         title={title}
-        className="h-40 rounded" />
+        className="h-40 rounded"
+      />
     </Link>
 
     <div className="p-4 pl-0">
@@ -20,11 +21,14 @@ const BlogPostCard = ({ title, description, image, slug }) => (
 
       {description && (
         <>
-          <p className="text-gray-800 mt-2">
-            {description}
-          </p>
+          <p className="text-gray-800 mt-2">{description}</p>
 
-          <Link to={slug} className="inline-block py-2 rounded text-gray-900 mt-2 ml-auto">Read more</Link>
+          <Link
+            to={slug}
+            className="inline-block py-2 rounded text-gray-900 mt-2 ml-auto"
+          >
+            Read more
+          </Link>
         </>
       )}
     </div>

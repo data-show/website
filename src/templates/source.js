@@ -6,12 +6,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 
-const SourceTemplate = ({
-  content,
-  contentComponent,
-  description,
-  name
-}) => {
+const SourceTemplate = ({ content, contentComponent, description, name }) => {
   const sourceContent = contentComponent || Content
 
   return (
@@ -35,32 +30,36 @@ SourceTemplate.propTypes = {
   content: PropTypes.node.isRequired,
   contentComponent: PropTypes.func,
   description: PropTypes.string,
-  name: PropTypes.string
+  name: PropTypes.string,
 }
 
-const Source = ({ data: {
-  markdownRemark: source,
-  site: { siteMetadata: { siteUrl } }
-} }) => (
-    <Layout>
-      <GatsbySeo
-        title={source.frontmatter.name}
-        description={source.frontmatter.description}
-        canonical={`${siteUrl}${source.fields.slug}`}
-      />
-      <SourceTemplate
-        content={source.html}
-        contentComponent={HTMLContent}
-        description={source.frontmatter.description}
-        title={source.frontmatter.name}
-      />
-    </Layout>
-  )
+const Source = ({
+  data: {
+    markdownRemark: source,
+    site: {
+      siteMetadata: { siteUrl },
+    },
+  },
+}) => (
+  <Layout>
+    <GatsbySeo
+      title={source.frontmatter.name}
+      description={source.frontmatter.description}
+      canonical={`${siteUrl}${source.fields.slug}`}
+    />
+    <SourceTemplate
+      content={source.html}
+      contentComponent={HTMLContent}
+      description={source.frontmatter.description}
+      title={source.frontmatter.name}
+    />
+  </Layout>
+)
 
 Source.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.object,
-    site: PropTypes.object
+    site: PropTypes.object,
   }),
 }
 

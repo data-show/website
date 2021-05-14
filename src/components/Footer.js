@@ -28,9 +28,7 @@ const Footer = () => {
       <div className="flex flex-wrap">
         <div className="w-full lg:w-2/5">
           <h6 className="font-semibold text-gray-700 mb-4">Project</h6>
-          <p className="text-gray-600 block p-0 lg:pr-12">
-            {description}
-          </p>
+          <p className="text-gray-600 block p-0 lg:pr-12">{description}</p>
         </div>
 
         <div className="w-full mt-6 lg:mt-0 lg:w-1/2 lg:w-1/5">

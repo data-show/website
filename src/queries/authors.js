@@ -4,30 +4,33 @@ const useAuthors = () => {
   const {
     allMarkdownRemark: { nodes },
   } = useStaticQuery(
-    graphql`query SiteAuthorsQuery {
-  allMarkdownRemark(filter: {frontmatter: {templateKey: {eq: "author"}}}) {
-    nodes {
-      fields {
-        slug
-      }
-      frontmatter {
-        name
-        description
-        image {
-          childImageSharp {
-            gatsbyImageData(
-              height: 350
-              placeholder: BLURRED
-              formats: [AUTO, WEBP, AVIF]
-              layout: CONSTRAINED
-            )
+    graphql`
+      query SiteAuthorsQuery {
+        allMarkdownRemark(
+          filter: { frontmatter: { templateKey: { eq: "author" } } }
+        ) {
+          nodes {
+            fields {
+              slug
+            }
+            frontmatter {
+              name
+              description
+              image {
+                childImageSharp {
+                  gatsbyImageData(
+                    height: 350
+                    placeholder: BLURRED
+                    formats: [AUTO, WEBP, AVIF]
+                    layout: CONSTRAINED
+                  )
+                }
+              }
+            }
           }
         }
       }
-    }
-  }
-}
-`
+    `
   )
 
   return nodes.map(({ fields, frontmatter }) => ({

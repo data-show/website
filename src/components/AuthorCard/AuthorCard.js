@@ -11,7 +11,8 @@ const AuthorCard = ({ name, description, image, slug }) => (
           image={getImage(image)}
           alt={name}
           title={name}
-          className="w-full" />
+          className="w-full"
+        />
       </Link>
     )}
     <Link to={slug}>

@@ -20,7 +20,8 @@ const social = {
   linkedin: 'data-show-blog',
 }
 const gtagId = 'G-7JKYHNXE4G'
-const mailchimpEndpoint = 'https://data-show.us1.list-manage.com/subscribe/post?u=68dc700424036ced77e68077d&amp;id=ef2464c33c'
+const mailchimpEndpoint =
+  'https://data-show.us1.list-manage.com/subscribe/post?u=68dc700424036ced77e68077d&amp;id=ef2464c33c'
 
 module.exports = {
   siteMetadata: {
@@ -32,7 +33,7 @@ module.exports = {
     social,
   },
   flags: {
-    PRESERVE_WEBPACK_CACHE: true
+    PRESERVE_WEBPACK_CACHE: true,
   },
   plugins: [
     `gatsby-plugin-preact`,
@@ -68,7 +69,6 @@ module.exports = {
       options: {
         plugins: [
           netlifyCmsPaths,
-          'gatsby-remark-grid-tables',
           'gatsby-remark-reading-time',
           {
             resolve: 'gatsby-remark-relative-images',
@@ -85,7 +85,7 @@ module.exports = {
               loading: 'lazy',
               showCaptions: true,
               disableBgImage: true,
-              withWebp: true
+              withWebp: true,
             },
           },
           {
@@ -109,7 +109,7 @@ module.exports = {
       resolve: 'gatsby-plugin-purgecss',
       options: {
         develop: true,
-        tailwind: true
+        tailwind: true,
       },
     },
     {
@@ -134,9 +134,9 @@ module.exports = {
       },
     },
     {
-      resolve: "@sentry/gatsby",
+      resolve: '@sentry/gatsby',
       options: {
-        dsn: "https://3aad5956d63d4049bd4612805e4e76c8@o564567.ingest.sentry.io/5705355",
+        dsn: 'https://3aad5956d63d4049bd4612805e4e76c8@o564567.ingest.sentry.io/5705355',
         autoSessionTracking: false,
       },
     },
@@ -220,22 +220,11 @@ module.exports = {
         // cache_busting_mode: 'none'
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-offline`,
-    //   options: {
-    //     precachePages: ['/'],
-    //     workboxConfig: {
-    //       globPatterns: [`**logo.png*`]
-    //     }
-    //   },
-    // },
     {
       resolve: `gatsby-plugin-netlify`,
       options: {
         headers: {},
-        allPageHeaders: [
-          'Cache-Control: public, s-maxage=604800'
-        ],
+        allPageHeaders: ['Cache-Control: public, s-maxage=604800'],
         mergeSecurityHeaders: true,
         mergeLinkHeaders: true,
         mergeCachingHeaders: true,
@@ -243,9 +232,13 @@ module.exports = {
         transformHeaders: (headers, path) => {
           const regex = /Cache-Control:(?:.*, )max-age=([0-9]+)(?:.*)/
 
-          return headers.map(header => typeof header === 'string' && regex.test(header) ? `${header}, s-maxage=${header.match(regex)[1]}` : header)
-        }
-      }
-    }
+          return headers.map(header =>
+            typeof header === 'string' && regex.test(header)
+              ? `${header}, s-maxage=${header.match(regex)[1]}`
+              : header
+          )
+        },
+      },
+    },
   ],
 }

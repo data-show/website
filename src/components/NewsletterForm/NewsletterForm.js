@@ -1,4 +1,8 @@
-import { faCheck, faEnvelope, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import {
+  faCheck,
+  faEnvelope,
+  faSpinner,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
@@ -32,7 +36,7 @@ const NewsletterForm = ({ className }) => {
   }
 
   let icon
-  if(sending) {
+  if (sending) {
     icon = faSpinner
   } else if (success) {
     icon = faCheck

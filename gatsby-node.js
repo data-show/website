@@ -142,7 +142,9 @@ exports.createPages = ({ actions, graphql }) => {
       others: allMarkdownRemark(
         filter: {
           frontmatter: {
-            templateKey: { nin: ["blog-post", "dataviz-post", "category", "author", "source"] }
+            templateKey: {
+              nin: ["blog-post", "dataviz-post", "category", "author", "source"]
+            }
           }
         }
       ) {
@@ -187,7 +189,7 @@ exports.createPages = ({ actions, graphql }) => {
         component: path.resolve(`src/templates/tags.js`),
         context: {
           tag,
-          slug: tagPath
+          slug: tagPath,
         },
       })
     })

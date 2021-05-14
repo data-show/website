@@ -36,7 +36,7 @@ CategoryTemplate.propTypes = {
   content: PropTypes.node.isRequired,
   contentComponent: PropTypes.func,
   description: PropTypes.string,
-  title: PropTypes.string
+  title: PropTypes.string,
 }
 
 const Category = ({
@@ -44,10 +44,24 @@ const Category = ({
     markdownRemark: category,
     tagsMarkdownRemark: { edges: tagsEdges },
     allMarkdownRemark: { edges: postEdges },
-    site: { siteMetadata: { siteUrl } }
+    site: {
+      siteMetadata: { siteUrl },
+    },
   },
 }) => {
-  const tags = uniq(tagsEdges.reduce((acc, { node: { frontmatter: { tags } } }) => acc.concat(tags), []))
+  const tags = uniq(
+    tagsEdges.reduce(
+      (
+        acc,
+        {
+          node: {
+            frontmatter: { tags },
+          },
+        }
+      ) => acc.concat(tags),
+      []
+    )
+  )
 
   return (
     <Layout>
@@ -76,15 +90,15 @@ const Category = ({
                 frontmatter: { title, description, featuredimage },
               },
             }) => (
-                <BlogPostCard
-                  className="mx-4"
-                  key={slug}
-                  slug={slug}
-                  title={title}
-                  description={description}
-                  image={featuredimage}
-                />
-              )
+              <BlogPostCard
+                className="mx-4"
+                key={slug}
+                slug={slug}
+                title={title}
+                description={description}
+                image={featuredimage}
+              />
+            )
           )}
         </div>
 
@@ -113,67 +127,78 @@ Category.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.object,
     allMarkdownRemark: PropTypes.object,
-    site: PropTypes.object
+    site: PropTypes.object,
   }),
 }
 
 export default Category
 
-export const pageQuery = graphql`query CategoryByID($id: String!, $title: String!) {
-  markdownRemark(id: {eq: $id}) {
-    id
-    html
-    fields {
-      slug
+export const pageQuery = graphql`
+  query CategoryByID($id: String!, $title: String!) {
+    markdownRemark(id: { eq: $id }) {
+      id
+      html
+      fields {
+        slug
+      }
+      frontmatter {
+        title
+        description
+      }
     }
-    frontmatter {
-      title
-      description
-    }
-  }
-  allMarkdownRemark(
-    sort: {fields: [frontmatter___date], order: DESC}
-    skip: 0
-    limit: 10
-    filter: {frontmatter: {templateKey: {eq: "blog-post"}, category: {eq: $title}}}
-  ) {
-    edges {
-      node {
-        frontmatter {
-          title
-          description
-          featuredimage {
-            childImageSharp {
-              gatsbyImageData(
-                height: 350
-                width: 350
-                placeholder: BLURRED
-                formats: [AUTO, WEBP, AVIF]  
-              )
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      skip: 0
+      limit: 10
+      filter: {
+        frontmatter: {
+          templateKey: { eq: "blog-post" }
+          category: { eq: $title }
+        }
+      }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            description
+            featuredimage {
+              childImageSharp {
+                gatsbyImageData(
+                  height: 350
+                  width: 350
+                  placeholder: BLURRED
+                  formats: [AUTO, WEBP, AVIF]
+                )
+              }
             }
           }
-        }
-        fields {
-          slug
-        }
-      }
-    }
-  }
-  tagsMarkdownRemark: allMarkdownRemark(
-    filter: {frontmatter: {templateKey: {eq: "blog-post"}, category: {eq: $title}}}
-  ) {
-    edges {
-      node {
-        frontmatter {
-          tags
+          fields {
+            slug
+          }
         }
       }
     }
-  }
-  site {
-    siteMetadata {
-      siteUrl
+    tagsMarkdownRemark: allMarkdownRemark(
+      filter: {
+        frontmatter: {
+          templateKey: { eq: "blog-post" }
+          category: { eq: $title }
+        }
+      }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            tags
+          }
+        }
+      }
+    }
+    site {
+      siteMetadata {
+        siteUrl
+      }
     }
   }
-}
 `

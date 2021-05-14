@@ -11,16 +11,18 @@ const TagRoute = ({
     allMarkdownRemark: { totalCount },
     postsAllMarkdownRemark: { edges: posts },
     datavizAllMarkdownRemark: { edges: dataviz },
-    site: { siteMetadata: { siteUrl } }
+    site: {
+      siteMetadata: { siteUrl },
+    },
   },
-  pageContext: { tag, slug: tagSlug }
+  pageContext: { tag, slug: tagSlug },
 }) => {
   const title = tag
   const seoTitle = `Dataviz posts and articles about ${tag}`
   const description = `Find some dataviz and articles with data about ${title}`
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? '' : 's'
-    } tagged with “${tag}”`
+  } tagged with “${tag}”`
 
   return (
     <Layout>
@@ -49,14 +51,13 @@ const TagRoute = ({
             </div>
 
             <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {posts.map((
-                {
+              {posts.map(
+                ({
                   node: {
                     fields: { slug },
                     frontmatter: { title, description, featuredimage },
                   },
-                }
-              ) => (
+                }) => (
                   <BlogPostCard
                     className="mx-4"
                     key={slug}
@@ -65,7 +66,8 @@ const TagRoute = ({
                     description={description}
                     image={featuredimage}
                   />
-                ))}
+                )
+              )}
             </div>
           </div>
         )}
@@ -76,14 +78,13 @@ const TagRoute = ({
               <h2 className="font-bold text-3xl">DataViz Posts</h2>
             </div>
             <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {dataviz.map((
-                {
+              {dataviz.map(
+                ({
                   node: {
                     fields: { slug },
                     frontmatter: { title, media },
                   },
-                }
-              ) => (
+                }) => (
                   <DataVizPostCard
                     className="mx-4"
                     key={slug}
@@ -91,7 +92,8 @@ const TagRoute = ({
                     title={title}
                     image={media}
                   />
-                ))}
+                )
+              )}
             </div>
           </div>
         )}
@@ -106,73 +108,81 @@ const TagRoute = ({
 
 export default TagRoute
 
-export const tagPageQuery = graphql`query TagPage($tag: String) {
-  allMarkdownRemark(
-    limit: 1000
-    sort: {fields: [frontmatter___date], order: DESC}
-    filter: {frontmatter: {tags: {in: [$tag]}}}
-  ) {
-    totalCount
-  }
-  postsAllMarkdownRemark: allMarkdownRemark(
-    limit: 1000
-    sort: {fields: [frontmatter___date], order: DESC}
-    filter: {frontmatter: {templateKey: {eq: "blog-post"}, tags: {in: [$tag]}}}
-  ) {
-    totalCount
-    edges {
-      node {
-        fields {
-          slug
-        }
-        frontmatter {
-          title
-          description
-          featuredimage {
-            childImageSharp {
-              gatsbyImageData(
-                height: 350
-                placeholder: BLURRED
-                formats: [AUTO, WEBP, AVIF]
-                layout: CONSTRAINED
-              )
+export const tagPageQuery = graphql`
+  query TagPage($tag: String) {
+    allMarkdownRemark(
+      limit: 1000
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { tags: { in: [$tag] } } }
+    ) {
+      totalCount
+    }
+    postsAllMarkdownRemark: allMarkdownRemark(
+      limit: 1000
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: {
+        frontmatter: { templateKey: { eq: "blog-post" }, tags: { in: [$tag] } }
+      }
+    ) {
+      totalCount
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            description
+            featuredimage {
+              childImageSharp {
+                gatsbyImageData(
+                  height: 350
+                  placeholder: BLURRED
+                  formats: [AUTO, WEBP, AVIF]
+                  layout: CONSTRAINED
+                )
+              }
             }
           }
         }
       }
     }
-  }
-  datavizAllMarkdownRemark: allMarkdownRemark(
-    limit: 1000
-    sort: {fields: [frontmatter___date], order: DESC}
-    filter: {frontmatter: {templateKey: {eq: "dataviz-post"}, tags: {in: [$tag]}}}
-  ) {
-    totalCount
-    edges {
-      node {
-        fields {
-          slug
+    datavizAllMarkdownRemark: allMarkdownRemark(
+      limit: 1000
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: {
+        frontmatter: {
+          templateKey: { eq: "dataviz-post" }
+          tags: { in: [$tag] }
         }
-        frontmatter {
-          title
-          media {
-            childImageSharp {
-              gatsbyImageData(
-                height: 350
-                placeholder: BLURRED
-                formats: [AUTO, WEBP, AVIF]
-                layout: CONSTRAINED
-              )
+      }
+    ) {
+      totalCount
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            media {
+              childImageSharp {
+                gatsbyImageData(
+                  height: 350
+                  placeholder: BLURRED
+                  formats: [AUTO, WEBP, AVIF]
+                  layout: CONSTRAINED
+                )
+              }
             }
           }
         }
       }
     }
-  }
-  site {
-    siteMetadata {
-      siteUrl
+    site {
+      siteMetadata {
+        siteUrl
+      }
     }
   }
-}
 `
