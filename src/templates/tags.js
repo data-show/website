@@ -97,7 +97,7 @@ const TagRoute = ({
         )}
 
         <div className="mt-2">
-          <Link to={`/tags/`}>Browse all tags</Link>
+          <Link to={`/tags`}>Browse all tags</Link>
         </div>
       </section>
     </Layout>

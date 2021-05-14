@@ -65,7 +65,7 @@ const DataVizPost = ({ data: { post, category, author, site: { siteMetadata: { t
           {
             position: 2,
             name: 'Dataviz',
-            item: `${siteUrl}/dataviz/`
+            item: `${siteUrl}/dataviz`
           },
 
           {
@@ -181,7 +181,7 @@ const DataVizPost = ({ data: { post, category, author, site: { siteMetadata: { t
               {tags.map(tag => (
                 <Link
                   key={tag + `tag`}
-                  to={`/tags/${kebabCase(tag)}/`}
+                  to={`/tags/${kebabCase(tag)}`}
                   className="inline-block bg-gray-200 px-4 py-2 text-sm text-gray-700 mr-2 mb-2"
                 >
                   {tag}

@@ -96,7 +96,7 @@ const Category = ({
             {tags.map(tag => (
               <Link
                 key={tag + `tag`}
-                to={`/tags/${kebabCase(tag)}/`}
+                to={`/tags/${kebabCase(tag)}`}
                 className="inline-block bg-gray-200 px-4 py-2 text-sm text-gray-700 mr-2 mb-2"
               >
                 {tag}
