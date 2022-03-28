@@ -1,4 +1,3 @@
-import 'fontsource-open-sans'
 import { withPrefix } from 'gatsby'
 import React from 'react'
 import { Helmet } from 'react-helmet'
@@ -7,8 +6,6 @@ import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 
 import useSiteMetadata from '../queries/site-metadata'
-
-import './all.css'
 
 const TemplateWrapper = ({ children }) => {
   const { color } = useSiteMetadata()
