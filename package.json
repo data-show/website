@@ -62,11 +62,11 @@
   "scripts": {
     "clean": "gatsby clean",
     "start": "yarn dev",
+    "test": "gatsby build",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "dev": "gatsby develop",
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"{gatsby-*.js,src/**/*.js}\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"{gatsby-*.js,src/**/*.js}\""
   },
   "devDependencies": {
     "@netlify/plugin-lighthouse": "2.1.2",
