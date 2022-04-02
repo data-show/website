@@ -6,4 +6,5 @@ description: Data Analyst
 username: mbougouin
 github: mbougouin
 linkedin: https://www.linkedin.com/in/morgane-bougouin/
+website: https://www.morganebougouin.com/
 ---

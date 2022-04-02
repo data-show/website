@@ -7,5 +7,5 @@ username: emmanuelgautier
 github: emmanuelgautier
 twitter: gautier_manu
 linkedin: https://www.linkedin.com/in/emmanuelgautier1/
-website: https://www.emmanuelgautier.fr/
+website: https://www.emmanuelgautier.com/
 ---
