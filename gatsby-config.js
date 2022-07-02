@@ -36,7 +36,6 @@ module.exports = {
     PRESERVE_WEBPACK_CACHE: true,
   },
   plugins: [
-    `gatsby-plugin-preact`,
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-postcss',
     {
