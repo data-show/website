@@ -102,13 +102,7 @@ module.exports = {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
         modulePath: `${__dirname}/src/cms/cms.js`,
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-purgecss',
-      options: {
-        develop: true,
-        tailwind: true,
+        enableIdentityWidget: false
       },
     },
     {
@@ -130,13 +124,6 @@ module.exports = {
           site: social.twitter,
           cardType: 'summary_large_image',
         },
-      },
-    },
-    {
-      resolve: '@sentry/gatsby',
-      options: {
-        dsn: 'https://3aad5956d63d4049bd4612805e4e76c8@o564567.ingest.sentry.io/5705355',
-        autoSessionTracking: false,
       },
     },
     {
@@ -225,7 +212,6 @@ module.exports = {
         headers: {},
         allPageHeaders: ['Cache-Control: public, s-maxage=604800'],
         mergeSecurityHeaders: true,
-        mergeLinkHeaders: true,
         mergeCachingHeaders: true,
         generateMatchPathRewrites: true,
         transformHeaders: (headers, path) => {
