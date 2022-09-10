@@ -13,7 +13,7 @@
     "clsx": "1.2.1",
     "date-fns": "2.29.2",
     "fontsource-open-sans": "4.0.0",
-    "gatsby": "4.22.0",
+    "gatsby": "4.22.1",
     "gatsby-plugin-catch-links": "4.22.0",
     "gatsby-plugin-feed": "4.22.0",
     "gatsby-plugin-google-gtag": "4.22.0",
@@ -64,7 +64,7 @@
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"{gatsby-*.js,src/**/*.js}\""
   },
   "devDependencies": {
-    "@netlify/plugin-lighthouse": "3.2.1",
+    "@netlify/plugin-lighthouse": "3.3.0",
     "netlify-plugin-gatsby-cache": "0.3.2",
     "netlify-plugin-submit-sitemap": "0.4.0",
     "prettier": "2.7.1"
