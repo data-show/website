@@ -1720,10 +1720,10 @@
   resolved "https://registry.yarnpkg.com/@msgpackr-extract/msgpackr-extract-win32-x64/-/msgpackr-extract-win32-x64-2.0.2.tgz#baea7764b1adf201ce4a792fe971fd7211dad2e4"
   integrity sha512-fpnI00dt+yO1cKx9qBXelKhPBdEgvc8ZPav1+0r09j0woYQU2N79w/jcGawSY5UGlgQ3vjaJsFHnGbGvvqdLzg==
 
-"@netlify/plugin-lighthouse@3.7.1":
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/@netlify/plugin-lighthouse/-/plugin-lighthouse-3.7.1.tgz#eba852eb48baeae6c4bff960ac6c84ee32e39462"
-  integrity sha512-4QHI3YUYawv8DlF3eiXogn50uzUNjbWdhZYcgWRPCbMlzv0FHhiMTZ/20IPTYm1IntIyKyZGyatjK3U6OslZBQ==
+"@netlify/plugin-lighthouse@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@netlify/plugin-lighthouse/-/plugin-lighthouse-4.0.0.tgz#bdc6d7090bdafd867ca5d2da1ea34e8a2d1f7732"
+  integrity sha512-euQh4TlfeQewa9cEa8BIRj4ipxzlPKki78lCHkjtz52GVjWluH4K6hICcBBtI02ngYtmp2PVVveB60hoCOxDng==
   dependencies:
     chalk "^4.1.0"
     chrome-launcher "^0.15.0"
