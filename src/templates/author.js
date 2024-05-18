@@ -52,7 +52,7 @@ const Author = ({
                       className="block flex items-center hover:text-gray-700 mr-5"
                       href={author.frontmatter.website}
                       target="_blank"
-                      rel="noopener nofollow"
+                      rel="noopener"
                     >
                       {author.frontmatter.website}
                     </OutboundLink>
