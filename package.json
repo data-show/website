@@ -11,7 +11,7 @@
     "@tailwindcss/typography": "0.5.13",
     "autoprefixer": "10.4.19",
     "clsx": "2.1.1",
-    "date-fns": "2.30.0",
+    "date-fns": "3.6.0",
     "fontsource-open-sans": "4.0.0",
     "gatsby": "5.9.1",
     "gatsby-plugin-catch-links": "5.13.1",
