@@ -9,7 +9,6 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import { faRss } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'gatsby'
-import { OutboundLink } from 'gatsby-plugin-google-gtag'
 
 import NewsletterForm from './NewsletterForm'
 
@@ -56,58 +55,58 @@ const Footer = () => {
               <li>
                 <div className="flex justify-start items-center text-lg text-gray-500">
                   {twitter && (
-                    <OutboundLink
+                    <a
                       className="flex items-center hover:text-gray-700 mr-5"
                       href={`https://twitter.com/${twitter}`}
                       target="_blank"
                       rel="noreferrer nofollow"
                     >
                       <FontAwesomeIcon icon={faTwitter} />
-                    </OutboundLink>
+                    </a>
                   )}
 
                   {instagram && (
-                    <OutboundLink
+                    <a
                       className="flex items-center hover:text-gray-700 mr-5"
                       href={`https://www.instagram.com/${instagram}`}
                       target="_blank"
                       rel="noreferrer nofollow"
                     >
                       <FontAwesomeIcon icon={faInstagram} />
-                    </OutboundLink>
+                    </a>
                   )}
 
                   {youtube && (
-                    <OutboundLink
+                    <a
                       className="flex items-center hover:text-gray-700 mr-5"
                       href={`https://www.youtube.com/channel/${youtube}`}
                       target="_blank"
                       rel="noreferrer nofollow"
                     >
                       <FontAwesomeIcon icon={faYoutube} />
-                    </OutboundLink>
+                    </a>
                   )}
 
                   {github && (
-                    <OutboundLink
+                    <a
                       className="flex items-center hover:text-gray-700 mr-5"
                       href={`https://github.com/${github}`}
                       target="_blank"
                       rel="noreferrer nofollow"
                     >
                       <FontAwesomeIcon icon={faGithub} />
-                    </OutboundLink>
+                    </a>
                   )}
 
                   {linkedin && (
-                    <OutboundLink
+                    <a
                       className="flex items-center hover:text-gray-700 mr-5"
                       href={`https://www.linkedin.com/company/${linkedin}`}
                       target="_blank"
                       rel="noreferrer nofollow"
                     >
                       <FontAwesomeIcon icon={faLinkedin} />
-                    </OutboundLink>
+                    </a>
                   )}
 
                   <a

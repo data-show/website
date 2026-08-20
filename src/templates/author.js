@@ -2,7 +2,6 @@ import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { graphql } from 'gatsby'
 import { GatsbyImage, getSrc, getImage } from 'gatsby-plugin-image'
-import { OutboundLink } from 'gatsby-plugin-google-gtag'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -48,34 +47,34 @@ const Author = ({
                 </p>
                 <div className="flex justify-start items-center text-lg text-gray-500">
                   {author.frontmatter.website && (
-                    <OutboundLink
+                    <a
                       className="block flex items-center hover:text-gray-700 mr-5"
                       href={author.frontmatter.website}
                       target="_blank"
                       rel="noopener"
                     >
                       {author.frontmatter.website}
-                    </OutboundLink>
+                    </a>
                   )}
                   {author.frontmatter.github && (
-                    <OutboundLink
+                    <a
                       className="block flex items-center hover:text-gray-700 mr-5"
                       href={`https://github.com/${author.frontmatter.github}`}
                       target="_blank"
                       rel="noopener nofollow"
                     >
                       <FontAwesomeIcon icon={faGithub} />
-                    </OutboundLink>
+                    </a>
                   )}
                   {author.frontmatter.linkedin && (
-                    <OutboundLink
+                    <a
                       className="block flex items-center hover:text-gray-700 mr-5"
                       href={author.frontmatter.linkedin}
                       target="_blank"
                       rel="noopener nofollow"
                     >
                       <FontAwesomeIcon icon={faLinkedin} />
-                    </OutboundLink>
+                    </a>
                   )}
                 </div>
               </div>

@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { format } from 'date-fns'
 import { graphql, Link } from 'gatsby'
 import { GatsbyImage, getImage, getSrc } from 'gatsby-plugin-image'
-import { OutboundLink } from 'gatsby-plugin-google-gtag'
 import {
   GatsbySeo,
   ArticleJsonLd,
@@ -225,13 +224,13 @@ const DataVizPost = ({
               <hr className="my-4" />
 
               {sources.map(source => (
-                <OutboundLink
+                <a
                   href={source.link}
                   target="_blank"
                   rel="noopener nofollow"
                 >
                   {source.source}
-                </OutboundLink>
+                </a>
               ))}
             </div>
           ) : null}
@@ -243,9 +242,9 @@ const DataVizPost = ({
               <hr className="my-4" />
 
               {notebooks.map(notebook => (
-                <OutboundLink href={notebook.link} target="_blank">
+                <a href={notebook.link} target="_blank">
                   {notebook.title}
-                </OutboundLink>
+                </a>
               ))}
             </div>
           ) : null}

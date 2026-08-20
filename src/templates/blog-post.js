@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { format } from 'date-fns'
 import { graphql, Link } from 'gatsby'
 import { GatsbyImage, getImage, getSrc } from 'gatsby-plugin-image'
-import { OutboundLink } from 'gatsby-plugin-google-gtag'
 import {
   GatsbySeo,
   ArticleJsonLd,
@@ -221,14 +220,14 @@ const BlogPost = ({
 
             {sources.length > 0 ? (
               sources.map(source => (
-                <OutboundLink
+                <a
                   className="underline"
                   href={source.link}
                   target="_blank"
                   rel="noopener nofollow"
                 >
                   {source.source}
-                </OutboundLink>
+                </a>
               ))
             ) : (
               <span>There is no sources for this article.</span>
@@ -242,13 +241,13 @@ const BlogPost = ({
 
             {notebooks.length > 0 ? (
               notebooks.map(notebook => (
-                <OutboundLink
+                <a
                   className="underline"
                   href={notebook.link}
                   target="_blank"
                 >
                   {notebook.title}
-                </OutboundLink>
+                </a>
               ))
             ) : (
               <span>There is no notebooks for this article.</span>

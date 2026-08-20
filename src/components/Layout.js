@@ -60,6 +60,9 @@ const TemplateWrapper = ({ children }) => {
           content="black-translucent"
         />
         <meta name="msapplication-TileColor" content={color} />
+
+        <script async src="https://a.data-show.com/js/pa-sb1uL67sH90hkcRBq4dr2.js"></script>
+        <script>{`window.plausible=window.plausible||function(){(plausible.q = plausible.q || []).push(arguments)},plausible.init=plausible.init||function(i){plausible.o = i || {}};plausible.init({ endpoint: "https://a.data-show.com/api/event" })`}</script>
       </Helmet>
 
       <div className="max-w-screen-lg mx-auto antialiased">
