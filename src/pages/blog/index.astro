@@ -1,0 +1,27 @@
+---
+import BlogPostCard from '../../components/BlogPostCard.astro'
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts'
+import Layout from '../../layouts/Layout.astro'
+import { getPosts, postUrl } from '../../lib/content'
+
+const posts = await getPosts()
+---
+
+<Layout title={`${SITE_TITLE} articles`} description={SITE_DESCRIPTION}>
+  <section class="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0">
+    <div class="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
+      <h2 class="font-bold text-xl lg:text-3xl">Latest Posts</h2>
+    </div>
+
+    <div class="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {posts.map(post => (
+        <BlogPostCard
+          slug={postUrl(post)}
+          title={post.data.title}
+          description={post.data.description}
+          image={post.data.featuredimage}
+        />
+      ))}
+    </div>
+  </section>
+</Layout>

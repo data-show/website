@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from 'astro:content'
+
+import Layout from '../../layouts/Layout.astro'
+
+export async function getStaticPaths() {
+  const sources = await getCollection('source')
+  return sources.map(source => ({
+    params: { slug: source.id },
+    props: { source },
+  }))
+}
+
+const { source } = Astro.props
+const { Content } = await render(source)
+---
+
+<Layout title={source.data.title} description={source.data.description}>
+  <section class="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0">
+    <h1 class="text-3xl font-bold text-gray-800 mb-4">{source.data.title}</h1>
+    <p class="mb-4">{source.data.description}</p>
+    <a href={source.data.website} class="underline" rel="noopener nofollow">
+      {source.data.website}
+    </a>
+    <div class="prose prose-lg">
+      <Content />
+    </div>
+  </section>
+</Layout>

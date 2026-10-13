@@ -1,0 +1,74 @@
+---
+import BlogPostCard from '../../components/BlogPostCard.astro'
+import DataVizPostCard from '../../components/DataVizPostCard.astro'
+import Layout from '../../layouts/Layout.astro'
+import { getTags, postUrl } from '../../lib/content'
+
+export async function getStaticPaths() {
+  const tags = await getTags()
+  return tags.map(props => ({ params: { tag: props.slug }, props }))
+}
+
+const { tag, posts, dataviz } = Astro.props
+
+const totalCount = posts.length + dataviz.length
+const tagHeader = `${totalCount} post${totalCount === 1 ? '' : 's'} tagged with “${tag}”`
+---
+
+<Layout
+  title={`Dataviz posts and articles about ${tag}`}
+  description={`Find some dataviz and articles with data about ${tag}`}
+>
+  <section class="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0">
+    <section>
+      <div class="space-y-4 text-left py-2 mb-6 lg:mb-8">
+        <h1 class="text-xl lg:text-5xl leading-9 text-gray-800 sm:leading-10 lg:leading-14 mb-2">
+          {tag}
+        </h1>
+        <p class="text-lg text-gray-600 sm:text-lg lg:text-xl lg:leading-8 mb-4">
+          {tagHeader}
+        </p>
+      </div>
+    </section>
+
+    {posts.length > 0 && (
+      <div class="mb-8">
+        <div class="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
+          <h2 class="font-bold text-3xl">Blog Posts</h2>
+        </div>
+
+        <div class="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map(post => (
+            <BlogPostCard
+              slug={postUrl(post)}
+              title={post.data.title}
+              description={post.data.description}
+              image={post.data.featuredimage}
+            />
+          ))}
+        </div>
+      </div>
+    )}
+
+    {dataviz.length > 0 && (
+      <div class="mb-8">
+        <div class="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
+          <h2 class="font-bold text-3xl">DataViz Posts</h2>
+        </div>
+        <div class="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {dataviz.map(item => (
+            <DataVizPostCard
+              slug={postUrl(item)}
+              title={item.data.title}
+              image={item.data.media}
+            />
+          ))}
+        </div>
+      </div>
+    )}
+
+    <div class="mt-2">
+      <a href="/tags/">Browse all tags</a>
+    </div>
+  </section>
+</Layout>

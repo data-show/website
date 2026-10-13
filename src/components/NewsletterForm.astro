@@ -1,0 +1,99 @@
+---
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+
+import { MAILCHIMP_ENDPOINT } from '../consts'
+import { cn } from '../lib/cn'
+
+import Icon from './Icon.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className } = Astro.props
+---
+
+<form
+  data-newsletter
+  data-endpoint={MAILCHIMP_ENDPOINT.replace('/post?', '/post-json?')}
+  class={cn('bg-white w-max p-1 rounded', className)}
+>
+  <input
+    type="email"
+    name="EMAIL"
+    required
+    placeholder="Email"
+    aria-label="Email"
+    class="p-2 border-none text-gray-900 focus:ring-0 focus:outline-none"
+  />
+
+  <button
+    type="submit"
+    aria-label="Subscribe"
+    class="bg-gray-800 text-white rounded py-2 px-6 cursor-pointer content-end"
+  >
+    <span data-icon="idle">
+      <Icon icon={faEnvelope} />
+    </span>
+  </button>
+</form>
+
+<script>
+  // Mailchimp only exposes a JSONP endpoint for embedded signup forms.
+  let jsonpId = 0
+
+  const subscribe = (endpoint: string, email: string) =>
+    new Promise<{ result: string }>((resolve, reject) => {
+      const callback = `mailchimpCallback${jsonpId++}`
+      const script = document.createElement('script')
+      const cleanup = () => {
+        delete (window as any)[callback]
+        script.remove()
+      }
+
+      ;(window as any)[callback] = (data: { result: string }) => {
+        cleanup()
+        resolve(data)
+      }
+      script.onerror = () => {
+        cleanup()
+        reject(new Error('Mailchimp request failed'))
+      }
+      script.src = `${endpoint}&EMAIL=${encodeURIComponent(email)}&c=${callback}`
+      document.body.appendChild(script)
+    })
+
+  document
+    .querySelectorAll<HTMLFormElement>('form[data-newsletter]')
+    .forEach(form => {
+      const input = form.querySelector('input')!
+      const button = form.querySelector('button')!
+      let sending = false
+
+      form.addEventListener('submit', async event => {
+        event.preventDefault()
+        if (sending || !input.value) return
+
+        sending = true
+        button.disabled = true
+        button.classList.add('opacity-50')
+
+        try {
+          const { result } = await subscribe(
+            form.dataset.endpoint!,
+            input.value
+          )
+          if (result === 'success') {
+            input.value = ''
+            button.textContent = '✓'
+          }
+        } catch {
+          // keep the form usable so the visitor can retry
+        } finally {
+          sending = false
+          button.disabled = false
+          button.classList.remove('opacity-50')
+        }
+      })
+    })
+</script>

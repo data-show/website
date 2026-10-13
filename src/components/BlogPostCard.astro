@@ -1,0 +1,49 @@
+---
+import type { ImageMetadata } from 'astro'
+
+import { cn } from '../lib/cn'
+import OptimizedImage from './OptimizedImage.astro'
+
+interface Props {
+  title: string
+  description?: string
+  image: ImageMetadata
+  slug: string
+  class?: string
+}
+
+const { title, description, image, slug, class: className } = Astro.props
+---
+
+<div class={cn('rounded w-full', className)}>
+  <a href={slug}>
+    <OptimizedImage
+      src={image}
+      alt={title}
+      title={title}
+      width={350}
+      widths={[320, 480, 640, 960]}
+      sizes="(min-width: 1024px) 325px, (min-width: 768px) 352px, (min-width: 640px) 50vw, 100vw"
+      class="w-full h-40 rounded object-cover"
+    />
+  </a>
+
+  <div class="p-4 pl-0">
+    <a href={slug}>
+      <h2 class="font-bold text-xl text-gray-800">{title}</h2>
+    </a>
+
+    {description && (
+      <>
+        <p class="text-gray-800 mt-2">{description}</p>
+
+        <a
+          href={slug}
+          class="inline-block py-2 rounded text-gray-900 mt-2 ml-auto"
+        >
+          Read more
+        </a>
+      </>
+    )}
+  </div>
+</div>
