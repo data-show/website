@@ -1,0 +1,11 @@
+---
+import { icon, type IconDefinition } from '@fortawesome/fontawesome-svg-core'
+
+interface Props {
+  icon: IconDefinition
+}
+
+const svg = icon(Astro.props.icon).html.join('')
+---
+
+<Fragment set:html={svg} />

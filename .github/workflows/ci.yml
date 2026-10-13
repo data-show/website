@@ -14,16 +14,27 @@ jobs:
 
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@master
+        uses: actions/checkout@v7
 
       - name: Setup node env 🏗
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: lts/hydrogen
-          cache: 'yarn'
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Cache Astro 💾
+        uses: actions/cache@v6
+        with:
+          path: |
+            node_modules/.astro
+            .astro
+          key: astro-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ github.sha }}
+          restore-keys: |
+            astro-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-
+            astro-${{ runner.os }}-
 
       - name: Install dependencies 👨🏻‍💻
-        run: yarn --frozen-lockfile --silent
+        run: npm ci
 
       - name: Run tests 🧪
-        run: yarn test
+        run: npm test

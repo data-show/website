@@ -1,0 +1,70 @@
+---
+import { getCollection, render } from 'astro:content'
+
+import BlogPostCard from '../../components/BlogPostCard.astro'
+import TagList from '../../components/TagList.astro'
+import Layout from '../../layouts/Layout.astro'
+import { getPosts, postUrl } from '../../lib/content'
+
+export async function getStaticPaths() {
+  const categories = await getCollection('category')
+  return categories.map(category => ({
+    params: { slug: category.id },
+    props: { category },
+  }))
+}
+
+const { category } = Astro.props
+const { Content } = await render(category)
+
+const posts = (await getPosts()).filter(
+  ({ data }) => data.category === category.data.title
+)
+const tags = [...new Set(posts.flatMap(({ data }) => data.tags))]
+---
+
+<Layout
+  title={`${category.data.title} dataviz and data articles`}
+  description={category.data.description}
+>
+  <section class="max-w-3xl mx-auto px-2 sm:px-4 xl:max-w-5xl xl:px-0">
+    <section>
+      <div class="space-y-4 text-left py-2 mb-6 lg:mb-8">
+        <h1 class="text-3xl leading-9 text-gray-800 sm:text-4xl sm:leading-10 lg:text-5xl lg:leading-14 mb-2">
+          {category.data.title}
+        </h1>
+        <p class="text-lg text-gray-600 sm:text-lg lg:text-xl lg:leading-8 mb-4">
+          {category.data.description}
+        </p>
+      </div>
+
+      <div class="prose prose-lg">
+        <Content />
+      </div>
+    </section>
+
+    <div class="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
+      <h2 class="font-bold text-3xl">Latest</h2>
+    </div>
+
+    <div class="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {posts.map(post => (
+        <BlogPostCard
+          slug={postUrl(post)}
+          title={post.data.title}
+          description={post.data.description}
+          image={post.data.featuredimage}
+        />
+      ))}
+    </div>
+
+    {tags.length > 0 && (
+      <>
+        <div class="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
+          <h2 class="font-bold text-xl lg:text-3xl">Discover more tags</h2>
+        </div>
+        <TagList tags={tags} class="py-2 my-1 lg:my-2" />
+      </>
+    )}
+  </section>
+</Layout>

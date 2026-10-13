@@ -1,0 +1,11 @@
+---
+import { Picture } from 'astro:assets'
+import type { ComponentProps } from 'astro/types'
+
+type Props = ComponentProps<typeof Picture>
+
+const props = Astro.props
+---
+
+{/* AVIF where supported, otherwise the WebP <img> fallback. */}
+<Picture formats={['avif']} fallbackFormat="webp" {...props} />

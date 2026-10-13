@@ -1,0 +1,89 @@
+---
+import {
+  faFacebookF,
+  faLinkedinIn,
+  faPinterestP,
+  faTwitter,
+  faWhatsapp,
+} from '@fortawesome/free-brands-svg-icons'
+
+import { SITE_TITLE, SOCIAL } from '../consts'
+
+import Icon from './Icon.astro'
+
+interface Props {
+  url: string
+  title: string
+  description: string
+  tags: string[]
+  /** Absolute URL of the image to pin; enables the Pinterest button. */
+  media?: string
+  authorTwitter?: string
+}
+
+const { url, title, description, tags, media, authorTwitter } = Astro.props
+
+const hashtags = tags.map(tag => tag.split(' ').join(''))
+const query = (params: Record<string, string | undefined>) =>
+  new URLSearchParams(
+    Object.entries(params).filter(([, value]) => value) as [string, string][]
+  ).toString()
+
+const buttons = [
+  media && {
+    label: 'Pinterest',
+    icon: faPinterestP,
+    href: `https://pinterest.com/pin/create/button/?${query({ url, media, description })}`,
+  },
+  {
+    label: 'Facebook',
+    icon: faFacebookF,
+    href: `https://www.facebook.com/sharer/sharer.php?${query({
+      u: url,
+      quote: title,
+      hashtag: hashtags[0] && `#${hashtags[0]}`,
+    })}`,
+  },
+  {
+    label: 'Twitter',
+    icon: faTwitter,
+    href: `https://twitter.com/intent/tweet?${query({
+      url,
+      text: title,
+      via: SOCIAL.twitter,
+      hashtags: hashtags.join(','),
+      related: [SOCIAL.twitter, authorTwitter].filter(Boolean).join(','),
+    })}`,
+  },
+  {
+    label: 'LinkedIn',
+    icon: faLinkedinIn,
+    href: `https://www.linkedin.com/shareArticle?${query({
+      mini: 'true',
+      url,
+      title,
+      summary: description,
+      source: SITE_TITLE,
+    })}`,
+  },
+  {
+    label: 'WhatsApp',
+    icon: faWhatsapp,
+    href: `https://api.whatsapp.com/send?${query({ text: `${title} ${url}` })}`,
+  },
+].filter(Boolean) as { label: string; icon: any; href: string }[]
+---
+
+<div class="col-span-4 lg:col-span-1 inline-flex items-center text-lg">
+  {buttons.map(({ label, icon, href }) => (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Share on ${label}`}
+      class="inline-flex items-center justify-center cursor-pointer h-8 w-8 bg-gray-700 hover:bg-white text-white hover:text-gray-900 border-solid hover:border-2 hover:border-gray-900 transition duration-300 font-bold mr-1 rounded-full"
+    >
+      <Icon icon={icon} />
+    </a>
+  ))}
+</div>

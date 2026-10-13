@@ -1,0 +1,161 @@
+---
+import { format } from 'date-fns'
+
+import OptimizedImage from '../../components/OptimizedImage.astro'
+import ShareButtons from '../../components/ShareButtons.astro'
+import TagList from '../../components/TagList.astro'
+import Layout from '../../layouts/Layout.astro'
+import {
+  authorUrl,
+  getAuthor,
+  getCategory,
+  getDataviz,
+  postUrl,
+} from '../../lib/content'
+import { absoluteImageUrl } from '../../lib/images'
+import { article, breadcrumb } from '../../lib/jsonld'
+
+export async function getStaticPaths() {
+  const dataviz = await getDataviz()
+  return dataviz.map(post => ({ params: { slug: post.id }, props: { post } }))
+}
+
+const { post } = Astro.props
+
+const { title, description, tags, sources, notebooks } = post.data
+const seoTitle = `${title} DataViz`
+const site = Astro.site!
+const url = new URL(postUrl(post), site).href
+const [author, category] = await Promise.all([
+  getAuthor(post.data.author),
+  getCategory(post.data.category),
+])
+const image = await absoluteImageUrl(post.data.media, site)
+---
+
+<Layout
+  title={seoTitle}
+  description={description}
+  canonical={url}
+  type="article"
+  image={post.data.media}
+  article={{
+    publishedTime: post.data.date,
+    section: category.data.title,
+    authors: [new URL(authorUrl(author), site).href],
+    tags,
+  }}
+  jsonLd={[
+    article({
+      url,
+      headline: seoTitle,
+      image,
+      datePublished: post.data.date,
+      authorName: author.data.name,
+      description,
+      site,
+    }),
+    breadcrumb([
+      { name: 'Home', url: new URL('/', site).href },
+      { name: 'Dataviz', url: new URL('/dataviz/', site).href },
+      { name: title, url },
+    ]),
+    {
+      '@context': 'https://schema.org/',
+      '@type': 'ImageObject',
+      contentUrl: image,
+    },
+  ]}
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
+    <header class="pt-2 pb-2 xl:pb-4 lg:border-b-2 lg:border-gray-200">
+      <h1 class="text-3xl leading-12 text-gray-800 lg:text-4xl lg:leading-14 mb-2">
+        {title}
+      </h1>
+      <p class="text-lg leading-4 text-gray-600 lg:text-xl lg:leading-6 mb-4">
+        {description}
+      </p>
+
+      <div class="space-y-4 text-left">
+        <div class="grid grid-cols-4 gap-2 py-2">
+          <div class="col-span-4 lg:col-span-3 flex">
+            <a class="text-gray-900 leading-none" href={authorUrl(author)}>
+              <OptimizedImage
+                src={author.data.image}
+                alt={author.data.name}
+                width={40}
+                height={40}
+                widths={[40, 80, 120]}
+                sizes="40px"
+                class="w-10 h-10 rounded-full mr-4 object-cover"
+              />
+            </a>
+            <div class="text-sm">
+              <a class="text-gray-900 leading-none" href={authorUrl(author)}>
+                {author.data.name}
+              </a>
+              <p class="text-gray-600">{format(post.data.date, 'PP')}</p>
+            </div>
+          </div>
+
+          <ShareButtons
+            url={url}
+            title={title}
+            description={description}
+            tags={tags}
+            media={image}
+            authorTwitter={author.data.twitter}
+          />
+        </div>
+      </div>
+    </header>
+
+    <OptimizedImage
+      src={post.data.media}
+      alt={title}
+      title={title}
+      width={1024}
+      widths={[640, 960, 1280, 1920]}
+      sizes="(min-width: 1280px) 1024px, (min-width: 768px) 768px, 100vw"
+      priority
+      class="w-full"
+    />
+
+    <div class="mt-6 mb-2">
+      <TagList tags={tags} class="py-2 my-4 lg:my-8" />
+
+      {sources.length > 0 && (
+        <div class="my-4 lg:my-8">
+          <h2 class="text-lg text-gray-900 mb-2">Sources</h2>
+
+          <hr class="my-4" />
+
+          {sources.map(source => (
+            <a
+              class="underline mr-4"
+              href={source.link}
+              target="_blank"
+              rel="noopener nofollow"
+            >
+              {source.source ?? source.link}
+            </a>
+          ))}
+        </div>
+      )}
+
+      {notebooks.length > 0 && (
+        <div class="my-4 lg:my-8">
+          <h2 class="text-lg text-gray-900 mb-2">Notebooks</h2>
+
+          <hr class="my-4" />
+
+          {notebooks.map(notebook => (
+            <a class="underline mr-4" href={notebook.link} target="_blank">
+              {notebook.title}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </article>
+</Layout>

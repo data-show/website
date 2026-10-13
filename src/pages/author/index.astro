@@ -1,0 +1,29 @@
+---
+import AuthorCard from '../../components/AuthorCard.astro'
+import { SITE_TITLE } from '../../consts'
+import Layout from '../../layouts/Layout.astro'
+import { authorUrl, getAuthors } from '../../lib/content'
+
+const authors = await getAuthors()
+---
+
+<Layout title={`Authors | ${SITE_TITLE}`} description="List of authors">
+  <section class="max-w-3xl mx-auto px-2 xl:max-w-5xl xl:px-0">
+    <div class="space-y-4 text-left py-2 mb-6 lg:mb-8">
+      <h1 class="text-xl lg:text-3xl leading-9 text-gray-800 lg:leading-14 mb-2">
+        Authors
+      </h1>
+    </div>
+
+    <div class="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {authors.map(author => (
+        <AuthorCard
+          slug={authorUrl(author)}
+          name={author.data.name}
+          description={author.data.description}
+          image={author.data.image}
+        />
+      ))}
+    </div>
+  </section>
+</Layout>
